@@ -37,7 +37,7 @@ set_dalvik_props ()
     case $ram in
         # 1GB
         1024 )
-            setprop dalvik.vm.heapstartsize "8m"
+            setprop dalvik.vm.heapstartsize "16m"
             setprop dalvik.vm.heapgrowthlimit "96m"
             setprop dalvik.vm.heapsize "256m"
             setprop dalvik.vm.heaptargetutilization "0.75"
@@ -46,7 +46,7 @@ set_dalvik_props ()
         ;;
         # 2GB
         * )
-            setprop dalvik.vm.heapstartsize "8m"
+            setprop dalvik.vm.heapstartsize "16m"
             setprop dalvik.vm.heapgrowthlimit "192m"
             setprop dalvik.vm.heapsize "512m"
             setprop dalvik.vm.heaptargetutilization "0.75"
