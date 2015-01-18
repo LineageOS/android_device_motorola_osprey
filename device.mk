@@ -91,6 +91,10 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8916 \
     memtrack.msm8916
 
+# CMActions
+PRODUCT_PACKAGES += \
+    CMActions
+
 # Ebtables
 PRODUCT_PACKAGES += \
     ebtables \

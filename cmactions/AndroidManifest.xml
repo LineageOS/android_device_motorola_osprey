@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.cyanogenmod.cmactions"
+    android:versionCode="1"
+    android:versionName="1.0"
+    >
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:label="CMActions"
+        android:theme="@android:style/Theme.Material" >
+
+        <receiver android:name="org.cyanogenmod.cmactions.BootCompletedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="ServiceWrapper" android:permission="ServiceWrapper">
+            <intent-filter>
+                <action android:name="ServiceWrapper"/>
+            </intent-filter>
+        </service>
+
+        <activity
+                  android:excludeFromRecents="true"
+                  android:name="CMActions"
+                  android:label="CMActions"
+                  android:launchMode="singleInstance"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/CMActionsTheme"
+                  android:windowAnimationStyle="@null">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
