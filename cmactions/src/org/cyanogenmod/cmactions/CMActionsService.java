@@ -56,6 +56,8 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         mIrGestureSensor = new IrGestureSensor(mSensorHelper, mDozePulseAction);
         mStowSensor = new StowSensor(mSensorHelper, mState, mDozePulseAction);
 
+        mCameraActivationSensor.enable();
+
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (powerManager.isInteractive()) {
             screenTurnedOn();
@@ -71,7 +73,6 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     @Override
     public void screenTurnedOn() {
         mState.setScreenIsOn(true);
-        mCameraActivationSensor.disable();
         //mIrGestureSensor.disable();
         mStowSensor.disable();
     }
@@ -83,7 +84,6 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
             //mIrGestureSensor.enable();
             mStowSensor.enable();
         }
-        mCameraActivationSensor.enable();
     }
 
     private boolean isDozeEnabled() {
