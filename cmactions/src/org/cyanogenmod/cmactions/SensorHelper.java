@@ -55,7 +55,7 @@ public class SensorHelper {
             List<Sensor> sensorList = mSensorManager.getSensorList(Sensor.TYPE_ALL);
             for (Sensor sensor : sensorList) {
                 writer.write("sensor " + sensor.getType() + " = " + sensor.getName()
-                    + " max batch: " + sensor.getFifoMaxEventCount() + "\n");
+                    + " max batch: " + sensor.getFifoMaxEventCount() + " isWakeUp: " + sensor.isWakeUpSensor() + "\n");
             }
             writer.close();
         } catch (IOException e) {
@@ -64,15 +64,15 @@ public class SensorHelper {
     }
 
     public Sensor getCameraActivationSensor() {
-        return getUnofficialSensor(SENSOR_TYPE_MMI_CAMERA_ACTIVATION);
+        return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_CAMERA_ACTIVATION, true);
     }
 
     public Sensor getIrGestureSensor() {
-        return getUnofficialSensor(SENSOR_TYPE_MMI_IR_GESTURE);
+        return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_IR_GESTURE, true);
     }
 
     public Sensor getStowSensor() {
-        return getUnofficialSensor(SENSOR_TYPE_MMI_STOW);
+        return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_STOW, true);
     }
 
     public void registerListener(Sensor sensor, SensorEventListener listener) {
@@ -84,13 +84,5 @@ public class SensorHelper {
 
     public void unregisterListener(SensorEventListener listener) {
         mSensorManager.unregisterListener(listener);
-    }
-
-    private Sensor getUnofficialSensor(int type) {
-        List<Sensor> sensorList = mSensorManager.getSensorList(type);
-        if (sensorList.isEmpty()) {
-            throw new RuntimeException("Could not find any sensors of type " + type);
-        }
-        return sensorList.get(0);
     }
 }
