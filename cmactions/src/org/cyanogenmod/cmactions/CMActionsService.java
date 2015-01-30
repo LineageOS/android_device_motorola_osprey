@@ -34,6 +34,7 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     private DozePulseAction mDozePulseAction;
 
     private ActionableSensor mCameraActivationSensor;
+    private ActionableSensor mFlatUpSensor;
     private ActionableSensor mIrGestureSensor;
     private ActionableSensor mStowSensor;
 
@@ -53,6 +54,7 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         mDozePulseAction = new DozePulseAction(context, mState);
 
         mCameraActivationSensor = new CameraActivationSensor(mSensorHelper, mCameraActivationAction);
+        mFlatUpSensor = new FlatUpSensor(mSensorHelper, mState, mDozePulseAction);
         mIrGestureSensor = new IrGestureSensor(mSensorHelper, mDozePulseAction);
         mStowSensor = new StowSensor(mSensorHelper, mState, mDozePulseAction);
 
@@ -74,6 +76,7 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     public void screenTurnedOn() {
         mState.setScreenIsOn(true);
         //mIrGestureSensor.disable();
+        mFlatUpSensor.disable();
         mStowSensor.disable();
     }
 
@@ -82,6 +85,7 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         mState.setScreenIsOn(false);
         if (isDozeEnabled()) {
             //mIrGestureSensor.enable();
+            mFlatUpSensor.enable();
             mStowSensor.enable();
         }
     }
