@@ -509,7 +509,6 @@ on post-fs-data
     # AK09912 calibration file directory
     mkdir /data/misc/akmd 0770 system compass
 
-    mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
     mkdir /tombstones/wcnss 0771 system system
