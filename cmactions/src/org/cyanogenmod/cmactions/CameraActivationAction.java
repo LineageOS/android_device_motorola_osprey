@@ -30,6 +30,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.util.Log;
 
@@ -51,8 +52,14 @@ public class CameraActivationAction implements SensorAction {
 
     @Override
     public void action() {
+        vibrate();
         turnScreenOn();
         launchCameraIntent();
+    }
+
+    private void vibrate() {
+        Vibrator v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(500);
     }
 
     private void turnScreenOn() {
