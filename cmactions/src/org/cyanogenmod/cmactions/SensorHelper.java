@@ -31,6 +31,7 @@ public class SensorHelper {
     private static final String TAG = "CMActions";
 
     private static final int SENSOR_TYPE_MMI_CAMERA_ACTIVATION = 65540;
+    private static final int SENSOR_TYPE_MMI_CHOP_CHOP = 65546;
     private static final int SENSOR_TYPE_MMI_FLAT_UP = 65537;
     private static final int SENSOR_TYPE_MMI_IR_GESTURE = 65541;
     private static final int SENSOR_TYPE_MMI_IR_OBJECT = 65543;
@@ -66,6 +67,10 @@ public class SensorHelper {
 
     public Sensor getCameraActivationSensor() {
         return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_CAMERA_ACTIVATION, true);
+    }
+
+    public Sensor getChopChopSensor() {
+        return mSensorManager.getDefaultSensor(SENSOR_TYPE_MMI_CHOP_CHOP, true);
     }
 
     public Sensor getFlatUpSensor() {

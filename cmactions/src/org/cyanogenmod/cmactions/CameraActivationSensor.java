@@ -41,21 +41,23 @@ public class CameraActivationSensor implements ActionableSensor, SensorEventList
     private SensorHelper mSensorHelper;
     private SensorAction mSensorAction;
 
-    private Sensor sensor;
+    private Sensor mCameraActivationSensor;
+    private Sensor mChopChopSensor;
 
     private Context mContext;
 
     public CameraActivationSensor(SensorHelper sensorHelper, SensorAction sensorAction) {
         mSensorHelper = sensorHelper;
         mSensorAction = sensorAction;
-
-        sensor = sensorHelper.getCameraActivationSensor();
+        mCameraActivationSensor = sensorHelper.getCameraActivationSensor();
+        mChopChopSensor = sensorHelper.getChopChopSensor();
     }
 
     @Override
     public void enable() {
         Log.d(TAG, "Enabling");
-        mSensorHelper.registerListener(sensor, this);
+        mSensorHelper.registerListener(mCameraActivationSensor, this);
+        mSensorHelper.registerListener(mChopChopSensor, this);
     }
 
     @Override
