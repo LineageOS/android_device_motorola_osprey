@@ -1,7 +1,7 @@
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.24bit.enable=false \
-    audio.offload.buffer.size.kb=240 \
+    audio.offload.buffer.size.kb=64 \
     audio.offload.gapless.enabled=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
