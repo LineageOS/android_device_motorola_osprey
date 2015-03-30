@@ -26,7 +26,7 @@ public class ServiceWrapper extends android.app.Service {
     static final String TAG = "CMActions-ServiceWrapper";
 
     private final IBinder mBinder = new LocalBinder();
-    private CMActionsService cmActionsService;
+    private CMActionsService mCmActionsService;
 
     public interface ServiceCallback {
         void sendResults(int resultCode, Bundle b);
@@ -44,7 +44,7 @@ public class ServiceWrapper extends android.app.Service {
     public void onCreate() {
         Log.i(TAG, "onCreate");
         super.onCreate();
-        cmActionsService = new CMActionsService(this);
+        mCmActionsService = new CMActionsService(this);
     }
 
     @Override

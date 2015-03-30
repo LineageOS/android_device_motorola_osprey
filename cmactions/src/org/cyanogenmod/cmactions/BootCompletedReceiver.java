@@ -28,7 +28,7 @@ import android.util.Log;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     static final String TAG = "CMActions";
-    private ServiceWrapper serviceWrapper;
+    private ServiceWrapper mServiceWrapper;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -40,13 +40,13 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
             LocalBinder binder = (LocalBinder) service;
-            serviceWrapper = binder.getService();
-            serviceWrapper.start();
+            mServiceWrapper = binder.getService();
+            mServiceWrapper.start();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName className) {
-            serviceWrapper = null;
+            mServiceWrapper = null;
         }
     };
 }

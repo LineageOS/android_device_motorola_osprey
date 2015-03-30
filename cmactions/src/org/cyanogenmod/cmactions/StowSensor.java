@@ -28,14 +28,14 @@ public class StowSensor implements ActionableSensor, SensorEventListener {
     private State mState;
     private SensorAction mSensorAction;
 
-    private Sensor sensor;
+    private Sensor mSensor;
 
     public StowSensor(SensorHelper sensorHelper, State state, SensorAction action) {
         mSensorHelper = sensorHelper;
         mState = state;
         mSensorAction = action;
 
-        sensor = sensorHelper.getStowSensor();
+        mSensor = sensorHelper.getStowSensor();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StowSensor implements ActionableSensor, SensorEventListener {
     @Override
     public void setScreenOff() {
         Log.d(TAG, "Enabling");
-        mSensorHelper.registerListener(sensor, this);
+        mSensorHelper.registerListener(mSensor, this);
     }
 
     @Override
