@@ -17,6 +17,6 @@
 package org.cyanogenmod.cmactions;
 
 interface ActionableSensor {
-    public void enable();
-    public void disable();
+    public void setScreenOn();
+    public void setScreenOff();
 }

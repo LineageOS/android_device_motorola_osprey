@@ -51,19 +51,18 @@ public class CameraActivationSensor implements ActionableSensor, SensorEventList
         mSensorAction = sensorAction;
         mCameraActivationSensor = sensorHelper.getCameraActivationSensor();
         mChopChopSensor = sensorHelper.getChopChopSensor();
-    }
 
-    @Override
-    public void enable() {
         Log.d(TAG, "Enabling");
         mSensorHelper.registerListener(mCameraActivationSensor, this);
         mSensorHelper.registerListener(mChopChopSensor, this);
     }
 
     @Override
-    public void disable() {
-        Log.d(TAG, "Disabling");
-        mSensorHelper.unregisterListener(this);
+    public void setScreenOn() {
+    }
+
+    @Override
+    public void setScreenOff() {
     }
 
     @Override

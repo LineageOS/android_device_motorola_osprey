@@ -39,15 +39,15 @@ public class StowSensor implements ActionableSensor, SensorEventListener {
     }
 
     @Override
-    public void enable() {
-        Log.d(TAG, "Enabling");
-        mSensorHelper.registerListener(sensor, this);
+    public void setScreenOn() {
+        Log.d(TAG, "Disabling");
+        mSensorHelper.unregisterListener(this);
     }
 
     @Override
-    public void disable() {
-        Log.d(TAG, "Disabling");
-        mSensorHelper.unregisterListener(this);
+    public void setScreenOff() {
+        Log.d(TAG, "Enabling");
+        mSensorHelper.registerListener(sensor, this);
     }
 
     @Override

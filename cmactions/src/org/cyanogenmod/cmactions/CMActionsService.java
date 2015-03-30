@@ -23,6 +23,9 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import java.util.List;
+import java.util.LinkedList;
+
 public class CMActionsService extends IntentService implements ScreenStateNotifier {
     private static final String TAG = "CMActions";
 
@@ -33,10 +36,7 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     private CameraActivationAction mCameraActivationAction;
     private DozePulseAction mDozePulseAction;
 
-    private ActionableSensor mCameraActivationSensor;
-    private ActionableSensor mFlatUpSensor;
-    private ActionableSensor mIrGestureSensor;
-    private ActionableSensor mStowSensor;
+    private List<ActionableSensor> mActionableSensors = new LinkedList<ActionableSensor>();
 
     private Context mContext;
 
@@ -53,12 +53,10 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         mCameraActivationAction = new CameraActivationAction(context);
         mDozePulseAction = new DozePulseAction(context, mState);
 
-        mCameraActivationSensor = new CameraActivationSensor(mSensorHelper, mCameraActivationAction);
-        mFlatUpSensor = new FlatUpSensor(mSensorHelper, mState, mDozePulseAction);
-        mIrGestureSensor = new IrGestureSensor(mSensorHelper, mDozePulseAction);
-        mStowSensor = new StowSensor(mSensorHelper, mState, mDozePulseAction);
-
-        mCameraActivationSensor.enable();
+        mActionableSensors.add(new CameraActivationSensor(mSensorHelper, mCameraActivationAction));
+        mActionableSensors.add(new FlatUpSensor(mSensorHelper, mState, mDozePulseAction));
+        //mActionableSensors.add(mIrGestureSensor = new IrGestureSensor(mSensorHelper, mDozePulseAction));
+        mActionableSensors.add(new StowSensor(mSensorHelper, mState, mDozePulseAction));
 
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (powerManager.isInteractive()) {
@@ -75,18 +73,16 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     @Override
     public void screenTurnedOn() {
         mState.setScreenIsOn(true);
-        //mIrGestureSensor.disable();
-        mFlatUpSensor.disable();
-        mStowSensor.disable();
+        for (ActionableSensor actionableSensor : mActionableSensors) {
+            actionableSensor.setScreenOn();
+        }
     }
 
     @Override
     public void screenTurnedOff() {
         mState.setScreenIsOn(false);
-        if (isDozeEnabled()) {
-            //mIrGestureSensor.enable();
-            mFlatUpSensor.enable();
-            mStowSensor.enable();
+        for (ActionableSensor actionableSensor : mActionableSensors) {
+            actionableSensor.setScreenOff();
         }
     }
 
