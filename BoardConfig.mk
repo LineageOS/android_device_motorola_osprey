@@ -40,7 +40,7 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 #Kernel
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 vmalloc=400M androidboot.bootdevice=soc.0 utags.blkdev=/dev/block/platform/soc.0/by-name/utags utags.backup=/dev/block/platform/soc.0/by-name/utagsBackup movablecore=160M
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 vmalloc=400M androidboot.bootdevice=soc.0 utags.blkdev=/dev/block/platform/soc.0/by-name/utags utags.backup=/dev/block/platform/soc.0/by-name/utagsBackup movablecore=160M androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_RAMDISK_OFFSET := 0x01000000
@@ -85,16 +85,13 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 TARGET_QCOM_MEDIA_VARIANT := caf-new 
 
 # Partitions
-# TODO
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520
-BOARD_CACHEIMAGE_PARTITION_SIZE := 134217728
-BOARD_PERSISTIMAGE_PARTITION_SIZE := 10485760
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1258291200
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 13576175616 # 13576192000 - 16384
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432 #32768 * 1024 mmcblk0p33 
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33538048 #32752 * 1024 mmcblk0p34 
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1895825408 #1851392 * 1024 mmcblk0p42 
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 8388608 # 8192 * 1024 mmcblk0p31
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 5368578048 # 5242752 mmcblk0p44 
 
-# Qualcomm support
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 BOARD_USES_QCOM_HARDWARE := true
 
