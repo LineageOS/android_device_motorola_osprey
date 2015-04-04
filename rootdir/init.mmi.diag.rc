@@ -1,0 +1,7 @@
+
+on property:ro.bootmode=normal
+    rm /dev/diag
+
+on property:ro.bootmode=mot-charger
+    rm /dev/diag
+
