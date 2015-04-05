@@ -78,6 +78,12 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # GPS
 
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_UNIFIED_DEVICE := true
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_surnia.c
+
+
 # Lights
 
 # Media
