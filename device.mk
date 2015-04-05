@@ -19,6 +19,8 @@ LOCAL_PATH := device/motorola/surnia
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+$(call inherit-product-if-exists, vendor/motorola/surnia/surnia-vendor.mk)
+
 # Ramdisk
  PRODUCT_COPY_FILES += \
      $(call find-copy-subdir-files,*,${LOCAL_PATH}/rootdir,root)
@@ -44,9 +46,6 @@ PRODUCT_PACKAGES += \
     audio.msm8916 \
     audio_policy.msm8916
 
-# Keystore
-PRODUCT_PACKAGES += keystore.msm8916
-
 PRODUCT_PACKAGES += \
     audiod \
     audio.primary.msm8916 \
@@ -57,6 +56,17 @@ PRODUCT_PACKAGES += \
     tinymix \
     libqcomvisualizer \
     libqcomvoiceprocessing
+
+# ANT+
+PRODUCT_PACKAGES += \
+    AntHalService \
+    com.dsi.ant.antradio_library \
+    libantradio
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8916 \
+    libmm-qcamera
 
 # Filesystem
 PRODUCT_PACKAGES += \
@@ -104,6 +114,10 @@ PRODUCT_PACKAGES += \
     FMRecord \
     libqcomfm_jni \
     qcom.fmradio
+
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.msm8916
 
 # Lights
 PRODUCT_PACKAGES += \
