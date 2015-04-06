@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.cyanogenmod.cmactions;
+package com.cyanogenmod.settings.device;
 
 import android.content.Intent;
 import android.os.Binder;

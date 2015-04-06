@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.cyanogenmod.cmactions;
+package com.cyanogenmod.settings.device;
 
-import org.cyanogenmod.cmactions.ServiceWrapper.LocalBinder;
+import com.cyanogenmod.settings.device.ServiceWrapper.LocalBinder;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.cyanogenmod.cmactions"
+    package="com.cyanogenmod.settings.device"
     android:versionCode="1"
     android:versionName="1.0"
     >
@@ -19,7 +19,7 @@
         android:persistent="true"
         android:theme="@android:style/Theme.Material" >
 
-        <receiver android:name="org.cyanogenmod.cmactions.BootCompletedReceiver">
+        <receiver android:name="com.cyanogenmod.settings.device.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />

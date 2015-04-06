@@ -14,26 +14,28 @@
  * limitations under the License.
  */
 
-package org.cyanogenmod.cmactions;
+package com.cyanogenmod.settings.device;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
-public class IrGestureSensor implements ActionableSensor, SensorEventListener {
-    private static final String TAG = "CMActions-IRGestureSensor";
+public class StowSensor implements ActionableSensor, SensorEventListener {
+    private static final String TAG = "CMActions-StowSensor";
 
     private SensorHelper mSensorHelper;
+    private State mState;
     private SensorAction mSensorAction;
 
     private Sensor mSensor;
 
-    public IrGestureSensor(SensorHelper sensorHelper, SensorAction action) {
+    public StowSensor(SensorHelper sensorHelper, State state, SensorAction action) {
         mSensorHelper = sensorHelper;
+        mState = state;
         mSensorAction = action;
 
-        mSensor = sensorHelper.getIrGestureSensor();
+        mSensor = sensorHelper.getStowSensor();
     }
 
     @Override
@@ -50,12 +52,14 @@ public class IrGestureSensor implements ActionableSensor, SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Log.d(TAG, "event: [" + event.values.length + "]: " + event.values[0] + ", " +
-            event.values[1] + ", " + event.values[2]);
-        mSensorAction.action();
+        boolean thisStowed = (event.values[0] != 0);
+        Log.d(TAG, "event: " + thisStowed);
+        if (mState.setIsStowed(thisStowed) && ! thisStowed) {
+            mSensorAction.action();
+        }
     }
 
     @Override
-    public void onAccuracyChanged(Sensor mSensor, int accuracy) {
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.cyanogenmod.cmactions;
+package com.cyanogenmod.settings.device;
 
 interface SensorAction {
     public void action();
