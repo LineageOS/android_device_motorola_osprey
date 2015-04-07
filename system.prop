@@ -1,0 +1,5 @@
+# Bare-bones system.prop
+
+ro.sf.lcd_density=240
+com.qc.hardware=true
+debug.qc.hardware=true
