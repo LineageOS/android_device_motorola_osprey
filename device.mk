@@ -159,6 +159,37 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     WCNSS_qcom_wlan_factory_nv.bin
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=240
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.logkit.ctrlcode=0 \
+    ro.usb.mtp=0x2e82 \
+    ro.usb.mtp_adb=0x2e76 \
+    ro.usb.ptp=0x2e83 \
+    ro.usb.ptp_adb=0x2e84 \
+    ro.usb.bpt=0x2ec1 \
+    ro.usb.bpt_adb=0x2ec5 \
+    ro.usb.bpteth=0x2ec3 \
+    ro.usb.bpteth_adb=0x2ec6 \
+    persist.audio.calfile0=/etc/acdbdata/Bluetooth_cal.acdb \
+    persist.audio.calfile1=/etc/acdbdata/General_cal.acdb \
+    persist.audio.calfile2=/etc/acdbdata/Global_cal.acdb \
+    persist.audio.calfile3=/etc/acdbdata/Handset_cal.acdb \
+    persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb \
+    persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb \
+    persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb \
+    persist.sys.qc.sub.rdump.max=3 \
+    mdc_initial_max_retry=10 \
+    drm.service.enabled=true \
+    ro.media.enc.aud.fileformat=amr \
+    ro.media.enc.aud.codec=amrnb \
+    ro.gps.agps_provider=1
+
+# Media
+PRODUCT_PROPERTY_OVERRIDEs += \
+    media.stagefright.use-awesome=true
+
 # Inhert dalvik heap values from aosp
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
