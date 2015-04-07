@@ -18,8 +18,11 @@
 
 LOCAL_PATH := device/motorola/surnia
 
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+BOARD_VENDOR := motorola-qcom
+
+
+#TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+#TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
@@ -34,8 +37,10 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := cortex-a53
-ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_CPU_VARIANT := cortex-a7
+#ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+
 
 #Kernel
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
@@ -44,21 +49,32 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 an
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 TARGET_KERNEL_SOURCE := kernel/motorola/surnia
 TARGET_KERNEL_CONFIG := msm8916_defconfig
+
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 TARGET_QCOM_AUDIO_VARIANT := caf
 
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
 # Bluetooth
 
 # Camera
+TARGET_USE_VENDOR_CAMERA_EXT := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+
+
+# CMHW
+BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/src
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
-
-# CMHW
 
 # Display
 BOARD_EGL_CFG := $(LOCAL_PATH)/egl.cfg
@@ -78,11 +94,22 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # GPS
 
+# Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+TARGET_UNIFIED_DEVICE := true
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_surnia.c
+
+# Insecure boot
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
+
+
 # Lights
 
 # Media
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-TARGET_QCOM_MEDIA_VARIANT := caf-new 
+TARGET_QCOM_MEDIA_VARIANT := caf-new
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -92,15 +119,19 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1895825408 #1851392 * 1024 mmcblk0p42
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 8388608 # 8192 * 1024 mmcblk0p31
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5368578048 # 5242752 mmcblk0p44 
 
+# Qualcomm support
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_NO_RPC := true
+TARGET_USES_QCOM_BSP := true
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
-#Recovery
+# Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
@@ -112,6 +143,13 @@ BOARD_SEPOLICY_DIRS += \
     device/motorola/surnia/sepolicy
 
 
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
+
+# QC PROPRIETARY
+ifneq ($(QCPATH),)
+BOARD_USES_QCNE := true
+endif
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
