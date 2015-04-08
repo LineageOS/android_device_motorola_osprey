@@ -1,0 +1,9 @@
+allow mm-qcamerad mpctl_socket:sock_file write;
+allow mm-qcamerad mpdecision:unix_stream_socket connectto;
+allow mm-qcamerad qdsp_device:chr_file { open read ioctl };
+allow mm-qcamerad system_server:unix_stream_socket { read write };
+allow servicemanager mm-qcamerad:dir search;
+allow servicemanager mm-qcamerad:file { open read };
+allow servicemanager mm-qcamerad:process { getattr };
+binder_call(mm-qcamerad, servicemanager)
+binder_call(mm-qcamerad, system_server)

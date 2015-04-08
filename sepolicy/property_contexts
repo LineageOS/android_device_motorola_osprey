@@ -1,0 +1,2 @@
+# Motorola service properties
+persist.atvc                u:object_r:atvc_prop:s0

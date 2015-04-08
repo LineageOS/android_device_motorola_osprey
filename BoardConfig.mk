@@ -139,9 +139,24 @@ TARGET_USERIMAGES_USE_F2FS := true
 # RIL
 
 # SELinux
+
+include device/qcom/sepolicy/sepolicy.mk
+
 BOARD_SEPOLICY_DIRS += \
     device/motorola/surnia/sepolicy
 
+BOARD_SEPOLICY_UNION += \
+    atvc.te \
+    batt_health.te \
+    device.te \
+    file.te \
+    file_contexts \
+    init.te \
+    mm-qcamerad.te \
+    mpdecision.te \
+    property.te \
+    property_contexts \
+    system_server.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true

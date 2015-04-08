@@ -1,0 +1,40 @@
+# Binaries
+/system/bin/batt_health            u:object_r:batt_health_exec:s0
+/system/bin/dbvc_atvc_property_set u:object_r:atvc_exec:s0
+
+# Camera
+/data/cam_socket[12]           u:object_r:camera_socket:s0
+
+# CMHW
+/sys/devices/platform/kcal_ctrl\.0(/.*)?                    u:object_r:display_sysfs:s0
+/sys/devices/virtual/timed_output/vibrator/vtg_level        u:object_r:vibeamp_sysfs:s0
+
+# Motorola services
+/data/power_supply_logger(/.*)?                             u:object_r:batt_health_data_file:s0
+/sys/module/qpnp_charger/parameters(/.*)?                   u:object_r:sysfs_batt_health:s0
+
+# MPDecision
+/data/system/default_values                                 u:object_r:mpctl_data_file:s0
+/dev/socket/mpctl                                           u:object_r:mpctl_socket:s0
+/dev/socket/mpdecision                                      u:object_r:mpctl_socket:s0
+
+# Partitions
+/dev/block/bootdevice/by-name/cid                           u:object_r:cid_block_device:s0
+/dev/block/bootdevice/by-name/clogo                         u:object_r:clogo_block_device:s0
+/dev/block/bootdevice/by-name/dhob                          u:object_r:hob_block_device:s0
+/dev/block/bootdevice/by-name/hob                           u:object_r:hob_block_device:s0
+/dev/block/bootdevice/by-name/logs                          u:object_r:logs_block_device:s0
+/dev/block/bootdevice/by-name/userdata                      u:object_r:userdata_block_device:s0
+/dev/block/bootdevice/by-name/utags                         u:object_r:utags_block_device:s0
+/dev/block/bootdevice/by-name/utagsBackup                   u:object_r:utags_block_device:s0
+
+# PDS
+/pds(/.*)?                                                  u:object_r:pds_file:s0
+
+# Sensors
+/dev/akm8963                                                u:object_r:sensors_device:s0
+/dev/akm8963_dev                                            u:object_r:sensors_device:s0
+/dev/akm09912                  	                            u:object_r:sensors_device:s0 
+/dev/l3g4200d                                               u:object_r:sensors_device:s0
+/dev/lis3dh                                                 u:object_r:sensors_device:s0
+/data/misc/akmd_set.txt                                     u:object_r:sensors_data_file:s0
