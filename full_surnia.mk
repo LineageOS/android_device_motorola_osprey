@@ -26,3 +26,5 @@ PRODUCT_NAME := full_surnia
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := surnia
 PRODUCT_MANUFACTURER := motorola
+
+$(call inherit-product-if-exists, vendor/motorola/surnia/surnia-vendor.mk)

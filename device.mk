@@ -19,8 +19,6 @@ LOCAL_PATH := device/motorola/surnia
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-$(call inherit-product-if-exists, vendor/motorola/surnia/surnia-vendor.mk)
-
 # Ramdisk
  PRODUCT_COPY_FILES += \
      $(call find-copy-subdir-files,*,${LOCAL_PATH}/rootdir,root)
