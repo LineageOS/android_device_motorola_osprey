@@ -55,8 +55,9 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
     property_set("ro.product.model", "MotoE2");
     property_get("ro.boot.radio", radio);
+
+    /* XT1524 */
     if (ISMATCH(radio, "0x4")) {
-        /* xt1524 */
         property_set("ro.product.name", "surnia_reteu");
         property_set("ro.product.device", "surnia_umts");
         property_set("ro.build.product", "surnia_umts");
@@ -66,6 +67,19 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.telephony.default_network", "9");
         property_set("persist.radio.multisim.config", "");
     }
+
+    /* XT1527 */
+    if (ISMATCH(radio, "0x1")) {
+        property_set("ro.product.name", "surnia_retus");
+        property_set("ro.product.device", "surnia_umts");
+        property_set("ro.build.product", "surnia_umts");
+        property_set("ro.build.description", "surnia_retus-user 5.0.2 LXI22.50-24.1 1 release-keys");
+        property_set("ro.build.fingerprint", "motorola/surnia_retus/surnia_umts:5.0.2/LXI22.50-24.1/1:user/release-keys");
+        property_set("ro.mot.build.customerid", "retus");
+        property_set("ro.telephony.default_network", "9");
+        property_set("persist.radio.multisim.config", "");
+    }
+
     property_get("ro.product.device", device);
     strlcpy(devicename, device, sizeof(devicename));
     ERROR("Found radio id: %s setting build properties for %s device\n", radio, devicename);
