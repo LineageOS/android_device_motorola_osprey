@@ -23,8 +23,8 @@ import android.util.Log;
 public class DozePulseAction implements SensorAction {
     private static final String TAG = "CMActions";
 
-    private Context mContext;
-    private State mState;
+    private final Context mContext;
+    private final State mState;
 
     public DozePulseAction(Context context, State state) {
         mContext = context;

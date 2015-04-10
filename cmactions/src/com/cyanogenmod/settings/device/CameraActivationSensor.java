@@ -38,14 +38,13 @@ public class CameraActivationSensor implements ActionableSensor, SensorEventList
 
     private static final int TURN_SCREEN_ON_WAKE_LOCK_MS = 500;
 
-    private CMActionsSettings mCMActionsSettings;
-    private SensorHelper mSensorHelper;
-    private SensorAction mSensorAction;
+    private final CMActionsSettings mCMActionsSettings;
+    private final SensorHelper mSensorHelper;
+    private final SensorAction mSensorAction;
 
-    private Sensor mCameraActivationSensor;
-    private Sensor mChopChopSensor;
+    private final Sensor mCameraActivationSensor;
+    private final Sensor mChopChopSensor;
 
-    private Context mContext;
     private boolean mIsEnabled;
 
     public CameraActivationSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,

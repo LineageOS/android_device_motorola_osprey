@@ -24,12 +24,12 @@ import android.util.Log;
 public class StowSensor implements ActionableSensor, SensorEventListener {
     private static final String TAG = "CMActions-StowSensor";
 
-    private CMActionsSettings mCMActionsSettings;
-    private SensorHelper mSensorHelper;
-    private State mState;
-    private SensorAction mSensorAction;
+    private final CMActionsSettings mCMActionsSettings;
+    private final SensorHelper mSensorHelper;
+    private final State mState;
+    private final SensorAction mSensorAction;
+    private final Sensor mSensor;
 
-    private Sensor mSensor;
     private boolean mEnabled;
 
     public StowSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper, State state,

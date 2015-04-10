@@ -30,17 +30,16 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         UpdatedStateNotifier {
     private static final String TAG = "CMActions";
 
-    private State mState;
-    private SensorHelper mSensorHelper;
-    private ScreenReceiver mScreenReceiver;
-    private PowerManager mPowerManager;
+    private final Context mContext;
 
-    private CameraActivationAction mCameraActivationAction;
-    private DozePulseAction mDozePulseAction;
+    private final CameraActivationAction mCameraActivationAction;
+    private final DozePulseAction mDozePulseAction;
+    private final PowerManager mPowerManager;
+    private final ScreenReceiver mScreenReceiver;
+    private final SensorHelper mSensorHelper;
+    private final State mState;
 
-    private List<ActionableSensor> mActionableSensors = new LinkedList<ActionableSensor>();
-
-    private Context mContext;
+    private final List<ActionableSensor> mActionableSensors = new LinkedList<ActionableSensor>();
 
     public CMActionsService(Context context) {
         super("CMActionService");

@@ -24,11 +24,11 @@ import android.util.Log;
 public class IrGestureSensor implements ActionableSensor, SensorEventListener {
     private static final String TAG = "CMActions-IRGestureSensor";
 
-    private CMActionsSettings mCMActionsSettings;
-    private SensorHelper mSensorHelper;
-    private SensorAction mSensorAction;
+    private final CMActionsSettings mCMActionsSettings;
+    private final SensorHelper mSensorHelper;
+    private final SensorAction mSensorAction;
+    private final Sensor mSensor;
 
-    private Sensor mSensor;
     private boolean mEnabled;
 
     public IrGestureSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,

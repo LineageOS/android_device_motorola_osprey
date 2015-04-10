@@ -24,10 +24,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.Vibrator;
@@ -39,10 +35,9 @@ public class CameraActivationAction implements SensorAction {
 
     private static final int TURN_SCREEN_ON_WAKE_LOCK_MS = 500;
 
-    private PowerManager mPowerManager;
-    private PackageManager mPackageManager;
-
-    private Context mContext;
+    private final Context mContext;
+    private final PackageManager mPackageManager;
+    private final PowerManager mPowerManager;
 
     public CameraActivationAction(Context context) {
         mContext = context;

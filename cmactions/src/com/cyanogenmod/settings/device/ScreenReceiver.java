@@ -24,7 +24,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 public class ScreenReceiver extends BroadcastReceiver {
-    private ScreenStateNotifier mNotifier;
+    private final ScreenStateNotifier mNotifier;
 
     public ScreenReceiver(Context context, ScreenStateNotifier notifier) {
         mNotifier = notifier;

@@ -28,7 +28,7 @@ public class State {
     private static final boolean SAVE_STATE = true;
     private static final int DELAY_BETWEEN_DOZES_IN_MS = 1500;
 
-    private Context mContext;
+    private final Context mContext;
 
     private boolean mScreenIsOn;
     private boolean mIsFlatUp;
