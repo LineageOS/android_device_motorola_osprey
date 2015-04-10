@@ -24,12 +24,16 @@ import android.util.Log;
 public class IrGestureSensor implements ActionableSensor, SensorEventListener {
     private static final String TAG = "CMActions-IRGestureSensor";
 
+    private CMActionsSettings mCMActionsSettings;
     private SensorHelper mSensorHelper;
     private SensorAction mSensorAction;
 
     private Sensor mSensor;
+    private boolean mEnabled;
 
-    public IrGestureSensor(SensorHelper sensorHelper, SensorAction action) {
+    public IrGestureSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,
+                SensorAction action) {
+        mCMActionsSettings = cmActionsSettings;
         mSensorHelper = sensorHelper;
         mSensorAction = action;
 
@@ -38,14 +42,20 @@ public class IrGestureSensor implements ActionableSensor, SensorEventListener {
 
     @Override
     public void setScreenOn() {
-        Log.d(TAG, "Disabling");
-        mSensorHelper.unregisterListener(this);
+        if (mEnabled) {
+            Log.d(TAG, "Disabling");
+            mSensorHelper.unregisterListener(this);
+            mEnabled = false;
+        }
     }
 
     @Override
     public void setScreenOff() {
-        Log.d(TAG, "Enabling");
-        mSensorHelper.registerListener(mSensor, this);
+        if (mCMActionsSettings.isIrWakeupEnabled() && !mEnabled) {
+            Log.d(TAG, "Enabling");
+            mSensorHelper.registerListener(mSensor, this);
+            mEnabled = true;
+        }
     }
 
     @Override

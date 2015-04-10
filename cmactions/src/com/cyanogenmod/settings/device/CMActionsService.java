@@ -26,12 +26,14 @@ import android.util.Log;
 import java.util.List;
 import java.util.LinkedList;
 
-public class CMActionsService extends IntentService implements ScreenStateNotifier {
+public class CMActionsService extends IntentService implements ScreenStateNotifier,
+        UpdatedStateNotifier {
     private static final String TAG = "CMActions";
 
     private State mState;
     private SensorHelper mSensorHelper;
     private ScreenReceiver mScreenReceiver;
+    private PowerManager mPowerManager;
 
     private CameraActivationAction mCameraActivationAction;
     private DozePulseAction mDozePulseAction;
@@ -47,23 +49,20 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         Log.d(TAG, "Starting");
 
         mState = new State(context);
+        CMActionsSettings cmActionsSettings = new CMActionsSettings(context, this);
         mSensorHelper = new SensorHelper(context);
         mScreenReceiver = new ScreenReceiver(context, this);
 
         mCameraActivationAction = new CameraActivationAction(context);
         mDozePulseAction = new DozePulseAction(context, mState);
 
-        mActionableSensors.add(new CameraActivationSensor(mSensorHelper, mCameraActivationAction));
-        mActionableSensors.add(new FlatUpSensor(mSensorHelper, mState, mDozePulseAction));
-        //mActionableSensors.add(mIrGestureSensor = new IrGestureSensor(mSensorHelper, mDozePulseAction));
-        mActionableSensors.add(new StowSensor(mSensorHelper, mState, mDozePulseAction));
+        mActionableSensors.add(new CameraActivationSensor(cmActionsSettings, mSensorHelper, mCameraActivationAction));
+        mActionableSensors.add(new FlatUpSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
+        // mActionableSensors.add(new IrGestureSensor(cmActionsSettings, mSensorHelper, mDozePulseAction, mIrGestureManager));
+        mActionableSensors.add(new StowSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
 
-        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        if (powerManager.isInteractive()) {
-            screenTurnedOn();
-        } else {
-            screenTurnedOff();
-        }
+        mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        updateState();
     }
 
     @Override
@@ -86,8 +85,11 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         }
     }
 
-    private boolean isDozeEnabled() {
-        return Settings.Secure.getInt(mContext.getContentResolver(),
-            Settings.Secure.DOZE_ENABLED, 1) != 0;
+    public void updateState() {
+        if (mPowerManager.isInteractive()) {
+            screenTurnedOn();
+        } else {
+            screenTurnedOff();
+        }
     }
 }

@@ -38,6 +38,7 @@ public class CameraActivationSensor implements ActionableSensor, SensorEventList
 
     private static final int TURN_SCREEN_ON_WAKE_LOCK_MS = 500;
 
+    private CMActionsSettings mCMActionsSettings;
     private SensorHelper mSensorHelper;
     private SensorAction mSensorAction;
 
@@ -45,24 +46,40 @@ public class CameraActivationSensor implements ActionableSensor, SensorEventList
     private Sensor mChopChopSensor;
 
     private Context mContext;
+    private boolean mIsEnabled;
 
-    public CameraActivationSensor(SensorHelper sensorHelper, SensorAction sensorAction) {
+    public CameraActivationSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,
+                SensorAction sensorAction) {
+        mCMActionsSettings = cmActionsSettings;
         mSensorHelper = sensorHelper;
         mSensorAction = sensorAction;
         mCameraActivationSensor = sensorHelper.getCameraActivationSensor();
         mChopChopSensor = sensorHelper.getChopChopSensor();
 
-        Log.d(TAG, "Enabling");
-        mSensorHelper.registerListener(mCameraActivationSensor, this);
-        mSensorHelper.registerListener(mChopChopSensor, this);
+        updateListener();
     }
 
     @Override
     public void setScreenOn() {
+        updateListener();
     }
 
     @Override
     public void setScreenOff() {
+        updateListener();
+    }
+
+    private synchronized void updateListener() {
+        if (mCMActionsSettings.isCameraGestureEnabled() && !mIsEnabled) {
+            Log.d(TAG, "Enabling");
+            mSensorHelper.registerListener(mCameraActivationSensor, this);
+            mSensorHelper.registerListener(mChopChopSensor, this);
+            mIsEnabled = true;
+        } else if (! mCMActionsSettings.isCameraGestureEnabled() && mIsEnabled) {
+            Log.d(TAG, "Disabling");
+            mSensorHelper.unregisterListener(this);
+            mIsEnabled = false;
+        }
     }
 
     @Override

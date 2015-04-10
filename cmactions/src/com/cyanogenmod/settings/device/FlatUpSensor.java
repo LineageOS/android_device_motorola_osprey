@@ -24,13 +24,17 @@ import android.util.Log;
 public class FlatUpSensor implements ActionableSensor, SensorEventListener {
     private static final String TAG = "CMActions-FlatUpSensor";
 
+    private CMActionsSettings mCMActionsSettings;
     private SensorHelper mSensorHelper;
     private State mState;
     private SensorAction mSensorAction;
 
     private Sensor mSensor;
+    private boolean mEnabled;
 
-    public FlatUpSensor(SensorHelper sensorHelper, State state, SensorAction action) {
+    public FlatUpSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,
+                State state, SensorAction action) {
+        mCMActionsSettings = cmActionsSettings;
         mSensorHelper = sensorHelper;
         mState = state;
         mSensorAction = action;
@@ -40,14 +44,20 @@ public class FlatUpSensor implements ActionableSensor, SensorEventListener {
 
     @Override
     public void setScreenOn() {
-        Log.d(TAG, "Disabling");
-        mSensorHelper.unregisterListener(this);
+        if (mEnabled) {
+            Log.d(TAG, "Disabling");
+            mSensorHelper.unregisterListener(this);
+            mEnabled = false;
+        }
     }
 
     @Override
     public void setScreenOff() {
-        Log.d(TAG, "Enabling");
-        mSensorHelper.registerListener(mSensor, this);
+        if (mCMActionsSettings.isPickUpEnabled() && !mEnabled) {
+            Log.d(TAG, "Enabling");
+            mSensorHelper.registerListener(mSensor, this);
+            mEnabled = true;
+        }
     }
 
     @Override
