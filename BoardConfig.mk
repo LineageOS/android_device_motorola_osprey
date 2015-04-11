@@ -20,6 +20,7 @@ LOCAL_PATH := device/motorola/surnia
 
 BOARD_VENDOR := motorola-qcom
 
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 #TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 #TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
