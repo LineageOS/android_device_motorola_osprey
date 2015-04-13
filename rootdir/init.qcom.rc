@@ -102,6 +102,8 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
+    chmod 0644 /proc/cmdline
+
     setprop wifi.interface wlan0
 
 #   Define TCP buffer sizes for various networks
@@ -672,7 +674,6 @@ on property:sys.usb_uicc.enabled=0
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
-    disabled
 
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
