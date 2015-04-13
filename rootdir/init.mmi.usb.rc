@@ -129,15 +129,17 @@ on property:sys.usb.config=rndis,adb
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mtp
+    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/bDeviceClass 0
     write /sys/class/android_usb/android0/bDeviceSubClass 0
     write /sys/class/android_usb/android0/bDeviceProtocol 0
     write /sys/class/android_usb/android0/idVendor 22b8
-    write /sys/class/android_usb/android0/idProduct ${ro.usb.mtp}
-    write /sys/class/android_usb/android0/functions mtp
+    write /sys/class/android_usb/android0/idProduct ${ro.usb.mtp_adb}
+    write /sys/class/android_usb/android0/functions mtp,adb
     write /sys/class/android_usb/android0/enable 1
-    setprop sys.usb.state ${sys.usb.config}
+    start adbd
+    setprop sys.usb.state mtp,adb
 
 on property:sys.usb.config=mtp,adb
     start tcmd
