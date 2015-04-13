@@ -56,6 +56,14 @@ on init
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
 
+    # Configure coredump
+    write /proc/sys/kernel/core_pattern "|/system/bin/coredump %e %p %t"
+    write /proc/self/coredump_filter "0x7f"
+
+    # Setup kernel dropbox permissions so that dropboxd can utilize it
+    chown root diag /sys/kernel/dropbox/event
+    chown root diag /sys/kernel/dropbox/data
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -452,7 +460,6 @@ service qmuxd /system/bin/qmuxd
     class main
     user root
     group radio audio bluetooth gps qcom_diag
-    disabled
 
 service netmgrd /system/bin/netmgrd
     class main
