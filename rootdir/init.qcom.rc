@@ -113,6 +113,7 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
+    # Prevents permission denied error for telephony
     chmod 0644 /proc/cmdline
 
     setprop wifi.interface wlan0
@@ -294,6 +295,10 @@ on post-fs-data
     # NFC local data and nfcee xml storage
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
+
+    setprop ro.hw.device ${ro.boot.device}
+    setprop ro.hw.hwrev ${ro.boot.hwrev}
+    setprop ro.hw.radio ${ro.boot.radio}
 
 #service qcomsysd /system/bin/qcom-system-daemon
 #    class main
