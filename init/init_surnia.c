@@ -37,6 +37,10 @@
 
 #include "init_msm.h"
 
+void gsm_properties();
+void cdma_properties(char cdma_sub[]);
+
+
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
 {
     char platform[PROP_VALUE_MAX];
@@ -53,32 +57,66 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     if (!rc || !ISMATCH(platform, ANDROID_TARGET))
         return;
 
-    property_set("ro.product.model", "MotoE2");
     property_get("ro.boot.radio", radio);
 
     if (ISMATCH(radio, "0x4")) {
         /* XT1524 */
+	gsm_properties();
         property_set("ro.product.name", "surnia_reteu");
+	property_set("ro.product.model", "XT1524");
         property_set("ro.product.device", "surnia_umts");
         property_set("ro.build.product", "surnia_umts");
         property_set("ro.build.description", "surnia_reteu-user 5.0.2 LXI22.50-24.1 2 release-keys");
         property_set("ro.build.fingerprint", "motorola/surnia_reteu/surnia_umts:5.0.2/LXI22.50-24.1/2:user/release-keys");
         property_set("ro.mot.build.customerid", "reteuall");
-        property_set("ro.telephony.default_network", "9");
         property_set("persist.radio.multisim.config", "");
     } else if (ISMATCH(radio, "0x1")) {
         /* XT1527 */
+	gsm_properties();
         property_set("ro.product.name", "surnia_retus");
+	property_set("ro.product.model", "XT1527");
         property_set("ro.product.device", "surnia_umts");
         property_set("ro.build.product", "surnia_umts");
         property_set("ro.build.description", "surnia_retus-user 5.0.2 LXI22.50-24.1 1 release-keys");
         property_set("ro.build.fingerprint", "motorola/surnia_retus/surnia_umts:5.0.2/LXI22.50-24.1/1:user/release-keys");
         property_set("ro.mot.build.customerid", "retus");
-        property_set("ro.telephony.default_network", "9");
         property_set("persist.radio.multisim.config", "");
+    } else if (ISMATCH(radio, "0x3")){
+
+	/* XT1526 */
+	cdma_properties("0");
+        property_set("ro.product.name", "surnia_boost");
+        property_set("ro.product.model", "XT1526");
+        property_set("ro.build.description", "surnia_boost-user 5.0.2 LXI22.50-14.8 30 release-keys");
+        property_set("ro.build.fingerprint", "motorola/surnia_boost/surnia_cdma:5.0.2/LXI22.50-14.8/30:user/release-keys");
+        property_set("persist.radio.multisim.config", "");
+        property_set("ro.mot.build.customerid ","sprint");
+        property_set("ro.com.android.dataroaming","false");
+        property_set("persist.radio.0x9e_not_callname","1");
+        property_set("ro.fsg-id", "sprint");
+        property_set("ro.diag.enumeration", "diag,serial,rmnet");
+        property_set("ro.cdma.subscription", "0");
+        property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
+        property_set("persist.radio.lifecalls", "0");
+        property_set("persist.radio.lifetimer", "0");
+
     }
 
     property_get("ro.product.device", device);
+    property_set("ro.product.display", "Moto E");
     strlcpy(devicename, device, sizeof(devicename));
     ERROR("Found radio id: %s setting build properties for %s device\n", radio, devicename);
+}
+void cdma_properties(char cdma_sub[])
+{
+    property_set("ro.telephony.default_cdma_sub", cdma_sub);
+    property_set("ril.subscription.types","NV,RUIM");
+    property_set("DEVICE_PROVISIONED","1");
+    property_set("telephony.lteOnCdmaDevice", "1");
+    property_set("ro.telephony.default_network", "8");
+}
+void gsm_properties()
+{
+    property_set("telephony.lteOnGsmDevice", "1");
+    property_set("ro.telephony.default_network", "9");
 }
