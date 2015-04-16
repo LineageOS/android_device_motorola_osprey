@@ -25,6 +25,21 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+/dev/null                 0666   root       root
+/dev/zero                 0666   root       root
+/dev/full                 0666   root       root
+/dev/ptmx                 0666   root       root
+/dev/tty                  0666   root       root
+/dev/random               0666   root       root
+/dev/urandom              0666   root       root
+
+/dev/ashmem               0666   root       root
+/dev/binder               0666   root       root
+/dev/tspdrv               0666   root       root
+/dev/ttyHSL0             0660   radio      system
+# logger should be world writable (for logging) but not readable
+/dev/log/*                0666   root       log
+
 # the DIAG device node is not world writable/readable.
 /dev/diag                 0660   system     qcom_diag
 /dev/ttydiag0             0660   system     qcom_diag

@@ -33,3 +33,5 @@ ro.gps.agps_provider=1
 ro.pip.gated=0
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
+persist.radio.apn_delay=5000
+ro.frp.pst=/dev/block/platform/soc.0/by-name/frp
