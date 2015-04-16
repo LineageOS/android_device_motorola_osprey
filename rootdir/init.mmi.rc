@@ -178,11 +178,6 @@ on post-fs-data
     chmod 0660 /sys/module/power_supply_log/parameters/log_file
     write /sys/module/power_supply_log/parameters/log_file /data/power_log/power_off.log
 
-service mmi-block-perm /system/bin/sh /init.mmi.block_perm.sh
-    class main
-    user root
-    oneshot
-
 service batt_health /system/bin/batt_health
     class late_start
     user mot_pwric
