@@ -45,6 +45,10 @@ public class State {
     }
 
     public void setScreenIsOn(boolean screenIsOn) {
+        if (mScreenIsOn && ! screenIsOn) {
+            // Screen turned off, don't immediately allow a doze
+            mLastDoze = System.currentTimeMillis();
+        }
         mScreenIsOn = screenIsOn;
         Log.d(TAG, "Screen is " + (screenIsOn ? "ON" : "OFF"));
         saveStateIfEnabled();
