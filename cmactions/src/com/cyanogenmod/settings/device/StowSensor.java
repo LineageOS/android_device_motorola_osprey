@@ -21,7 +21,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
-public class StowSensor implements ActionableSensor, SensorEventListener {
+public class StowSensor implements ScreenStateNotifier, SensorEventListener {
     private static final String TAG = "CMActions-StowSensor";
 
     private final CMActionsSettings mCMActionsSettings;
@@ -43,7 +43,7 @@ public class StowSensor implements ActionableSensor, SensorEventListener {
     }
 
     @Override
-    public void setScreenOn() {
+    public void screenTurnedOn() {
         if (mEnabled) {
             Log.d(TAG, "Disabling");
             mSensorHelper.unregisterListener(this);
@@ -52,7 +52,7 @@ public class StowSensor implements ActionableSensor, SensorEventListener {
     }
 
     @Override
-    public void setScreenOff() {
+    public void screenTurnedOff() {
         if (mCMActionsSettings.isPickUpEnabled() && !mEnabled) {
             Log.d(TAG, "Enabling");
             mSensorHelper.registerListener(mSensor, this);

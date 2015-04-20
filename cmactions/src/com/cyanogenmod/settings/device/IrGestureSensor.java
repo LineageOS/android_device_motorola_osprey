@@ -21,7 +21,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
-public class IrGestureSensor implements ActionableSensor, SensorEventListener {
+public class IrGestureSensor implements ScreenStateNotifier, SensorEventListener {
     private static final String TAG = "CMActions-IRGestureSensor";
 
     private final CMActionsSettings mCMActionsSettings;
@@ -41,7 +41,7 @@ public class IrGestureSensor implements ActionableSensor, SensorEventListener {
     }
 
     @Override
-    public void setScreenOn() {
+    public void screenTurnedOn() {
         if (mEnabled) {
             Log.d(TAG, "Disabling");
             mSensorHelper.unregisterListener(this);
@@ -50,7 +50,7 @@ public class IrGestureSensor implements ActionableSensor, SensorEventListener {
     }
 
     @Override
-    public void setScreenOff() {
+    public void screenTurnedOff() {
         if (mCMActionsSettings.isIrWakeupEnabled() && !mEnabled) {
             Log.d(TAG, "Enabling");
             mSensorHelper.registerListener(mSensor, this);

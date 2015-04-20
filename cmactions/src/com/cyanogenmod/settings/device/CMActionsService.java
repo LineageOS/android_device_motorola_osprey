@@ -38,7 +38,7 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     private final SensorHelper mSensorHelper;
     private final State mState;
 
-    private final List<ActionableSensor> mActionableSensors = new LinkedList<ActionableSensor>();
+    private final List<ScreenStateNotifier> mScreenStateNotifiers = new LinkedList<ScreenStateNotifier>();
     private final List<UpdatedStateNotifier> mUpdatedStateNotifiers =
                         new LinkedList<UpdatedStateNotifier>();
 
@@ -56,9 +56,9 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         mDozePulseAction = new DozePulseAction(context, mState);
 
         // Actionable sensors get screen on/off notifications
-        mActionableSensors.add(new FlatUpSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
-        // mActionableSensors.add(new IrGestureSensor(cmActionsSettings, mSensorHelper, mDozePulseAction, mIrGestureManager));
-        mActionableSensors.add(new StowSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
+        mScreenStateNotifiers.add(new FlatUpSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
+        // mScreenStateNotifiers.add(new IrGestureSensor(cmActionsSettings, mSensorHelper, mDozePulseAction, mIrGestureManager));
+        mScreenStateNotifiers.add(new StowSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
 
         // Other actions that are always enabled
         mUpdatedStateNotifiers.add(new CameraActivationSensor(cmActionsSettings, mSensorHelper));
@@ -75,16 +75,16 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     @Override
     public void screenTurnedOn() {
         mState.setScreenIsOn(true);
-        for (ActionableSensor actionableSensor : mActionableSensors) {
-            actionableSensor.setScreenOn();
+        for (ScreenStateNotifier screenStateNotifier : mScreenStateNotifiers) {
+            screenStateNotifier.screenTurnedOn();
         }
     }
 
     @Override
     public void screenTurnedOff() {
         mState.setScreenIsOn(false);
-        for (ActionableSensor actionableSensor : mActionableSensors) {
-            actionableSensor.setScreenOff();
+        for (ScreenStateNotifier screenStateNotifier : mScreenStateNotifiers) {
+            screenStateNotifier.screenTurnedOff();
         }
     }
 
