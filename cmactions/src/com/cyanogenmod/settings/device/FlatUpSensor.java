@@ -21,32 +21,35 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
-public class FlatUpSensor implements ScreenStateNotifier, SensorEventListener {
+public class FlatUpSensor implements ScreenStateNotifier {
     private static final String TAG = "CMActions-FlatUpSensor";
 
     private final CMActionsSettings mCMActionsSettings;
     private final SensorHelper mSensorHelper;
-    private final State mState;
     private final SensorAction mSensorAction;
-    private final Sensor mSensor;
+    private final Sensor mFlatUpSensor;
+    private final Sensor mStowSensor;
 
     private boolean mEnabled;
+    private boolean mIsStowed;
+    private boolean mLastFlatUp;
 
     public FlatUpSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,
-                State state, SensorAction action) {
+                SensorAction action) {
         mCMActionsSettings = cmActionsSettings;
         mSensorHelper = sensorHelper;
-        mState = state;
         mSensorAction = action;
 
-        mSensor = sensorHelper.getFlatUpSensor();
+        mFlatUpSensor = sensorHelper.getFlatUpSensor();
+        mStowSensor = sensorHelper.getStowSensor();
     }
 
     @Override
     public void screenTurnedOn() {
         if (mEnabled) {
             Log.d(TAG, "Disabling");
-            mSensorHelper.unregisterListener(this);
+            mSensorHelper.unregisterListener(mFlatUpListener);
+            mSensorHelper.unregisterListener(mStowListener);
             mEnabled = false;
         }
     }
@@ -55,26 +58,39 @@ public class FlatUpSensor implements ScreenStateNotifier, SensorEventListener {
     public void screenTurnedOff() {
         if (mCMActionsSettings.isPickUpEnabled() && !mEnabled) {
             Log.d(TAG, "Enabling");
-            mSensorHelper.registerListener(mSensor, this);
+            mSensorHelper.registerListener(mFlatUpSensor, mFlatUpListener);
+            mSensorHelper.registerListener(mStowSensor, mStowListener);
             mEnabled = true;
         }
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        boolean thisFlatUp = (event.values[0] != 0);
-        boolean lastFlatUp = mState.setIsFlatUp(thisFlatUp);
-        boolean isStowed = mState.getIsStowed();
+    private SensorEventListener mFlatUpListener = new SensorEventListener() {
+        @Override
+        public synchronized void onSensorChanged(SensorEvent event) {
+            boolean thisFlatUp = (event.values[0] != 0);
 
-        Log.d(TAG, "event: " + thisFlatUp + " lastFlatUp=" + lastFlatUp + " isStowed=" + isStowed);
+            Log.d(TAG, "event: " + thisFlatUp + " mLastFlatUp=" + mLastFlatUp + " mIsStowed=" +
+                mIsStowed);
 
-        // Only pulse when picked up:
-        if (lastFlatUp && ! thisFlatUp && !isStowed) {
-            mSensorAction.action();
+            if (mLastFlatUp && ! thisFlatUp && ! mIsStowed) {
+                mSensorAction.action();
+            }
+            mLastFlatUp = thisFlatUp;
         }
-    }
 
-    @Override
-    public void onAccuracyChanged(Sensor mSensor, int accuracy) {
-    }
+        @Override
+        public void onAccuracyChanged(Sensor mSensor, int accuracy) {
+        }
+    };
+
+    private SensorEventListener mStowListener = new SensorEventListener() {
+        @Override
+        public synchronized void onSensorChanged(SensorEvent event) {
+            mIsStowed = (event.values[0] != 0);
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor mSensor, int accuracy) {
+        }
+    };
 }

@@ -26,17 +26,16 @@ public class StowSensor implements ScreenStateNotifier, SensorEventListener {
 
     private final CMActionsSettings mCMActionsSettings;
     private final SensorHelper mSensorHelper;
-    private final State mState;
     private final SensorAction mSensorAction;
     private final Sensor mSensor;
 
     private boolean mEnabled;
+    private boolean mLastStowed;
 
-    public StowSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper, State state,
+    public StowSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,
                 SensorAction action) {
         mCMActionsSettings = cmActionsSettings;
         mSensorHelper = sensorHelper;
-        mState = state;
         mSensorAction = action;
 
         mSensor = sensorHelper.getStowSensor();
@@ -64,9 +63,10 @@ public class StowSensor implements ScreenStateNotifier, SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         boolean thisStowed = (event.values[0] != 0);
         Log.d(TAG, "event: " + thisStowed);
-        if (mState.setIsStowed(thisStowed) && ! thisStowed) {
+        if (mLastStowed && ! thisStowed) {
             mSensorAction.action();
         }
+        mLastStowed = thisStowed;
     }
 
     @Override

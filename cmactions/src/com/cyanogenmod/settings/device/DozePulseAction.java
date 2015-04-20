@@ -20,21 +20,44 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-public class DozePulseAction implements SensorAction {
+public class DozePulseAction implements SensorAction, ScreenStateNotifier {
     private static final String TAG = "CMActions";
 
-    private final Context mContext;
-    private final State mState;
+    private static final int DELAY_BETWEEN_DOZES_IN_MS = 1500;
 
-    public DozePulseAction(Context context, State state) {
+    private final Context mContext;
+
+    private long mLastDoze;
+
+    public DozePulseAction(Context context) {
         mContext = context;
-        mState = state;
+    }
+
+    @Override
+    public void screenTurnedOn() {
+    }
+
+    @Override
+    public void screenTurnedOff() {
+        mLastDoze = System.currentTimeMillis();
     }
 
     public void action() {
-         if (mState.mayDoze()) {
+         if (mayDoze()) {
             Log.d(TAG, "Sending doze.pulse intent");
             mContext.sendBroadcast(new Intent("com.android.systemui.doze.pulse"));
+        }
+    }
+
+    public synchronized boolean mayDoze() {
+        long now = System.currentTimeMillis();
+        if (now - mLastDoze > DELAY_BETWEEN_DOZES_IN_MS) {
+            Log.d(TAG, "Allowing doze");
+            mLastDoze = now;
+            return true;
+        } else {
+            Log.d(TAG, "Denying doze");
+            return false;
         }
     }
 }
