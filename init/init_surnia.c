@@ -60,6 +60,19 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     property_get("ro.boot.radio", radio);
 
     if (ISMATCH(radio, "0x4")) {
+        /* XT1521 */
+	gsm_properties();
+        property_set("ro.product.name", "surnia_retasia_ds");
+	property_set("ro.product.model", "XT1521");
+        property_set("ro.product.device", "surnia_uds");
+        property_set("ro.build.product", "surnia_uds");
+        property_set("ro.build.description", "surnia_reteu-user 5.0.2 LXI22.50-53.1 1 release-keys");
+        property_set("ro.build.fingerprint", "motorola/surnia_reteu/surnia_umts:5.0.2/LXI22.50-53.1/1:user/release-keys");
+        property_set("ro.mot.build.customerid", "retasiaall");
+        property_set("persist.radio.multisim.config", "dsds");
+        property_set("ro.telephony.default_network", "9");
+        
+    } else if (ISMATCH(radio, "0x4")) {
         /* XT1524 */
 	gsm_properties();
         property_set("ro.product.name", "surnia_reteu");
