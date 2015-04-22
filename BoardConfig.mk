@@ -99,6 +99,8 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # GPS
+TARGET_NO_RPC := true
+
 
 # Init
 #TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
