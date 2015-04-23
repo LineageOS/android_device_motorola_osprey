@@ -108,6 +108,9 @@ TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_surnia.c
 
+# Asserts
+TARGET_OTA_ASSERT_DEVICE := XT1521,XT1524,XT1526,XT1527,surnia_uds,surnia_umts,surnia
+
 # Insecure boot
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
