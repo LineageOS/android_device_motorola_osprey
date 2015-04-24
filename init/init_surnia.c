@@ -59,7 +59,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
     property_get("ro.boot.radio", radio);
 
-    if (ISMATCH(radio, "0x4")) {
+    if (ISMATCH(radio, "0x7")) {
         /* XT1521 */
 	gsm_properties();
         property_set("ro.product.name", "surnia_retasia_ds");
