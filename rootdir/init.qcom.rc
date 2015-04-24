@@ -25,24 +25,12 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.qcom.usb.rc
+# use init.mmi.usb.rc
+#import init.qcom.usb.rc
+import init.target.rc
 
 on early-init
-    write /sys/block/mmcblk0/queue/scheduler noop
-
-    # Create firmware mount point
-    mkdir /firmware 0771 system system
-
-    # Create PDS mount point
-    mkdir /pds 0755 root root
-
-    # Create modem FSG mount point
-    mkdir /fsg 755 root root
-
-    chown system system /sys/kernel/debug
-    chmod 0775 /sys/kernel/debug
-
-    symlink /data/tombstones /tombstones
+    mount debugfs debugfs /sys/kernel/debug
     chown system graphics /sys/devices/virtual/graphics/fb0/idle_time
 
 on init
@@ -54,24 +42,22 @@ on init
     mkdir /storage/emulated/legacy 0555 root root
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
     mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/sdcard1 0700 root root
     mkdir /storage/uicc1 0700 root root
     mkdir /storage/usbotg 0700 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
+    export SECONDARY_STORAGE /storage/sdcard1
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
-    export SECONDARY_STORAGE /storage/sdcard1
 
     # Support legacy paths
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /storage/sdcard1 /mnt/sdcard1
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
+
+    # CM: We use our own ril-daemon service definition, see mmi-ril-daemon
+    stop ril-daemon
 
     # Configure coredump
     write /proc/sys/kernel/core_pattern "|/system/bin/coredump %e %p %t"
@@ -82,12 +68,8 @@ on init
     chown root diag /sys/kernel/dropbox/data
 
 on fs
-
     mount_all fstab.qcom
     write /sys/kernel/boot_adsp/boot 1
-
-    # activate zram
-    swapon_all fstab.qcom
 
     # Mount PDS
     wait /dev/block/platform/soc.0/by-name/pds
@@ -109,149 +91,13 @@ on fs
     exec /system/bin/chmod -L 640 /dev/block/platform/soc.0/by-name/logs
     exec /system/bin/chown -L root:system /dev/block/platform/soc.0/by-name/logs
 
-    # set up a symbolic link so the many references to the old location still work and the java code can remain platform agnostic.
-    symlink /dev/block/platform/soc.0 /dev/block/platform/msm_sdcc.1
-
-    # use /persist as phony PDS partition
-    symlink /persist /pds
-
-
+    # activate zram
+    swapon_all fstab.qcom
     write /proc/sys/vm/page-cluster 0
 
     setprop ro.crypto.fuse_sdcard true
 
-	
-on post-fs-data
-    mkdir /data/tombstones 0771 system system
-    mkdir /tombstones/modem 0771 system system
 
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0770 media_rw media_rw
-    chown media_rw media_rw /data/media
-
-    restorecon /data/media /data/media/0 /data/media/legacy /data/media/obb
-
-    # Trigger the defuse tool
-    setprop installd.post_fs_data_ready 1
-
-    # Create directory used by audio subsystem
-    mkdir /data/misc/audio 0770 audio audio
-
-    # Create directory used by the DASH client
-    mkdir /data/misc/dash 0770 media audio
-
-    # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
-    # We chown/chmod /persist again so because mount is run as root + defaults
-    chown system system /persist
-    chmod 0771 /persist
-    restorecon_recursive /persist
-
-    chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
-
-    # Chown polling nodes as needed from UI running on system server
-    chown system system /sys/devices/platform/msm_sdcc.1/polling
-    chown system system /sys/devices/platform/msm_sdcc.2/polling
-    chown system system /sys/devices/platform/msm_sdcc.3/polling
-    chown system system /sys/devices/platform/msm_sdcc.4/polling
-
-   # Setup correct permissions for dbvc and atvc
-    mkdir /pds/public/atvc 0770 mot_atvc shell
-    chmod 0770 /pds/public/atvc
-    mkdir /data/local/dbvc 0750 mot_tcmd shell
-    mkdir /data/local/atvc 0775 mot_tcmd shell
-
-    # Wifi
-    restorecon /data/hostapd
-    restorecon /data/misc/wifi/hostapd/wlan0
-
-    #Create directories for gpsone_daemon services
-    mkdir /data/misc/gpsone_d 0770 system gps
-
-    #Create directories for QuIPS
-    mkdir /data/misc/quipc 0770 system gps
-
-    #Create directories for Location services
-    mkdir /data/misc/location 0770 gps gps
-    mkdir /data/misc/location/mq 0770 gps gps
-    mkdir /data/misc/location/xtwifi 0770 gps gps
-
-    #Create directory from IMS services
-    mkdir /data/shared 0755
-    chown system system /data/shared
-
-    #Create directory for FOTA
-    mkdir /data/fota 0771
-    chown system system /data/fota
-
-    #Create directory for hostapd
-    mkdir /data/hostapd 0770 system wifi
-
-    # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
-
-    mkdir /data/audio/ 0770 media audio
-    # Enable the setgid bit on the directory
-    chmod 2770 /data/audio
-
-    setprop vold.post_fs_data_done 1
-
-    #Create a folder for SRS to be able to create a usercfg file
-    mkdir /data/data/media 0770 media media
-
-   # Create moodle directory that MOODLE APP can write to
-    mkdir /data/local/moodle 0770 graphics mot_tcmd
-
-    # services directory for activation
-    mkdir /pds/public/svcs 0770 system mot_tcmd
-    chmod 0770 /pds/public/svcs
-
-    # Setup folders for diag_mdlog
-    mkdir /data/diag_mdlog 0750 system log
-    mkdir /data/diag_mdlog/logs 0750 log log
-
-    # Setup folder for native to transfer data to NativeDropBoxAgent
-    mkdir /data/system/dropbox-add 0730 system diag
-
-    # Set correct permissions for UTAGS
-    exec /system/bin/chown -L mot_tcmd:system /dev/block/platform/msm_sdcc.1/by-name/utags
-    exec /system/bin/chown -L mot_tcmd:system /dev/block/platform/msm_sdcc.1/by-name/utagsBackup
-    exec /system/bin/chmod -L 0660 /dev/block/platform/msm_sdcc.1/by-name/utags
-    exec /system/bin/chmod -L 0660 /dev/block/platform/msm_sdcc.1/by-name/utagsBackup
-
-    # backup directory for omadm
-    mkdir /pds/public/omadm 0700 radio radio
-    chmod 0700 /pds/public/omadm
-
-    #Subsystem RAM-dumps
-    mkdir /data/ss-ram-dumps 0750 radio log
-    mkdir /data/ss-ram-dumps/bp-dumps 0750 radio log
-
-    # Create directory for cutback
-    mkdir /data/misc/cutback 0770 radio wifi
-
-    # To remove apanic proc entry
-    write /proc/apanic_console 1
-
-    # Create directory used by power_supply_logger
-    mkdir /data/power_supply_logger 0750 mot_pwric log
-
-    # create the necessary data dirs for tpapi with proper permission
-    mkdir /dev/tpapi 02770 mot_tpapi mot_tpapi
-    mkdir /data/tpapi 02770 mot_tpapi mot_tpapi
-    mkdir /data/tpapi/etc 02770 mot_tpapi mot_tpapi
-    mkdir /data/tpapi/etc/tpa 02770 mot_tpapi mot_tpapi
-    mkdir /data/tpapi/etc/tpa/persistent 02770 mot_tpapi mot_tpapi
-
-    # Permissions for battery health daemon
-    chown mot_pwric mot_pwric /sys/module/qpnp_bms/parameters/last_ocv_uv
-    chown mot_pwric mot_pwric /sys/module/qpnp_charger/parameters/bms_chrg_capacity
-    chown mot_pwric mot_pwric /sys/module/qpnp_charger/parameters/bms_chrg_capacity_temp
-    chown mot_pwric mot_pwric /sys/module/qpnp_charger/parameters/chrg_timestamp
-
-    start batt_health
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -264,9 +110,6 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
-    # mount debugfs for systrace 	 	
-    mount debugfs /sys/kernel/debug /sys/kernel/debug 
-
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -499,30 +342,6 @@ on post-fs-data
 #    user root
 #    group root qcom_diag
 
-# Services start here
-
-service atvc_core /system/bin/dbvc_atvc_property_set
-    class core
-    user mot_atvc
-    group mot_tpapi
-    oneshot
-
-service atvc /system/bin/dbvc_atvc_property_set
-    class late_start
-    user mot_atvc
-    group mot_tpapi
-    oneshot
-
-service audiod /system/bin/audiod
-    class late_start
-    user system
-    group system
-
-service batt_health /system/bin/batt_health
-    class main
-    group mot_pwric
-    disabled
-
 service ssr_setup /system/bin/ssr_setup
     oneshot
     disabled
@@ -589,36 +408,19 @@ on property:bluetooth.dun.status=running
 on property:bluetooth.dun.status=stopped
     stop bt-dun
 
+service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
+    class core
+    user root
+    oneshot
 
-on property:persist.radio.multisim.config=dsds
-    stop ril-daemon
-    start ril-daemon
-    start ril-daemon1
+service qcom-c_main-sh /system/bin/sh /init.class_main.sh
+    class main
+    user radio
+    group radio
+    oneshot
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth
-    stop ril-daemon
-
-service_redefine ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket rild-debug stream 660 radio system
-    socket cutback stream 660 media radio
-    user root
-    group radio cache inet misc audio sdcard_rw qcom_diag log net_raw diag
-
-service ril-daemon1 /system/bin/rild -c 2
-    class main
-    socket rild2 stream 660 root radio
-    socket rild-debug2 stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_rw qcom_diag log net_raw diag
-    disabled
-
-service mmi-touch-sh /system/bin/sh /init.mmi.touch.sh synaptics aps
-    class late_start
-    user root
-    oneshot
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -632,35 +434,16 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
     user root
     oneshot
 
-on property:ro.use_data_netmgrd=false
-    stop netmgrd
-
-service netmgrd /system/bin/netmgrd
-    class main
-
-service qcamerasvr /system/bin/mm-qcamera-daemon
-    class late_start
-    user camera
-    group camera system inet input graphics
-
-service qmuxd /system/bin/qmuxd
-    class main
-    user radio
-    group radio audio bluetooth gps qcom_diag
-
-service qseecomd /system/bin/qseecomd
-    class late_start
-    user root
-    group root
-
-service rfs_access /system/bin/rfs_access
-   class core
-   user system
-   group system net_raw
-
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    disabled
+
+service rfs_access /system/bin/rfs_access
+   class core
+   user root
+   group system net_raw
+
 
 on property:ro.boot.emmc=true
     start rmt_storage
@@ -693,6 +476,54 @@ on property:bluetooth.hciattach=true
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
 
+# Service not used
+#service hciattach_ath3k /system/bin/sh /system/etc/init.ath3k.bt.sh
+#     class late_start
+#     user bluetooth
+#     group system bluetooth net_bt_admin misc
+#     disabled
+#     oneshot
+
+# Service not used
+#service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
+#    class late_start
+#    user bluetooth
+#    group bluetooth net_bt_admin inet
+#    disabled
+#    oneshot
+
+#service bt-sap /system/bin/sapd 15
+#    user bluetooth
+#    group bluetooth net_bt_admin
+#    class late_start
+#    disabled
+#    oneshot
+
+# QMUX must be in multiple groups to support external process connections
+service qmuxd /system/bin/qmuxd
+    class main
+    user root
+    group radio audio bluetooth gps qcom_diag
+
+service netmgrd /system/bin/netmgrd
+    class main
+
+# Service not used
+#service qti /system/vendor/bin/qti
+#    class main
+#    disabled
+
+# Service not used
+#service sensors /system/bin/sensors.qcom
+#    class late_start
+#    user root
+#    group root
+#    disabled
+
+on property:ro.use_data_netmgrd=false
+    # netmgr not supported on specific target
+    stop netmgrd
+
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
 on property:ro.data.large_tcp_window_size=true
@@ -703,12 +534,6 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     user bluetooth
     group bluetooth net_bt_admin inet net_admin net_raw
     disabled
-    oneshot
-
-service wcnss-service /system/bin/wcnss_service
-    class late_start
-    user root
-    group system wifi
     oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant \
@@ -764,6 +589,17 @@ service ptt_ffbm /system/bin/ptt_socket_app -f -d
     disabled
     oneshot
 
+#Service not used
+#service cnss_diag /system/bin/cnss_diag --q
+#    class main
+#    user root
+#    group root
+#    oneshot
+
+#Service not used
+#service cnss-daemon /system/bin/cnss-daemon -n -l
+#    class late_start
+
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
     disabled
@@ -794,7 +630,16 @@ service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
+service gpsone_daemon /system/bin/gpsone_daemon
+    class late_start
+    user gps
+    group gps inet net_raw
+    disabled
 
+service loc_launcher /system/bin/loc_launcher
+    #loc_launcher will start as root and set its uid to gps
+    class late_start
+    group gps inet net_raw qcom_diag net_admin wifi
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
@@ -807,6 +652,16 @@ on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
      insmod /system/lib/modules/qcedev.ko
 
+service qcom-sh /system/bin/sh /init.qcom.sh
+    class late_start
+    user root
+    oneshot
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
 
 on property:sys.boot_completed=1
     start qcom-post-boot
@@ -844,6 +699,30 @@ on property:ro.data.large_tcp_window_size=true
 #    group system
 #    disabled
 
+service mmi-ril-daemon /system/bin/rild
+    class main
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    socket cutback stream 660 media radio
+    user root
+    group radio cache inet misc audio sdcard_rw sensors qcom_diag log net_raw diag
+
+service ril-daemon2 /system/bin/rild -c 2
+    class main
+    socket rild2 stream 660 root radio
+    socket rild-debug2 stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
+
+service ril-daemon3 /system/bin/rild -c 3
+    class main
+    socket rild3 stream 660 root radio
+    socket rild-debug3 stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
+
 service usb_uicc_daemon /system/bin/usb_uicc_client
     class main
     user system
@@ -876,6 +755,102 @@ service fuse_usbotg /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/
 on property:init.svc.sdcard=running
     wait /mnt/shell/emulated/0
     mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
+
+# Service not used
+#service hcidump /system/bin/sh /system/etc/hcidump.sh
+#    user bluetooth
+#    group bluetooth system net_bt_admin net_admin
+#    disabled
+
+# Motorola uses its own charger services
+#service charger /charger
+#    class charger
+
+#service ssr_diag /system/bin/ssr_diag
+#    class late_start
+#    user system
+#    group system
+#    disabled
+
+# Service not used
+# Define fastmmi
+#service fastmmi /system/bin/mmi
+#    user root
+#    group root
+#    disabled
+
+
+# Service not used
+#service fastmmisrv /system/bin/sh /init.qcom.factory.sh
+#    user root
+#    disabled
+#    oneshot
+#
+#on mmi
+#    start fastmmisrv
+
+#on ffbm
+#    trigger early-fs
+#    trigger fs
+#    trigger post-fs
+#    trigger post-fs-data
+#
+#    # Load properties from /system/ + /factory after fs mount. Place
+#    # this in another action so that the load will be scheduled after the prior
+#    # issued fs triggers have completed.
+#    trigger load_all_props_action
+#
+#    trigger early-boot
+#    trigger mmi
+
+# moto: charger_monitor does not exist
+#service charger_monitor /system/bin/charger_monitor
+#    user system
+#    group system
+#    disabled
+
+# Service not used
+#service qbcharger /charger -m 1
+#    disabled
+#    oneshot
+
+#on property:sys.qbcharger.enable=true
+#    start qbcharger
+
+#on property:sys.qbcharger.enable=false
+#    stop qbcharger
+
+# MOT Security Asset CR IKJBMR2-6392
+#service diag_mdlog_start /system/bin/diag_mdlog
+#    class late_start
+#    user sdcard_rw
+#    group system qcom_diag sdcard_rw sdcard_r media_rw
+#    disabled
+#    oneshot
+
+#service diag_mdlog_stop /system/bin/diag_mdlog -k
+#    class late_start
+#    user sdcard_rw
+#    group system qcom_diag sdcard_rw sdcard_r media_rw
+#    disabled
+#    oneshot
+
+#service qlogd /system/xbin/qlogd
+#    socket qlogd stream 0662 system system
+#    class main
+#    disabled
+#on property:persist.sys.qlogd=1
+#    start qlogd
+#on property:persist.sys.qlogd=0
+#    stop qlogd
+
+#service rootagent /system/bin/sh /system/etc/init.qcom.rootagent.sh
+#    disabled
+#    oneshot
+#on property:persist.sys.rootagent=1
+#    start rootagent
+#on property:persist.sys.rootagent=0
+#    stop rootagent
 
 service vm_bms /system/bin/vm_bms
     user root
