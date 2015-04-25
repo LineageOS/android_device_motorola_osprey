@@ -1,7 +1,15 @@
 [
   {
-    "repository": "android_kernel_motorola_surnia",
-    "target_path": "kernel/motorola/surnia"
+    "remote":      "github",
+    "repository":  "sultanqasim/android_kernel_surnia",
+    "target_path": "kernel/motorola/msm8916",
+    "revision":    "squid_qcom"
+  },
+  {
+    "remote":      "github",
+    "repository":  "Motorola-CyanogenMod/android_vendor_motorola_surnia",
+    "target_path": "vendor/motorola/surnia",
+    "revision":    "cm-12.1"
   },
   {
     "repository": "android_hardware_qcom_display-caf-new",
