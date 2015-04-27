@@ -292,4 +292,14 @@
     <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
 
 
+    <!-- Screen brightness used to dim the screen while dozing in a very low power state.
+          May be less than the minimum allowed brightness setting
+          that can be set by the user. -->
+    <integer name="config_screenBrightnessDoze">10</integer>
+
+    <!-- If true, the doze component is not started until after the screen has been
+          turned off and the screen off animation has been performed. -->
+    <bool name="config_dozeAfterScreenOff">true</bool>
+
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
 </resources>
