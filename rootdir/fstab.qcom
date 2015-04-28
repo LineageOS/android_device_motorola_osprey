@@ -11,8 +11,8 @@
 /dev/block/platform/soc.0/by-name/cache          /cache       ext4    rw,noatime,nosuid,nodev,barrier=1,data=ordered   wait,check
 /dev/block/platform/soc.0/by-name/persist        /persist     ext4    noatime,nosuid,nodev,barrier=1,noauto_da_alloc      wait
 /dev/block/platform/soc.0/by-name/misc           /misc        emmc    defaults                                                    defaults
-/dev/block/platform/soc.0/by-name/fsg          /fsg         ext4    ro,nosuid,nodev,barrier=0                       wait,check
-/dev/block/platform/soc.0/by-name/modem        /firmware    ext4    ro,nosuid,nodev,barrier=0                  wait,check
+/dev/block/platform/soc.0/by-name/fsg          /fsg         ext4    ro,nosuid,nodev,barrier=0,context=u:object_r:fsg_file:s0      wait,check
+/dev/block/platform/soc.0/by-name/modem        /firmware    ext4    ro,nosuid,nodev,barrier=0,context=u:object_r:firmware_file:s0                  wait,check
 /dev/block/platform/soc.0/by-name/boot         /boot        emmc    defaults                                                                       recoveryonly
 /dev/block/platform/soc.0/by-name/recovery     /recovery    emmc    defaults                                                                       recoveryonly
 /devices/soc.0/7864900.sdhci/mmc_host            /storage/sdcard1   vfat    nosuid,nodev         wait,voldmanaged=sdcard1:auto,noemulatedsd

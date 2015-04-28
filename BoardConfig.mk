@@ -166,7 +166,10 @@ BOARD_SEPOLICY_UNION += \
     mpdecision.te \
     property.te \
     property_contexts \
-    system_server.te
+    rild.te \
+    rmt_storage.te \
+    system_server.te \
+    ueventd.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true

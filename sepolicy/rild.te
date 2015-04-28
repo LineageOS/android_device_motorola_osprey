@@ -1,0 +1,2 @@
+allow rild fsg_file:dir search;
+allow rild fsg_file:file r_file_perms;
