@@ -64,6 +64,8 @@ on boot
     # Change the ownership of the charging LED interface
     chown system system /sys/class/leds/charging/brightness
     chmod 0664 /sys/class/leds/charging/brightness
+    chown system system /sys/class/leds/charging/trigger
+    chmod 0664 /sys/class/leds/charging/trigger
 
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
