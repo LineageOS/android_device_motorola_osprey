@@ -86,7 +86,6 @@ TARGET_HW_DISK_ENCRYPTION := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_HAVE_NEW_GRALLOC := true
-TARGET_QCOM_DISPLAY_VARIANT := caf-new
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
@@ -97,6 +96,7 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
+AUDIO_FEATURE_ENABLED_FM := true
 
 # GPS
 TARGET_NO_RPC := true
@@ -109,18 +109,14 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_surnia.c
 
 # Asserts
-TARGET_OTA_ASSERT_DEVICE := XT1521,XT1524,XT1526,XT1527,surnia_uds,surnia_umts,surnia
-
-# Insecure boot
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
+TARGET_OTA_ASSERT_DEVICE := XT1521,XT1524,XT1526,XT1527,XT1523,surnia_uds,surnia_umts,surnia,surnia_udstv
 
 
 # Lights
+TARGET_PROVIDES_LIBLIGHT := true
 
 # Media
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-TARGET_QCOM_MEDIA_VARIANT := caf-new
 
 # Motorola
 TARGET_USES_MOTOROLA_LOG := true
@@ -170,7 +166,10 @@ BOARD_SEPOLICY_UNION += \
     mpdecision.te \
     property.te \
     property_contexts \
-    system_server.te
+    rild.te \
+    rmt_storage.te \
+    system_server.te \
+    ueventd.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
