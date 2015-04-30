@@ -729,6 +729,10 @@ service usb_uicc_daemon /system/bin/usb_uicc_client
     group system log net_raw
     oneshot
 
+on property:hw.fm.mode=*
+    insmod /system/lib/modules/radio-iris-transport.ko
+
+
 on property:sys.usb_uicc.enabled=1
     start usb_uicc_enable
 
