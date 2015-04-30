@@ -54,6 +54,10 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8916
 TARGET_KERNEL_CONFIG := msm8916-squid_defconfig
 
+# Use external Linaro 4.9.3 compiler instead of default GCC 4.8
+# The default GCC throws false positive warnings on my Prima drivers, preventing compilation
+KERNEL_TOOLCHAIN_PREFIX := arm-linux-gnueabihf-
+
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 
