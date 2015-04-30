@@ -122,7 +122,13 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
         property_set("persist.radio.lifecalls", "0");
         property_set("persist.radio.lifetimer", "0");
-
+        property_set("ro.com.google.clientidbase.am", "android-boost-us");
+        property_set("ro.com.google.clientidbase.gmm", "android-motorola");
+        property_set("ro.com.google.clientidbase.ms", "android-boost-us");
+        property_set("ro.com.google.clientidbase.yt", "android-boost-us");
+        property_set("ro.com.google.clientidbase", "android-motorola");
+        property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
+        property_set("ro.cdma.home.operator.numeric", "311870");
     }
 
     property_get("ro.product.device", device);
