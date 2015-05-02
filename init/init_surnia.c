@@ -129,6 +129,11 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.com.google.clientidbase", "android-motorola");
         property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
         property_set("ro.cdma.home.operator.numeric", "311870");
+        property_set("ro.carrier", "Boost Mobile");
+        property_set("gsm.operator.alpha", "Boost Mobile");
+        property_set("gsm.operator.numeric", "311870");
+        property_set("ro.cdma.default_alpha", "Boost Mobile");
+        property_set("ro.cdma.default_numeric", "311870");
     }
 
     property_get("ro.product.device", device);
@@ -138,7 +143,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 }
 void cdma_properties(char cdma_sub[])
 {
-    property_set("ro.telephony.default_cdma_sub", cdma_sub);
     property_set("ril.subscription.types","NV,RUIM");
     property_set("DEVICE_PROVISIONED","1");
     property_set("telephony.lteOnCdmaDevice", "1");
