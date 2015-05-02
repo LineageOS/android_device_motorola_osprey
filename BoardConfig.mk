@@ -159,16 +159,20 @@ BOARD_SEPOLICY_UNION += \
     atvc.te \
     batt_health.te \
     device.te \
+    dropboxd.te \
     file.te \
     file_contexts \
     init.te \
+    mbm_spy.te \
     mm-qcamerad.te \
     mpdecision.te \
     property.te \
     property_contexts \
     rild.te \
     rmt_storage.te \
+    stml0xx.te \
     system_server.te \
+    tcmd.te \
     ueventd.te
 
 # Time services
