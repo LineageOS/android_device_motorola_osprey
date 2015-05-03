@@ -70,7 +70,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.build.fingerprint", "motorola/surnia_reteu/surnia_umts:5.0.2/LXI22.50-53.1/1:user/release-keys");
         property_set("ro.mot.build.customerid", "retasiaall");
         property_set("persist.radio.multisim.config", "dsds");
-        property_set("ro.telephony.default_network", "9");
         
     } else if (ISMATCH(radio, "0x4")) {
         /* XT1524 */
@@ -105,6 +104,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.build.fingerprint", "motorola/surnia_retbr_dstv/surnia_udstv:5.0.2/LXI22.50-24.1/3:user/release-keys");
         property_set("ro.mot.build.customerid", "retbr");
         property_set("persist.radio.multisim.config", "");
+        property_set("persist.radio.multisim.config", "dsds");
     } else if (ISMATCH(radio, "0x3")){
 	/* XT1526 */
 	cdma_properties("0");
