@@ -563,7 +563,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd
+service dhcpcd_wlan0 /system/bin/dhcpcd wlan0
     class late_start
     disabled
     oneshot
