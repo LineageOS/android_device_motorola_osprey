@@ -91,6 +91,9 @@ on fs
     exec /system/bin/chmod -L 640 /dev/block/platform/soc.0/by-name/logs
     exec /system/bin/chown -L root:system /dev/block/platform/soc.0/by-name/logs
 
+    mkdir /persist/data 0700  system system
+    restorecon_recursive /persist
+
     # activate zram
     swapon_all fstab.qcom
     write /proc/sys/vm/page-cluster 0
