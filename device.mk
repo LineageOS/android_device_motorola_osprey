@@ -51,8 +51,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
 
-
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 DEVICE_PACKAGE_OVERLAYS := \
@@ -79,12 +77,6 @@ PRODUCT_PACKAGES += \
     tinymix \
     libqcomvisualizer \
     libqcomvoiceprocessing
-
-# ANT+
-PRODUCT_PACKAGES += \
-    AntHalService \
-    com.dsi.ant.antradio_library \
-    libantradio
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -219,5 +211,3 @@ PRODUCT_PROPERTY_OVERRIDEs += \
 
 # Inhert dalvik heap values from aosp
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-$(call inherit-product-if-exists, hardware/qcom/msm8x74/msm8x74.mk)

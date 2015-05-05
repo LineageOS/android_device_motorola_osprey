@@ -22,9 +22,6 @@ BOARD_VENDOR := motorola-qcom
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
-#TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-#TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-
 TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
 
@@ -37,9 +34,7 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a7
-#ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 
@@ -59,10 +54,6 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
-TARGET_QCOM_AUDIO_VARIANT := caf
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -74,10 +65,6 @@ BLUETOOTH_HCI_USE_MCT := true
 # Camera
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
-
-
-# CMHW
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/src
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -111,12 +98,8 @@ TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_surnia.c
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := XT1521,XT1524,XT1526,XT1527,XT1523,surnia_uds,surnia_umts,surnia,surnia_udstv
 
-
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
-
-# Media
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Motorola
 TARGET_USES_MOTOROLA_LOG := true
@@ -131,10 +114,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 5368578048 # 5242752 mmcblk0p44
 
 # Qualcomm support
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
-COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_NO_RPC := true
-TARGET_USES_QCOM_BSP := true
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
@@ -144,9 +125,6 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-
-
-# RIL
 
 # SELinux
 
@@ -179,11 +157,6 @@ BOARD_SEPOLICY_UNION += \
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
-
-# QC PROPRIETARY
-ifneq ($(QCPATH),)
-BOARD_USES_QCNE := true
-endif
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
