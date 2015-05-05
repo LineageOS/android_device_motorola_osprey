@@ -7,3 +7,5 @@ allow servicemanager mm-qcamerad:file { open read };
 allow servicemanager mm-qcamerad:process { getattr };
 binder_call(mm-qcamerad, servicemanager)
 binder_call(mm-qcamerad, system_server)
+
+allow mm-qcamerad debug_prop:property_service set;
