@@ -85,11 +85,11 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("persist.radio.lifetimer", "0");
         property_set("ro.com.google.clientidbase.gmm", "android-motorola");
         property_set("ro.com.google.clientidbase", "android-motorola");
-        property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
-        property_set("ro.cdma.home.operator.numeric", "311870");
+        property_set("ro.cdma.home.operator.alpha", "Sprint");
+        property_set("ro.cdma.home.operator.numeric", "310120");
         property_set("ro.carrier", "sprint");
-        property_set("gsm.operator.alpha", "Boost Mobile");
-        property_set("gsm.operator.numeric", "311870");
+        property_set("gsm.operator.alpha", "Sprint");
+        property_set("gsm.operator.numeric", "310120");
         property_set("gsm.sim.operator.iso-country", "us");
         property_set("gsm.operator.iso-country", "us");
         property_set("ro.product.locale.region", "us");
@@ -142,6 +142,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 }
 void cdma_properties(char cdma_sub[])
 {
+    property_set("ro.telephony.default_cdma_sub", cdma_sub);
     property_set("ril.subscription.types","NV,RUIM");
     property_set("DEVICE_PROVISIONED","1");
     property_set("telephony.lteOnCdmaDevice", "1");
