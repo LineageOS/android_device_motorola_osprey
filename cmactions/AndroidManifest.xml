@@ -18,7 +18,7 @@
         android:allowBackup="true"
         android:label="CMActions"
         android:persistent="true"
-        android:theme="@android:style/Theme.Material" >
+        android:theme="@android:style/Theme.Material.Settings" >
 
         <receiver android:name="com.cyanogenmod.settings.device.BootCompletedReceiver">
             <intent-filter>
@@ -39,7 +39,6 @@
                   android:label="CMActions"
                   android:launchMode="singleInstance"
                   android:screenOrientation="portrait"
-                  android:theme="@style/CMActionsTheme"
                   android:windowAnimationStyle="@null">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
