@@ -55,9 +55,13 @@ public class CMActionsSettings {
         return mChopChopEnabled;
     }
 
-    public boolean isDozeEnabled() {
-        return (Settings.Secure.getInt(mContext.getContentResolver(),
+    public static boolean isDozeEnabled(Context context) {
+        return (Settings.Secure.getInt(context.getContentResolver(),
                                     Settings.Secure.DOZE_ENABLED, 1) != 0);
+    }
+
+    public boolean isDozeEnabled() {
+        return isDozeEnabled(mContext);
     }
 
     public boolean isIrWakeupEnabled() {

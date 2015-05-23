@@ -20,13 +20,22 @@ import com.android.internal.util.cm.ScreenType;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 
 public class TouchscreenGestureSettings extends PreferenceActivity {
+    private static final String CATEGORY_AMBIENT_DISPLAY = "ambient_display_key";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.gesture_panel);
+        if (!CMActionsSettings.isDozeEnabled(getPreferenceScreen().getContext())) {
+            PreferenceCategory ambientDisplayCat = (PreferenceCategory)
+                    getPreferenceManager().findPreference(CATEGORY_AMBIENT_DISPLAY);
+            if (ambientDisplayCat != null) {
+                ambientDisplayCat.setEnabled(false);
+            }
+        }
     }
 
     @Override
