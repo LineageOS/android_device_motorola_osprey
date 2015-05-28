@@ -80,20 +80,12 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.com.android.dataroaming","false");
         property_set("persist.radio.0x9e_not_callname","1");
         property_set("ro.fsg-id", "sprint");
+        property_set("ro.diag.enumeration", "diag,serial,rmnet");
         property_set("ro.cdma.subscription", "0");
+        property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
         property_set("persist.radio.lifecalls", "0");
         property_set("persist.radio.lifetimer", "0");
-        property_set("ro.com.google.clientidbase.gmm", "android-motorola");
-        property_set("ro.com.google.clientidbase", "android-motorola");
-        property_set("ro.cdma.home.operator.alpha", "Sprint");
-        property_set("ro.cdma.home.operator.numeric", "310120");
         property_set("ro.carrier", "sprint");
-        property_set("gsm.operator.alpha", "Sprint");
-        property_set("gsm.operator.numeric", "310120");
-        property_set("gsm.sim.operator.iso-country", "us");
-        property_set("gsm.operator.iso-country", "us");
-        property_set("ro.product.locale.region", "us");
-        property_set("ro.cdma.home.operator.subscriber", "31000");
     } else if (ISMATCH(radio, "0x4")) {
         /* XT1524 */
         gsm_properties(false);
@@ -146,7 +138,7 @@ void cdma_properties(char cdma_sub[])
     property_set("ril.subscription.types","NV,RUIM");
     property_set("DEVICE_PROVISIONED","1");
     property_set("telephony.lteOnCdmaDevice", "1");
-    property_set("ro.telephony.default_network", "8");
+    property_set("ro.telephony.default_network", "10");
 }
 void gsm_properties(bool msim)
 {
