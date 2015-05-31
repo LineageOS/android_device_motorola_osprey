@@ -26,9 +26,7 @@
     <string name="pick_up_gesture_summary">Pulse notifications on pick-up or unstow</string>
 
     <string name="ir_wake_up_title">Wave</string>
-    <string name="ir_wake_up_summary">
-        Pulse notifications when you wave your hand across the screen
-    </string>
+    <string name="ir_wake_up_summary">Pulse notifications when you wave your hand across the screen</string>
 
     <string name="actions_title">Actions</string>
 
@@ -38,8 +36,5 @@
     <string name="chop_chop_gesture_title">Chop-chop</string>
     <string name="chop_chop_gesture_summary">Action when using the chop-chop gesture</string>
 
-    <string name="action_none">Disable</string>
-    <string name="action_launch_camera">Launch camera</string>
-    <string name="action_torch">Toggle torch</string>
 </resources>
 
