@@ -29,12 +29,10 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.gesture_panel);
-        if (!CMActionsSettings.isDozeEnabled(getPreferenceScreen().getContext())) {
-            PreferenceCategory ambientDisplayCat = (PreferenceCategory)
-                    getPreferenceManager().findPreference(CATEGORY_AMBIENT_DISPLAY);
-            if (ambientDisplayCat != null) {
-                ambientDisplayCat.setEnabled(false);
-            }
+        PreferenceCategory ambientDisplayCat = (PreferenceCategory)
+                findPreference(CATEGORY_AMBIENT_DISPLAY);
+        if (ambientDisplayCat != null) {
+            ambientDisplayCat.setEnabled(CMActionsSettings.isDozeEnabled(getContentResolver()));
         }
     }
 
