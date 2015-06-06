@@ -54,6 +54,8 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+TARGET_USES_QCOM_MM_AUDIO := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
