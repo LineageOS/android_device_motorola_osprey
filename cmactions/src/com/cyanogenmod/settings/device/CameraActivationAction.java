@@ -53,9 +53,9 @@ public class CameraActivationAction implements SensorAction {
         vibrate();
         turnScreenOn();
         if (mKeyguardManager.inKeyguardRestrictedInputMode()) {
-             launchCameraIntent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE);
+            launchSecureCamera();
         } else {
-             launchCameraIntent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+            launchCamera();
         }
     }
 
@@ -70,17 +70,63 @@ public class CameraActivationAction implements SensorAction {
         wl.acquire(TURN_SCREEN_ON_WAKE_LOCK_MS);
     }
 
-    private void launchCameraIntent(String intentName) {
+    private void launchCamera() {
+        Intent intent = createIntent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        if (getBestActivityInfo(intent) != null) {
+            // Only launch if we can succeed, but let the user pick the action
+            mContext.startActivity(intent);
+        }
+    }
+
+    private void launchSecureCamera() {
+        // Keyguard won't allow a picker, try to pick the secure intent in the package
+        // that would be the one used for a default action of launching the camera
+        Intent normalIntent = createIntent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        Intent secureIntent = createIntent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE);
+        ActivityInfo normalActivity = getBestActivityInfo(normalIntent);
+        ActivityInfo secureActivity = getBestActivityInfo(secureIntent, normalActivity);
+        if (secureActivity != null) {
+            secureIntent.setComponent(componentName(secureActivity));
+            mContext.startActivity(secureIntent);
+        }
+    }
+
+    private Intent createIntent(String intentName) {
         Intent intent = new Intent(intentName);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_FROM_BACKGROUND);
-        List <ResolveInfo> activities = mPackageManager.queryIntentActivities(intent, 0);
-        if (activities.size() > 0) {
-            ActivityInfo activity = activities.get(0).activityInfo;
-            ComponentName componentName = new ComponentName(activity.applicationInfo.packageName,
-                activity.name);
-            intent.setComponent(componentName);
+        return intent;
+    }
+
+    private ActivityInfo getBestActivityInfo(Intent intent) {
+        ResolveInfo resolveInfo = mPackageManager.resolveActivity(intent, 0);
+        if (resolveInfo != null) {
+            return resolveInfo.activityInfo;
+        } else {
+            // If the resolving failed, just find our own best match
+            return getBestActivityInfo(intent, null);
         }
-        mContext.startActivity(intent);
+    }
+
+    private ActivityInfo getBestActivityInfo(Intent intent, ActivityInfo match) {
+        List <ResolveInfo> activities = mPackageManager.queryIntentActivities(intent, 0);
+        ActivityInfo best = null;
+        if (activities.size() > 0) {
+            best = activities.get(0).activityInfo;
+            if (match != null) {
+                String packageName = match.applicationInfo.packageName;
+                for (int i = activities.size()-1; i >= 0; i--) {
+                    ActivityInfo activityInfo = activities.get(i).activityInfo;
+                    if (packageName.equals(activityInfo.applicationInfo.packageName)) {
+                        best = activityInfo;
+                    }
+                }
+            }
+        }
+        return best;
+    }
+
+    private ComponentName componentName(ActivityInfo activity) {
+        return new ComponentName(activity.applicationInfo.packageName, activity.name);
     }
 }
