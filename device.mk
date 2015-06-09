@@ -176,6 +176,10 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     dhcpcd.conf
 
+# Doze
+PRODUCT_PACKAGES += \
+    MotoDoze
+
 PRODUCT_PACKAGES += \
     WCNSS_qcom_wlan_factory_nv.bin
 
