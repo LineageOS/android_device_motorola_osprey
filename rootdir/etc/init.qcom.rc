@@ -857,10 +857,6 @@ on property:ro.data.large_tcp_window_size=true
 on property:persist.radio.multisim.config=dsds
     start ril-daemon2
 
-on property:vold.decrypt=trigger_restart_framework
-    stop ril-daemon
-
-
 service_redefine ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
