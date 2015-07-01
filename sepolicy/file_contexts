@@ -3,7 +3,7 @@
 /system/bin/dbvc_atvc_property_set u:object_r:atvc_exec:s0
 /system/bin/dropboxd               u:object_r:dropboxd_exec:s0
 /system/bin/mbm_spy                u:object_r:mbm_spy_exec:s0
-/system/bin/stml0xx                u:object_r:stml0xx_exec:s0
+/system/bin/stml0xx_wrapper.sh     u:object_r:stml0xx_exec:s0
 /system/bin/tcmd                   u:object_r:tcmd_exec:s0
 
 

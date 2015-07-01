@@ -236,7 +236,7 @@ on property:sys.boot_completed=1
     start qe
 
 # Start Sensor daemon
-service stml0xx /system/bin/stml0xx boot
+service stml0xx /system/bin/stml0xx_wrapper.sh
     class late_start
     user compass
     group compass misc input
