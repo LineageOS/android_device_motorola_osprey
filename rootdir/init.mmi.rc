@@ -45,6 +45,7 @@ on moto-charger
 
 on early-boot
     exec /system/bin/sh /init.mmi.early_boot.sh
+    exec /system/bin/sh /init.surnia.sh 
 
 on boot
   # Change ownership and permission for backlight
