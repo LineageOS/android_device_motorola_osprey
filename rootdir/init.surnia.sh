@@ -3,7 +3,7 @@ PATH=/system/bin
 
 product_model=`getprop ro.product.model`
 
-if [ "XT1527" = $product_model ]; then
+if [ "XT1526" = $product_model ]; then
 	log -t$TAG "Applying LTE fix"
 	setprop ro.cdma.home.operator.numeric 311870
 	setprop ro.cdma.home.operator.alpha "Boost Mobile"
