@@ -168,6 +168,7 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh \
+    init.qcom.ril.sh \
     stml0xx_wrapper.sh
 
 PRODUCT_PACKAGES += \
