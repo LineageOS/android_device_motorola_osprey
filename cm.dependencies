@@ -1,13 +1,13 @@
 [
   {
     "remote":      "github",
-    "repository":  "sultanqasim/android_kernel_surnia",
+    "repository":  "sultanqasim/android_kernel_motorola_msm8916",
     "target_path": "kernel/motorola/msm8916",
-    "revision":    "squid_qcom"
+    "revision":    "squid_cm12.1"
   },
   {
     "remote":      "github",
-    "repository":  "Motorola-CyanogenMod/android_vendor_motorola_surnia",
+    "repository":  "sultanqasim/android_vendor_motorola_surnia",
     "target_path": "vendor/motorola/surnia",
     "revision":    "cm-12.1"
   },

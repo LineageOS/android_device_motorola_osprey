@@ -23,8 +23,8 @@ Create a file .repo/local_manifests/styx.xml and paste this in:
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <project name="sultanqasim/android_device_motorola_surnia" path="device/motorola/surnia" remote="github" revision="cm-12.1" />
-    <project name="Motorola-CyanogenMod/android_vendor_motorola_surnia" path="vendor/motorola/surnia" remote="github" revision="cm-12.1" />
-    <project name="sultanqasim/android_kernel_surnia" path="kernel/motorola/msm8916" remote="github" revision="squid_cm12" />
+    <project name="sultanqasim/android_vendor_motorola_surnia" path="vendor/motorola/surnia" remote="github" revision="cm-12.1" />
+    <project name="sultanqasim/android_kernel_motorola_msm8916" path="kernel/motorola/msm8916" remote="github" revision="squid_cm12.1" />
     <project name="CyanogenMod/android_hardware_qcom_fm" path="hardware/qcom/fm" remote="github" />
     <project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
 </manifest>
