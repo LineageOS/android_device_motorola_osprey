@@ -41,7 +41,7 @@ TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 #Kernel
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 vmalloc=400M androidboot.bootdevice=soc.0 utags.blkdev=/dev/block/platform/soc.0/by-name/utags utags.backup=/dev/block/platform/soc.0/by-name/utagsBackup movablecore=160M androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 vmalloc=400M androidboot.bootdevice=soc.0 utags.blkdev=/dev/block/platform/soc.0/by-name/utags utags.backup=/dev/block/platform/soc.0/by-name/utagsBackup movablecore=160M
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_RAMDISK_OFFSET := 0x01000000
@@ -141,10 +141,13 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_UNION += \
     atvc.te \
     batt_health.te \
+    bluetooth_loader.te \
+    bootanim.te \
     device.te \
     dropboxd.te \
     file.te \
     file_contexts \
+    healthd.te \
     init.te \
     init_shell.te \
     mbm_spy.te \
@@ -152,13 +155,16 @@ BOARD_SEPOLICY_UNION += \
     mpdecision.te \
     property.te \
     property_contexts \
+    qseecomd.te \
     rild.te \
     rmt_storage.te \
     stml0xx.te \
+    surfaceflinger.te \
     system_server.te \
     tcmd.te \
     tee.te \
-    ueventd.te
+    ueventd.te \
+    wcnss_service.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
