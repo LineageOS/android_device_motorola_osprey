@@ -1,0 +1,2 @@
+allow perfd sysfs_devices_system_iosched:file rw_file_perms;
+unix_socket_connect(perfd, thermal, thermal-engine)
