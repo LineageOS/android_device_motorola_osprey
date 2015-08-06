@@ -1,6 +1,6 @@
 # Bare-bones system.prop
 
-ro.sf.lcd_density=240
+ro.sf.lcd_density=320
 com.qc.hardware=true
 debug.qc.hardware=true
 

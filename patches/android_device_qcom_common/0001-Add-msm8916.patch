@@ -66,7 +66,7 @@ index 0000000..bcb27d0
 +    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
 +        return;
 +
-+    property_set(PROP_LCDDENSITY, "240");
++    property_set(PROP_LCDDENSITY, "320");
 +}
 -- 
 2.0.5
