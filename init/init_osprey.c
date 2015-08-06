@@ -41,6 +41,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 {
     char platform[PROP_VALUE_MAX];
     char radio[PROP_VALUE_MAX];
+    char sku[PROP_VALUE_MAX];
     char device[PROP_VALUE_MAX];
     char devicename[PROP_VALUE_MAX];
     FILE *fp;
@@ -55,11 +56,12 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         return;
 
     property_get("ro.boot.radio", radio);
+    property_get("ro.boot.hardware.sku", sku);
 
     property_set("ro.product.model", "MotoG3");
     property_set("ro.telephony.default_network", "9");
     property_set("ro.gsm.data_retry_config", "default_randomization=2000,max_retries=infinite,1000,1000,80000,125000,485000,905000");
-    if (ISMATCH(radio, "0x1")) {
+    if (ISMATCH(sku, "XT1540") || ISMATCH(radio, "0x1")) {
         /* XT1540 */
         property_set("ro.product.name", "osprey_retus");
         property_set("ro.product.device", "osprey_umts");
@@ -68,7 +70,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.build.product", "osprey_umts");
         property_set("ro.mot.build.customerid", "retus");
         property_set("ro.gsm.data_retry_config", "");
-    } else if (ISMATCH(radio, "0x4")) {
+    } else if (ISMATCH(sku, "XT1541") || ISMATCH(radio, "0x4")) {
         /* XT1541 */
         property_set("ro.product.name", "osprey_reteu");
         property_set("ro.product.device", "osprey_umts");
@@ -79,7 +81,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.fsg-id", "emea");
         property_set("persist.radio.mot_ecc_custid", "emea");
         property_set("persist.radio.process_sups_ind", "0");
-    } else if (ISMATCH(radio, "0x6")) { /* check radio value */
+    } else if (ISMATCH(sku, "XT1542") /*|| ISMATCH(radio, "0x6")*/) {
         /* XT1542 */
         property_set("ro.product.name", "osprey_retla");
         property_set("ro.product.device", "osprey_umts");
@@ -89,7 +91,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.mot.build.customerid", "retla");
         property_set("persist.radio.all_bc_msg", "all");
         property_set("persist.radio.process_sups_ind", "1");
-    } else if (ISMATCH(radio, "0x6")) {
+    } else if (ISMATCH(sku, "XT1543") || ISMATCH(radio, "0x6")) {
         /* XT1543 */
         setMsim();
         property_set("ro.product.name", "osprey_retla_ds");
@@ -101,7 +103,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.fsg-id", "dstv");
         property_set("persist.radio.all_bc_msg", "all");
         property_set("persist.radio.process_sups_ind", "1");
-    } else if (ISMATCH(radio, "0x6")) { /* check radio value */
+    } else if (ISMATCH(sku, "XT1544") /*|| ISMATCH(radio, "0x6")*/) {
         /* XT1544 */
         setMsim();
         property_set("ro.product.name", "osprey_retbr_dstv");
@@ -112,7 +114,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.mot.build.customerid", "retbr");
         property_set("persist.radio.all_bc_msg", "all");
         property_set("persist.radio.process_sups_ind", "1");
-    } else if (ISMATCH(radio, "0x6")) { /* check radio value */
+    } else if (ISMATCH(sku, "XT1548") /*|| ISMATCH(radio, "0x6")*/) {
         /* XT1548 */
         property_set("ro.product.name", "osprey_usc");
         property_set("ro.product.device", "osprey_cdma");
@@ -135,7 +137,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.ril.svdo", "false");
         property_set("ro.telephony.default_network", "8");
         property_set("telephony.lteOnCdmaDevice", "1");
-    } else if (ISMATCH(radio, "0x9")) {
+    } else if (ISMATCH(sku, "XT1550") || ISMATCH(radio, "0x9")) {
         /* XT1550 */
         setMsim();
         property_set("ro.product.name", "osprey_retasia_ds");
@@ -155,7 +157,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
     property_get("ro.product.device", device);
     strlcpy(devicename, device, sizeof(devicename));
-    INFO("Found radio id: %s data %s setting build properties for %s device\n", radio, devicename);
+    INFO("Found radio id: %s data %s setting build properties for %s device\n", radio, sku, devicename);
 }
 
 void setMsim()
