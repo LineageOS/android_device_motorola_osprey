@@ -33,7 +33,7 @@ $(FIRMWARE_KEYMASTER_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_KEYMASTER_SYMLINKS)
 
 FIRMWARE_MBA_IMAGES := \
-    mba.mbn
+    mba.mbn.gz
 
 FIRMWARE_MBA_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FIRMWARE_MBA_IMAGES)))
 $(FIRMWARE_MBA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
@@ -45,11 +45,11 @@ $(FIRMWARE_MBA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MBA_SYMLINKS)
 
 FIRMWARE_MODEM_IMAGES := \
-    modem.b00 modem.b01 modem.b02 modem.b03 modem.b04 modem.b05 \
-    modem.b06 modem.b07 modem.b08 modem.b10 modem.b11 modem.b12 \
-    modem.b14 modem.b15 modem.b16 modem.b17 modem.b18 modem.b19 \
-    modem.b20 modem.b23 modem.b24 modem.b25 modem.b27 modem.b28 \
-    modem.mdt
+    modem.b00.gz modem.b01.gz modem.b02.gz modem.b03.gz modem.b04.gz modem.b05.gz \
+    modem.b06.gz modem.b07.gz modem.b08.gz modem.b10.gz modem.b11.gz modem.b12.gz \
+    modem.b14.gz modem.b15.gz modem.b16.gz modem.b17.gz modem.b18.gz modem.b19.gz \
+    modem.b20.gz modem.b23.gz modem.b24.gz modem.b25.gz modem.b27.gz modem.b28.gz \
+    modem.mdt.gz
 
 FIRMWARE_MODEM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FIRMWARE_MODEM_IMAGES)))
 $(FIRMWARE_MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
