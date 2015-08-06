@@ -83,22 +83,11 @@ start_charger_monitor()
 	fi
 }
 
-start_vm_bms()
-{
-	if [ -e /dev/vm_bms ]; then
-		chown -h root.system /sys/class/power_supply/bms/current_now
-		chown -h root.system /sys/class/power_supply/bms/voltage_ocv
-		chmod 0664 /sys/class/power_supply/bms/current_now
-		chmod 0664 /sys/class/power_supply/bms/voltage_ocv
-		start vm_bms
-	fi
-}
-
 start_msm_irqbalance_8939()
 {
 	if [ -f /system/bin/msm_irqbalance ]; then
 		case "$platformid" in
-		    "239")
+		    "239" | "241" | "263" | "268" | "269" | "270" | "271")
 			start msm_irqbalance;;
 		esac
 	fi
@@ -112,14 +101,6 @@ start_msm_irqbalance()
 }
 
 baseband=`getprop ro.baseband`
-#
-# Suppress default route installation during RA for IPV6; user space will take
-# care of this
-# exception default ifc
-for file in /proc/sys/net/ipv6/conf/*
-do
-  echo 0 > $file/accept_ra_defrtr
-done
 echo 1 > /proc/sys/net/ipv6/conf/default/accept_ra_defrtr
 
 case "$baseband" in
@@ -202,14 +183,12 @@ case "$target" in
         start_charger_monitor
         ;;
     "msm8916")
-        start_vm_bms
         start_msm_irqbalance_8939
         ;;
     "msm8994")
         start_msm_irqbalance
         ;;
     "msm8909")
-        start_vm_bms
         ;;
 esac
 

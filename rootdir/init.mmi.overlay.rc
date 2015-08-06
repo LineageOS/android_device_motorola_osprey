@@ -1,2 +1,42 @@
 import init.mmi.dtv.rc
 
+on boot
+    # AK09912 driver parameter permissions
+    chown system compass /sys/class/compass/akm09912/accel
+    chmod 0660 /sys/class/compass/akm09912/accel
+    chown system compass /sys/class/compass/akm09912/delay_acc
+    chmod 0660 /sys/class/compass/akm09912/delay_acc
+    chown system compass /sys/class/compass/akm09912/enable_acc
+    chmod 0660 /sys/class/compass/akm09912/enable_acc
+    chown system compass /sys/class/compass/akm09912/delay_fusion
+    chmod 0660 /sys/class/compass/akm09912/delay_fusion
+    chown system compass /sys/class/compass/akm09912/enable_fusion
+    chmod 0660 /sys/class/compass/akm09912/enable_fusion
+    chown system compass /sys/class/compass/akm09912/delay_mag
+    chmod 0660 /sys/class/compass/akm09912/delay_mag
+    chown system compass /sys/class/compass/akm09912/enable_mag
+    chmod 0660 /sys/class/compass/akm09912/enable_mag
+
+    # set permission for Dynamic-CABC feature
+    chown system system /sys/class/graphics/fb0/cabc_mode
+    # set permission for HBM feature
+    chown system system /sys/class/graphics/fb0/hbm
+
+on post-fs-data
+    # AK09912 calibration file directory
+    mkdir /data/misc/akmd 0770 system compass
+
+# Start AKM executable
+service akmd09912 /system/bin/akmd09912
+    class main
+    user compass
+    group compass misc input
+
+on early-init
+    # Mount point for Digital Personalization partition
+    mkdir /customize 0500 root root
+
+on fs
+    #Mount customize partion
+    wait /dev/block/platform/msm_sdcc.1/by-name/customize
+    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/customize /customize ro discard nosuid nodev noatime nodiratime noexec defcontext=u:object_r:user_config_file:s0

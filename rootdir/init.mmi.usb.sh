@@ -182,10 +182,20 @@ esac
 
 case "$bootmode" in
     "bp-tools" )
-        if [ "$usb_config" != "diag,serial,rmnet,adb" ]
-        then
-            setprop persist.sys.usb.config diag,serial,rmnet,adb
-        fi
+        case "$usb_config" in
+            "diag,serial,rmnet,adb" |  "diag,serial,rmnet" )
+            ;;
+            * )
+                case "$securehw" in
+                    "1" )
+                        setprop persist.sys.usb.config diag,serial,rmnet
+                    ;;
+                    *)
+                        setprop persist.sys.usb.config diag,serial,rmnet,adb
+                    ;;
+                esac
+            ;;
+        esac
     ;;
     "mot-factory" )
         allow_adb=`getprop persist.factory.allow_adb`
@@ -205,10 +215,20 @@ case "$bootmode" in
         esac
     ;;
     "qcom" )
-        if [ "$usb_config" != "diag,serial_smd,rmnet_bam,adb" ]
-        then
-            setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
-        fi
+        case "$usb_config" in
+            "diag,serial_smd,rmnet_bam,adb" |  "diag,serial_smd,rmnet_bam" )
+            ;;
+            * )
+                case "$securehw" in
+                    "1" )
+                        setprop persist.sys.usb.config diag,serial_smd,rmnet_bam
+                    ;;
+                    *)
+                        setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
+                    ;;
+                esac
+            ;;
+        esac
     ;;
     * )
         if [ "$buildtype" == "user" ] && [ "$phonelock_type" != "1" ] && [ "$usb_restricted" != "1" ]

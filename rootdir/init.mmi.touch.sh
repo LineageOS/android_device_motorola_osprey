@@ -151,9 +151,6 @@ then
 fi
 debug "touch product id: $touch_product_id"
 
-touch_product_id=${touch_product_id%[a-z]}
-debug "touch product id without vendor suffix: $touch_product_id"
-
 read_touch_property buildid || error_and_leave 1
 str_cfg_id_boot=${property#*-}
 let dec_cfg_id_boot=0x$str_cfg_id_boot
