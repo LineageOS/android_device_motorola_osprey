@@ -38,15 +38,25 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
+        <item>2</item>
         <item>10</item>
         <item>50</item>
+        <item>90</item>
         <item>100</item>
         <item>150</item>
+        <item>200</item>
+        <item>300</item>
         <item>400</item>
-        <item>1400</item>
+        <item>500</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>1300</item>
+        <item>2000</item>
         <item>3000</item>
-        <item>6000</item>
+        <item>4000</item>
         <item>8000</item>
+        <item>20000</item>
+        <item>30000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -54,16 +64,26 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>11</item>
-        <item>23</item>
-        <item>48</item>
-        <item>70</item>
-        <item>89</item>
-        <item>133</item>
-        <item>181</item>
-        <item>249</item>
-        <item>255</item>
-        <item>255</item>
+        <item>9</item>
+        <item>9</item>
+        <item>19</item>
+        <item>36</item>
+        <item>63</item>
+        <item>73</item>
+        <item>88</item>
+        <item>88</item>
+        <item>88</item>
+        <item>88</item>
+        <item>110</item>
+        <item>132</item>
+        <item>147</item>
+        <item>154</item>
+        <item>205</item>
+        <item>220</item>
+        <item>230</item>
+        <item>230</item>
+        <item>230</item>
+        <item>256</item>
     </integer-array>
 
     <!-- Array of output values for button backlight corresponding to the LUX values
@@ -92,7 +112,7 @@
 
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">120</integer>
+    <integer name="config_screenBrightnessSettingDefault">80</integer>
 
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
@@ -120,7 +140,7 @@
     <integer name="config_defaultNotificationLedOff">9000</integer>
 
     <!-- reference volume index for music stream to limit headphone volume and display warning -->
-    <integer name="config_safe_media_volume_index">7</integer>
+    <integer name="config_safe_media_volume_index">10</integer>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          USB interfaces.  If the device doesn't want to support tething over USB this should
@@ -161,13 +181,16 @@
     <string name="config_geofenceServicesProvider" translatable="false">com.motorola.motgeofencesvc</string>
 
     <integer-array name="config_longPressVibePattern">
-        <item>21</item>
+        <item>0</item>
+        <item>30</item>
+        <item>15</item>
+        <item>30</item>
     </integer-array>
     <integer-array name="config_virtualKeyVibePattern">
-        <item>18</item>
+        <item>35</item>
     </integer-array>
     <integer-array name="config_keyboardTapVibePattern">
-        <item>15</item>
+        <item>25</item>
     </integer-array>
     <integer-array name="config_safeModeDisabledVibePattern">
         <item>0</item>
@@ -185,9 +208,9 @@
     </integer-array>
     <integer-array name="config_scrollBarrierVibePattern">
         <item>0</item>
-        <item>20</item>
-        <item>60</item>
-        <item>20</item>
+        <item>15</item>
+        <item>30</item>
+        <item>15</item>
     </integer-array>
 
     <!-- Is the device capable of hot swapping an UICC Card -->
