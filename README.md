@@ -16,7 +16,7 @@ repo init -u git://github.com/CyanogenMod/android.git -b cm-12.1
 mkdir -p .repo/local_manifests
 ````
 
-Create a file .repo/local_manifests/styx.xml and paste this in:
+Create a file .repo/local_manifests/osprey.xml and paste this in:
 ````
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
