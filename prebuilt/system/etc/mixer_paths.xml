@@ -52,7 +52,6 @@
 	<ctl name="EAR PA Gain" value="POS_1P5_DB" />
 	<ctl name="MI2S_RX Channels" value="One" />
 	<ctl name="MI2S_TX Channels" value="One" />
-	<ctl name="Boost Option" value="BOOST_ALWAYS" />
 
 	<ctl name="PRI_MI2S_RX Audio Mixer MultiMedia1" value="0" />
 	<ctl name="PRI_MI2S_RX Port Mixer INTERNAL_BT_SCO_TX" value="0" />
@@ -68,6 +67,7 @@
 	<ctl name="PRI_MI2S_RX Audio Mixer MultiMedia5" value="0" />
 	<ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia5" value="0" />
 	<ctl name="MultiMedia1 Mixer TERT_MI2S_TX" value="0" />
+        <ctl name="MultiMedia5 Mixer TERT_MI2S_TX" value="0"/>
 	<ctl name="MultiMedia1 Mixer INTERNAL_BT_SCO_TX" value="0" />
 	<ctl name="PRI_MI2S_RX_Voice Mixer CSVoice" value="0" />
 	<ctl name="Voice_Tx Mixer TERT_MI2S_TX_Voice" value="0" />
@@ -254,6 +254,11 @@
 		<path name="audio-record bt-sco" />
 	</path>
 
+
+	<path name="low-latency-record">
+                <ctl name="MultiMedia5 Mixer TERT_MI2S_TX" value="1"/>
+	</path>
+
 	<path name="audio-record usb-headset-mic">
 		<ctl name="MultiMedia1 Mixer AFE_PCM_TX" value="1" />
 	</path>
@@ -265,6 +270,7 @@
 	<path name="fm-virtual-record capture-fm">
 		<ctl name="MultiMedia2 Mixer INTERNAL_FM_TX" value="1" />
 	</path>
+
 
 	<path name="voice-call">
 		<ctl name="PRI_MI2S_RX_Voice Mixer CSVoice" value="1" />
@@ -473,7 +479,6 @@
 	</path>
 
 	<path name="adc2">
-		<ctl name="MI2S_TX Channels" value="One" />
 		<ctl name="DEC1 MUX" value="ADC2" />
 	</path>
 
@@ -484,11 +489,8 @@
 	</path>
 
 	<path name="speaker-mic">
-		<path name="adc2" />
-		<ctl name="ADC2 MUX" value="INP3" />
-		<ctl name="ADC1 Volume" value="0" />
-		<ctl name="ADC2 Volume" value="0" />
-		<ctl name="ADC3 Volume" value="7" />
+		<path name="adc1" />
+		<ctl name="ADC1 Volume" value="7" />
 	</path>
 
 	<path name="handset">
