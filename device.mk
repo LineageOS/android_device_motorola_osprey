@@ -15,7 +15,7 @@
 #
 
 
-LOCAL_PATH := device/motorola/surnia
+LOCAL_PATH := device/motorola/osprey
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 

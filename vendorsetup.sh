@@ -1,1 +1,1 @@
-add_lunch_combo cm_surnia-userdebug
+add_lunch_combo cm_osprey-userdebug

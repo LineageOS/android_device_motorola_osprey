@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
--include vendor/motorola/surnia/BoardConfigVendor.mk
+-include vendor/motorola/osprey/BoardConfigVendor.mk
 
-LOCAL_PATH := device/motorola/surnia
+LOCAL_PATH := device/motorola/osprey
 
 BOARD_VENDOR := motorola-qcom
 
@@ -103,10 +103,10 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 #TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_surnia.c
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_osprey.c
 
 # Asserts
-TARGET_OTA_ASSERT_DEVICE := XT1514,XT1521,XT1524,XT1526,XT1527,XT1523,surnia_uds,surnia_umts,surnia,surnia_udstv
+TARGET_OTA_ASSERT_DEVICE := osprey
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -141,7 +141,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-    device/motorola/surnia/sepolicy
+    device/motorola/osprey/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     atvc.te \

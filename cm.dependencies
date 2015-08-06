@@ -7,8 +7,8 @@
   },
   {
     "remote":      "github",
-    "repository":  "sultanqasim/android_vendor_motorola_surnia",
-    "target_path": "vendor/motorola/surnia",
+    "repository":  "sultanqasim/android_vendor_motorola_osprey",
+    "target_path": "vendor/motorola/osprey",
     "revision":    "cm-12.1"
   },
   {

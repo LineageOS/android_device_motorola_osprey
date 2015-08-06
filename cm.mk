@@ -13,23 +13,23 @@
 # limitations under the License.
 
 # Release name
-PRODUCT_RELEASE_NAME := surnia
+PRODUCT_RELEASE_NAME := osprey
 
 # Boot animation
-TARGET_SCREEN_WIDTH := 540
-TARGET_SCREEN_HEIGHT := 960
+TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 1280
 
-$(call inherit-product, device/motorola/surnia/full_surnia.mk)
+$(call inherit-product, device/motorola/osprey/full_osprey.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := surnia
-PRODUCT_NAME := cm_surnia
-PRODUCT_BRAND := motorola
-PRODUCT_MODEL := surnia
-PRODUCT_MANUFACTURER := motorola
+PRODUCT_DEVICE := osprey
+PRODUCT_NAME := cm_osprey
+PRODUCT_BRAND := Motorola
+PRODUCT_MODEL := MotoG3
+PRODUCT_MANUFACTURER := Motorola
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0

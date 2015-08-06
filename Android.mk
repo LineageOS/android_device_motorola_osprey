@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter surnia,$(TARGET_DEVICE)),)
+ifneq ($(filter osprey,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
