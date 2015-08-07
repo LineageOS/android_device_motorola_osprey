@@ -87,10 +87,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     setup_fs
 
-# Qcom SoftAP & wifi
-PRODUCT_PACKAGES += \
-    libQWiFiSoftApCfg
-
 # Motorola
 PRODUCT_PACKAGES += \
     charge_only_mode
@@ -110,12 +106,7 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVdecHevc \
     libOmxVenc \
-    libstagefrighthw 
-
-PRODUCT_PACKAGES += \
-    wlan_module_symlink \
-    wlan_persist_symlink \
-    wcnss_service
+    libstagefrighthw
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -167,20 +158,31 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
-    hostapd.accept \
+    dhcpcd.conf \
     hostapd_default.conf \
-    hostapd.deny \
     hostapd \
     wpa_supplicant \
-    wpa_supplicant.conf \
-    dhcpcd.conf
+    wpa_supplicant.conf
+
+PRODUCT_PACKAGES += \
+    p2p_supplicant_overlay.conf \
+    wpa_supplicant_overlay.conf
+
+PRODUCT_PACKAGES += \
+    WCNSS_wlan_dictionary.dat
+
+PRODUCT_PACKAGES += \
+    libqsap_sdk \
+    libQWiFiSoftApCfg \
+    wcnss_service
+
+PRODUCT_COPY_FILES += \
+    kernel/motorola/msm8916/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    kernel/motorola/msm8916/drivers/staging/prima/firmware_bin/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
 
 # Doze
 PRODUCT_PACKAGES += \
     MotoDoze
-
-PRODUCT_PACKAGES += \
-    WCNSS_qcom_wlan_factory_nv.bin
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320
