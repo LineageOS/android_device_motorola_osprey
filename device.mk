@@ -53,6 +53,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+
 DEVICE_PACKAGE_OVERLAYS := \
     $(LOCAL_PATH)/overlay
 
@@ -203,16 +205,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.media.enc.aud.fileformat=amr \
     ro.media.enc.aud.codec=amrnb \
     ro.gps.agps_provider=1
-
-# Media
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.use-awesome=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=128m \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=96m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=2m \
-    dalvik.vm.heapmaxfree=8m
 
