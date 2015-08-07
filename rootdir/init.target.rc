@@ -73,20 +73,11 @@ service qseecomd /system/bin/qseecomd
    user root
    group root
 
-#service aostlmd /system/bin/aostlmd
-#   class late_start
-#   user system
-#   group system net_raw
 
-#service mpdecision /system/bin/mpdecision --avg_comp
-#   user root
-#   disabled
-
-# PERFD not used
-#service perfd /system/bin/perfd
-#   class main
-#   user root
-#   disabled
+service perfd /system/bin/perfd
+   class main
+   user root
+   disabled
 
 service thermal-engine /system/bin/thermal-engine
    class main
@@ -124,15 +115,4 @@ service wcnss-service /system/bin/wcnss_service
     class main
     user system
     group system wifi radio
-
-#on charger
-#    wait /dev/block/bootdevice/by-name/system
-#    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
-#    chown root system /sys/class/power_supply/bms/current_now
-#    chown root system /sys/class/power_supply/bms/voltage_ocv
-#    chmod 0664 /sys/class/power_supply/bms/current_now
-#    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
-#    start vm_bms
-#    load_all_props
-#    start qcom-post-boot
 
