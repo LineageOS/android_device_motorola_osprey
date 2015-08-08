@@ -1,7 +1,6 @@
 /* IPC Security Config */
 /* <GPS QMI Service ID - 16>:<GPS QMI Instance ID - all instances>:<Client Group ID> */
 16:4294967295:1000:3004
-228:4294967295:1000:3004:1002
 /* Allow SS CTL service to be used by system and net_raw processes */
 43:4294967295:1000:3004
 /* Allow Sensor services to be used by sensor process */

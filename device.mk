@@ -19,13 +19,12 @@ LOCAL_PATH := device/motorola/osprey
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+# Overlay
+DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
+
 # Ramdisk
  PRODUCT_COPY_FILES += \
      $(call find-copy-subdir-files,*,${LOCAL_PATH}/rootdir,root)
-
-# Prebuilt
-PRODUCT_COPY_FILES += \
-     $(call find-copy-subdir-files,*,${LOCAL_PATH}/prebuilt/system,system)
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -45,56 +44,106 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.software.print.xml:system/etc/permissions/android.software.print.xml \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml
 
+# System Properties
+-include $(LOCAL_PATH)/system_prop.mk
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp
+
+# Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
+# Boot animation
+TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 1280
+
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
-DEVICE_PACKAGE_OVERLAYS := \
-    $(LOCAL_PATH)/overlay
+# Audio
+PRODUCT_PACKAGES += \
+    audiod \
+    audio.a2dp.default \
+    audio.primary.msm8916 \
+    audio.r_submix.default \
+    audio.usb.default \
+    libaudio-resampler \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    libqcompostprocbundle \
+    tinymix
 
+PRODUCT_COPY_FILES +=  \
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8916
+
+# Configs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/data/dsi_config.xml:system/etc/data/dsi_config.xml \
+    $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
+    $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
+
+# Display
 PRODUCT_PACKAGES += \
     gralloc.msm8916 \
     copybit.msm8916 \
     hwcomposer.msm8916 \
-    memtrack.msm8916 \
-    power.msm8916
+    memtrack.msm8916
 
+# Doze
 PRODUCT_PACKAGES += \
-    audio.msm8916 \
-    audio_policy.msm8916
+    MotoDoze
 
+# Ebtables
 PRODUCT_PACKAGES += \
-    audiod \
-    audio.primary.msm8916 \
-    audio.a2dp.default \
-    audio.usb.default \
-    audio.r_submix.default \
-    libaudio-resampler \
-    tinymix \
-    libqcomvisualizer \
-    libqcomvoiceprocessing
-
-# Camera
-PRODUCT_PACKAGES += \
-    camera.msm8916 \
-    libmm-qcamera
+    ebtables \
+    ethertypes \
+    libebtc
 
 # Filesystem
 PRODUCT_PACKAGES += \
     setup_fs
 
-# Motorola
+# FM
 PRODUCT_PACKAGES += \
-    charge_only_mode
+    FM2 \
+    FMRecord \
+    libqcomfm_jni \
+    qcom.fmradio
+
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8916
+
+# IRSC
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.msm8916
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8916
+
+# Media
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 # Misc
 PRODUCT_PACKAGES += \
+    libbson \
     libxml2
 
 # OMX
@@ -110,46 +159,21 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
+# Power
 PRODUCT_PACKAGES += \
-    librs_jni \
+    power.msm8916
+
+# stml0xx
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/stml0xx_wrapper.sh:system/bin/stml0xx_wrapper.sh
+
+# Thermal
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal-engine-osprey.conf:system/etc/thermal-engine-osprey.conf
+
+# USB
+PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Ebtables
-PRODUCT_PACKAGES += \
-    ebtables \
-    ethertypes \
-    libebtc
-
-# FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
-
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8916
-
-# Lights
-PRODUCT_PACKAGES += \
-    lights.msm8916
-
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8916
-
-# Misc
-PRODUCT_PACKAGES += \
-    curl \
-    libbson \
-    libcurl \
-    tcpdump
-
-# Wifi
-PRODUCT_PACKAGES += \
-    p2p_supplicant_overlay.conf \
-    wpa_supplicant_overlay.conf
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -167,42 +191,12 @@ PRODUCT_PACKAGES += \
     WCNSS_wlan_dictionary.dat
 
 PRODUCT_PACKAGES += \
+    libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
+    tcpdump \
     wcnss_service
 
 PRODUCT_COPY_FILES += \
     kernel/motorola/msm8916/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     kernel/motorola/msm8916/drivers/staging/prima/firmware_bin/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
-
-# Doze
-PRODUCT_PACKAGES += \
-    MotoDoze
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=320
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.logkit.ctrlcode=0 \
-    ro.usb.mtp=0x2e82 \
-    ro.usb.mtp_adb=0x2e76 \
-    ro.usb.ptp=0x2e83 \
-    ro.usb.ptp_adb=0x2e84 \
-    ro.usb.bpt=0x2ec1 \
-    ro.usb.bpt_adb=0x2ec5 \
-    ro.usb.bpteth=0x2ec3 \
-    ro.usb.bpteth_adb=0x2ec6 \
-    persist.audio.calfile0=/etc/acdbdata/Bluetooth_cal.acdb \
-    persist.audio.calfile1=/etc/acdbdata/General_cal.acdb \
-    persist.audio.calfile2=/etc/acdbdata/Global_cal.acdb \
-    persist.audio.calfile3=/etc/acdbdata/Handset_cal.acdb \
-    persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb \
-    persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb \
-    persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb \
-    persist.sys.qc.sub.rdump.max=3 \
-    mdc_initial_max_retry=10 \
-    drm.service.enabled=true \
-    ro.media.enc.aud.fileformat=amr \
-    ro.media.enc.aud.codec=amrnb \
-    ro.gps.agps_provider=1
-

@@ -15,10 +15,6 @@
 # Release name
 PRODUCT_RELEASE_NAME := osprey
 
-# Boot animation
-TARGET_SCREEN_WIDTH := 720
-TARGET_SCREEN_HEIGHT := 1280
-
 $(call inherit-product, device/motorola/osprey/full_osprey.mk)
 
 # Inherit some common CM stuff.
