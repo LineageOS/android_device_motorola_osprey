@@ -22,10 +22,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
-# Ramdisk
- PRODUCT_COPY_FILES += \
-     $(call find-copy-subdir-files,*,${LOCAL_PATH}/rootdir,root)
-
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -167,9 +163,22 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     power.msm8916
 
-# stml0xx
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/stml0xx_wrapper.sh:system/bin/stml0xx_wrapper.sh
+# Ramdisk
+PRODUCT_PACKAGES += \
+    init.qcom.bt.sh \
+    stml0xx_wrapper.sh
+
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.mmi.boot.sh \
+    init.mmi.dtv.sh \
+    init.mmi.early_boot.sh \
+    init.mmi.rc \
+    init.mmi.touch.sh \
+    init.mmi.usb.rc \
+    init.mmi.usb.sh \
+    init.qcom.rc \
+    ueventd.qcom.rc
 
 # Thermal
 PRODUCT_COPY_FILES += \
