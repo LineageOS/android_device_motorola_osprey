@@ -3,6 +3,7 @@
     package="com.cyanogenmod.settings.device"
     android:versionCode="1"
     android:versionName="1.0"
+    android:sharedUserId="android.uid.system"
     >
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
