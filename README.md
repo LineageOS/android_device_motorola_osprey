@@ -26,8 +26,6 @@ Create a file .repo/local_manifests/osprey.xml and paste this in:
     <project name="CyanogenMod/android_external_mm-dash" path="external/mm-dash" remote="github" />
     <project name="CyanogenMod/android_hardware_qcom_fm" path="hardware/qcom/fm" remote="github" />
     <project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" />
-    <remove-project name="CyanogenMod/android_system_core" />
-    <project name="MotoG3/android_system_core" path="system/core" remote="github" revision="cm-12.1" />
 </manifest>
 ````
 
