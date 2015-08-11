@@ -75,8 +75,8 @@ on moto-charger
     write /sys/devices/system/cpu/cpufreq/interactive/target_loads 80
 
     # Set Battery LED behavior
-    write /sys/class/leds/charging/brightness 255
     write /sys/class/leds/charging/trigger "battery-full"
+    write /sys/class/leds/charging/brightness 255
 
     start charge_only_mode
     start batt_health
