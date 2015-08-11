@@ -16,22 +16,38 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SwitchPreference
-        android:key="gesture_camera"
-        android:defaultValue="true"
-        android:title="@string/camera_gesture_title"
-        android:summary="@string/camera_gesture_summary" />
+    <PreferenceCategory
+        android:key="ambient_display_key"
+        android:title="@string/ambient_display_title" >
 
-    <SwitchPreference
-        android:key="gesture_pick_up"
-        android:defaultValue="true"
-        android:title="@string/pick_up_gesture_title"
-        android:summary="@string/pick_up_gesture_summary" />
+        <SwitchPreference
+            android:key="gesture_pick_up"
+            android:defaultValue="true"
+            android:title="@string/pick_up_gesture_title"
+            android:summary="@string/pick_up_gesture_summary" />
 
-    <SwitchPreference
-        android:key="gesture_ir_wake_up"
-        android:defaultValue="true"
-        android:title="@string/ir_wake_up_title"
-        android:summary="@string/ir_wake_up_summary" />
+        <SwitchPreference
+            android:key="gesture_ir_wake_up"
+            android:defaultValue="true"
+            android:title="@string/ir_wake_up_title"
+            android:summary="@string/ir_wake_up_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="actions_key"
+        android:title="@string/actions_title" >
+
+        <SwitchPreference
+            android:key="gesture_camera_action"
+            android:defaultValue="true"
+            android:title="@string/camera_gesture_title"
+            android:summary="@string/camera_gesture_summary" />
+
+        <SwitchPreference
+            android:key="gesture_chop_chop"
+            android:defaultValue="true"
+            android:title="@string/chop_chop_gesture_title"
+            android:summary="@string/chop_chop_gesture_summary" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

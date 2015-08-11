@@ -24,31 +24,30 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
-public class CameraActivationSensor implements SensorEventListener, UpdatedStateNotifier {
-    private static final String TAG = "CMActions-CameraSensor";
+public class ChopChopSensor implements SensorEventListener, UpdatedStateNotifier {
+    private static final String TAG = "CMActions-ChopChopSensor";
 
     private static final int TURN_SCREEN_ON_WAKE_LOCK_MS = 500;
 
     private final CMActionsSettings mCMActionsSettings;
     private final SensorHelper mSensorHelper;
-
     private final Sensor mSensor;
 
     private boolean mIsEnabled;
 
-    public CameraActivationSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper) {
+    public ChopChopSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper) {
         mCMActionsSettings = cmActionsSettings;
         mSensorHelper = sensorHelper;
-        mSensor = sensorHelper.getCameraActivationSensor();
+        mSensor = sensorHelper.getChopChopSensor();
     }
 
     @Override
     public synchronized void updateState() {
-        if (mCMActionsSettings.isCameraGestureEnabled() && !mIsEnabled) {
+        if (mCMActionsSettings.isChopChopGestureEnabled() && !mIsEnabled) {
             Log.d(TAG, "Enabling");
             mSensorHelper.registerListener(mSensor, this);
             mIsEnabled = true;
-        } else if (! mCMActionsSettings.isCameraGestureEnabled() && mIsEnabled) {
+        } else if (! mCMActionsSettings.isChopChopGestureEnabled() && mIsEnabled) {
             Log.d(TAG, "Disabling");
             mSensorHelper.unregisterListener(this);
             mIsEnabled = false;
@@ -57,8 +56,8 @@ public class CameraActivationSensor implements SensorEventListener, UpdatedState
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Log.d(TAG, "activate camera");
-        mCMActionsSettings.cameraAction();
+        Log.d(TAG, "chop chop triggered");
+        mCMActionsSettings.chopChopAction();
     }
 
     @Override

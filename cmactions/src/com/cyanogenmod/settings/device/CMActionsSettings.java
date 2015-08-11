@@ -26,7 +26,8 @@ import android.util.Log;
 public class CMActionsSettings {
     private static final String TAG = "CMActions";
 
-    private static final String GESTURE_CAMERA_KEY = "gesture_camera";
+    private static final String GESTURE_CAMERA_ACTION_KEY = "gesture_camera_action";
+    private static final String GESTURE_CHOP_CHOP_KEY = "gesture_chop_chop";
     private static final String GESTURE_PICK_UP_KEY = "gesture_pick_up";
     private static final String GESTURE_IR_WAKEUP_KEY = "gesture_ir_wake_up";
 
@@ -34,6 +35,7 @@ public class CMActionsSettings {
     private final UpdatedStateNotifier mUpdatedStateNotifier;
 
     private boolean mCameraGestureEnabled;
+    private boolean mChopChopEnabled;
     private boolean mIrWakeUpEnabled;
     private boolean mPickUpGestureEnabled;
 
@@ -45,14 +47,12 @@ public class CMActionsSettings {
         mUpdatedStateNotifier = updatedStateNotifier;
     }
 
-    private void loadPreferences(SharedPreferences sharedPreferences) {
-        mCameraGestureEnabled = sharedPreferences.getBoolean(GESTURE_CAMERA_KEY, false);
-        mIrWakeUpEnabled = sharedPreferences.getBoolean(GESTURE_IR_WAKEUP_KEY, false);
-        mPickUpGestureEnabled = sharedPreferences.getBoolean(GESTURE_PICK_UP_KEY, false);
-    }
-
     public boolean isCameraGestureEnabled() {
         return mCameraGestureEnabled;
+    }
+
+    public boolean isChopChopGestureEnabled() {
+        return mChopChopEnabled;
     }
 
     public boolean isDozeEnabled() {
@@ -68,14 +68,31 @@ public class CMActionsSettings {
         return isDozeEnabled() && mPickUpGestureEnabled;
     }
 
+    public void cameraAction() {
+        new CameraActivationAction(mContext).action();
+    }
+
+    public void chopChopAction() {
+        new TorchAction(mContext).action();
+    }
+
+    private void loadPreferences(SharedPreferences sharedPreferences) {
+        mCameraGestureEnabled = sharedPreferences.getBoolean(GESTURE_CAMERA_ACTION_KEY, false);
+        mChopChopEnabled = sharedPreferences.getBoolean(GESTURE_CHOP_CHOP_KEY, false);
+        mIrWakeUpEnabled = sharedPreferences.getBoolean(GESTURE_IR_WAKEUP_KEY, false);
+        mPickUpGestureEnabled = sharedPreferences.getBoolean(GESTURE_PICK_UP_KEY, false);
+    }
+
     private SharedPreferences.OnSharedPreferenceChangeListener mPrefListener =
             new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             boolean updated = true;
 
-            if (GESTURE_CAMERA_KEY.equals(key)) {
-                mCameraGestureEnabled = sharedPreferences.getBoolean(GESTURE_CAMERA_KEY, false);
+            if (GESTURE_CAMERA_ACTION_KEY.equals(key)) {
+                mCameraGestureEnabled = sharedPreferences.getBoolean(GESTURE_CAMERA_ACTION_KEY, false);
+            } else if (GESTURE_CHOP_CHOP_KEY.equals(key)) {
+                mChopChopEnabled = sharedPreferences.getBoolean(GESTURE_CHOP_CHOP_KEY, false);
             } else if (GESTURE_IR_WAKEUP_KEY.equals(key)) {
                 mIrWakeUpEnabled = sharedPreferences.getBoolean(GESTURE_IR_WAKEUP_KEY, false);
             } else if (GESTURE_PICK_UP_KEY.equals(key)) {

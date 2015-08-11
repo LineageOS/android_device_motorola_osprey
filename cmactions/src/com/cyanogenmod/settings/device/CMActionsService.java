@@ -32,7 +32,6 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
 
     private final Context mContext;
 
-    private final CameraActivationAction mCameraActivationAction;
     private final DozePulseAction mDozePulseAction;
     private final PowerManager mPowerManager;
     private final ScreenReceiver mScreenReceiver;
@@ -40,6 +39,8 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
     private final State mState;
 
     private final List<ActionableSensor> mActionableSensors = new LinkedList<ActionableSensor>();
+    private final List<UpdatedStateNotifier> mUpdatedStateNotifiers =
+                        new LinkedList<UpdatedStateNotifier>();
 
     public CMActionsService(Context context) {
         super("CMActionService");
@@ -52,13 +53,16 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
         mSensorHelper = new SensorHelper(context);
         mScreenReceiver = new ScreenReceiver(context, this);
 
-        mCameraActivationAction = new CameraActivationAction(context);
         mDozePulseAction = new DozePulseAction(context, mState);
 
-        mActionableSensors.add(new CameraActivationSensor(cmActionsSettings, mSensorHelper, mCameraActivationAction));
+        // Actionable sensors get screen on/off notifications
         mActionableSensors.add(new FlatUpSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
         // mActionableSensors.add(new IrGestureSensor(cmActionsSettings, mSensorHelper, mDozePulseAction, mIrGestureManager));
         mActionableSensors.add(new StowSensor(cmActionsSettings, mSensorHelper, mState, mDozePulseAction));
+
+        // Other actions that are always enabled
+        mUpdatedStateNotifiers.add(new CameraActivationSensor(cmActionsSettings, mSensorHelper));
+        mUpdatedStateNotifiers.add(new ChopChopSensor(cmActionsSettings, mSensorHelper));
 
         mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         updateState();
@@ -89,6 +93,9 @@ public class CMActionsService extends IntentService implements ScreenStateNotifi
             screenTurnedOn();
         } else {
             screenTurnedOff();
+        }
+        for (UpdatedStateNotifier notifier : mUpdatedStateNotifiers) {
+            notifier.updateState();
         }
     }
 }
