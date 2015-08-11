@@ -21,8 +21,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
 
-public class IrGestureSensor implements ScreenStateNotifier, SensorEventListener {
-    private static final String TAG = "CMActions-IRGestureSensor";
+public class ProximitySensor implements ScreenStateNotifier, SensorEventListener {
+    private static final String TAG = "CMActions-ProximitySensor";
 
     private final CMActionsSettings mCMActionsSettings;
     private final SensorHelper mSensorHelper;
@@ -31,13 +31,15 @@ public class IrGestureSensor implements ScreenStateNotifier, SensorEventListener
 
     private boolean mEnabled;
 
-    public IrGestureSensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,
+    private boolean mSawNear = false;
+
+    public ProximitySensor(CMActionsSettings cmActionsSettings, SensorHelper sensorHelper,
                 SensorAction action) {
         mCMActionsSettings = cmActionsSettings;
         mSensorHelper = sensorHelper;
         mSensorAction = action;
 
-        mSensor = sensorHelper.getIrGestureSensor();
+        mSensor = sensorHelper.getProximitySensor();
     }
 
     @Override
@@ -60,9 +62,12 @@ public class IrGestureSensor implements ScreenStateNotifier, SensorEventListener
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Log.d(TAG, "event: [" + event.values.length + "]: " + event.values[0] + ", " +
-            event.values[1] + ", " + event.values[2]);
-        mSensorAction.action();
+        boolean isNear = event.values[0] < mSensor.getMaximumRange();
+        if (mSawNear && !isNear) {
+            Log.d(TAG, "wave triggered");
+            mSensorAction.action();
+        }
+        mSawNear = isNear;
     }
 
     @Override
