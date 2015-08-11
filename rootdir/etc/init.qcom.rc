@@ -244,6 +244,10 @@ on boot
     chown system system /sys/devices/virtual/graphics/fb0/hbm
     chmod 0660 /sys/devices/virtual/graphics/fb0/hbm
 
+    # Create directory used by display clients
+    mkdir /data/misc/display 0770 system graphics
+    mkdir /persist/display 0770 system graphics
+
 # msm specific files that need to be created on /data
 on post-fs-data
     # Create directory for TZ Apps
