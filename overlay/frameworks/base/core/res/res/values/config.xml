@@ -141,6 +141,10 @@
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveBatteryLed">true</bool>
 
+    <!-- Do the battery/notification LEDs support pulsing?
+         Used to decide if we show pulse settings -->
+    <bool name="config_ledCanPulse">false</bool>
+
     <!-- reference volume index for music stream to limit headphone volume and display warning -->
     <integer name="config_safe_media_volume_index">10</integer>
 
