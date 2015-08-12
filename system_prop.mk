@@ -87,7 +87,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     debug.qc.hardware=true \
     persist.timed.enable=true \
-    ro.qualcomm.cabl=0 \
     ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
