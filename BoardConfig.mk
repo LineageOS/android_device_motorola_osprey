@@ -130,6 +130,7 @@ BOARD_SEPOLICY_DIRS += \
     device/motorola/osprey/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+    atfwd.te \
     atvc.te \
     batt_health.te \
     bluetooth_loader.te \
