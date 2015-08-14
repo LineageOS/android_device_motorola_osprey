@@ -1,0 +1,2 @@
+#============= vold ==============
+allow vold persist_file:dir getattr;

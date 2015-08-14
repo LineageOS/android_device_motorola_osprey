@@ -156,6 +156,7 @@ BOARD_SEPOLICY_UNION += \
     tcmd.te \
     tee.te \
     ueventd.te \
+    vold.te \
     wcnss_service.te
 
 # Time services
