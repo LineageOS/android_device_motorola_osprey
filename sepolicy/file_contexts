@@ -43,4 +43,7 @@
 /dev/akm09912_dev                                           u:object_r:sensors_device:s0
 /dev/l3g4200d                                               u:object_r:sensors_device:s0
 /dev/lis3dh                                                 u:object_r:sensors_device:s0
+/dev/stml0xx                                                u:object_r:sensors_device:s0
+/dev/stml0xx_as                                             u:object_r:sensors_device:s0
+/dev/stml0xx_ms                                             u:object_r:sensors_device:s0 
 /data/misc/akmd_set.txt                                     u:object_r:sensors_data_file:s0
