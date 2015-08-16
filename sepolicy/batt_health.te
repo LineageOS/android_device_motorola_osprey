@@ -3,7 +3,7 @@ type batt_health_exec, exec_type, file_type;
 init_daemon_domain(batt_health);
 
 allow batt_health batt_health_data_file:dir { search write add_name };
-allow batt_health batt_health_data_file:file { setattr open read write create append };
+allow batt_health batt_health_data_file:file { setattr open read write create append getattr};
 allow batt_health pds_file:dir search;
 allow batt_health pds_file:file { open read };
 allow batt_health self:capability { dac_override net_admin setuid chown fowner fsetid };
