@@ -114,11 +114,6 @@ on fs
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-    # Allow subsystem (modem etc) debugging
-    write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
-    write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
-    write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}
-    write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
 
 on boot
@@ -352,13 +347,6 @@ on post-fs-data
     setprop ro.hw.hwrev ${ro.boot.hwrev}
     setprop ro.hw.radio ${ro.boot.radio}
 
-service ppd /system/bin/mm-pp-daemon
-    class late_start
-    disabled
-    user system
-    socket pps stream 0660 system system
-    group system graphics
-
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
@@ -408,26 +396,6 @@ service audiod /system/bin/audiod
    class late_start
    user system
    group system
-
-service ssr_setup /system/bin/ssr_setup
-    oneshot
-    disabled
-
-service ss_ramdump /system/bin/subsystem_ramdump
-    class main
-    user system
-    group system
-    disabled
-
-on property:persist.sys.ssr.restart_level=*
-    start ssr_setup
-
-on property:persist.sys.ssr.enable_ramdumps=1
-    write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
-    start ss_ramdump
-
-on property:persist.sys.ssr.enable_ramdumps=0
-    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
@@ -625,11 +593,6 @@ service gpsone_daemon /system/bin/gpsone_daemon
     group gps inet net_raw
     disabled
 
-service loc_launcher /system/bin/loc_launcher
-    #loc_launcher will start as root and set its uid to gps
-    class late_start
-    group gps inet net_raw qcom_diag net_admin wifi
-
 on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
      insmod /system/lib/modules/qcedev.ko
@@ -708,21 +671,8 @@ service ril-daemon2 /system/bin/rild -c 2
     disabled
     group radio cache inet misc audio sdcard_rw sensors qcom_diag log net_raw diag
 
-service usb_uicc_daemon /system/bin/usb_uicc_client
-    class main
-    user system
-    group system log net_raw
-    oneshot
-
 on property:hw.fm.mode=*
     insmod /system/lib/modules/radio-iris-transport.ko
-
-
-on property:sys.usb_uicc.enabled=1
-    start usb_uicc_enable
-
-on property:sys.usb_uicc.enabled=0
-    start usb_uicc_enable
 
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated

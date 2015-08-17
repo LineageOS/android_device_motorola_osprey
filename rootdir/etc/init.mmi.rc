@@ -389,28 +389,6 @@ service safe_stop_mdlog /system/bin/diag_mdlog-getlogs -s
     oneshot
     disabled
 
-service tcmd /system/bin/tcmd
-    class core
-#  Total number of supplementary groups below is 31 now. Limit defined in init.h is 32.
-#  Please update the current number if you add more groups.
-    group mot_tcmd radio mot_pwric input system log camera graphics mot_accy sdcard_r sdcard_rw audio inet bluetooth wifi compass net_bt_admin mot_tombstone mot_tpapi mount net_raw net_admin media shell mot_usb nfc qcom_diag mot_dbvc cache media_rw mot_dtv
-    socket local_tcmd stream 0660 mot_tcmd mot_tcmd
-    socket batch_socket stream 0600 mot_tcmd mot_tcmd
-    oneshot
-    disabled
-
-service tcmdhelp /system/bin/tcmdhelp
-    class main
-    socket tcmdhelp stream 0600 mot_tcmd mot_tcmd
-    oneshot
-    disabled
-
-on property:tcmd.start_tcmdhelp=1
-    start tcmdhelp
-
-on property:tcmd.start_ftmdaemon=1
-    start ftmd
-
 on property:persist.log.aplogd.enable=1
     start aplogd
 
@@ -426,25 +404,6 @@ service aplogd /system/bin/aplogd
     # to log plus those groups after preserving CAP_SYS_ADMIN, which is required
     # for kernel logging.
     disabled
-
-# Let init manage the bug2go-native wakelock, so that we guarantee its
-# lifecycle exactly matches that of bug2go-bugreport.  Since init sends
-# SIGKILL when stopping a service, we could not guarantee the wakelock would
-# get cleaned up if it were managed by bug2go-bugreport itself.
-on property:init.svc.bugreport=running
-    write /sys/power/wake_lock bug2go-native
-
-on property:init.svc.bugreport=stopping
-    write /sys/power/wake_unlock bug2go-native
-
-on property:init.svc.bugreport=stopped
-    write /sys/power/wake_unlock bug2go-native
-
-service bugreport /system/bin/bug2go-bugreport
-    class main
-    disabled
-    oneshot
-    keycodes 115 116 # VOLUME_UP + PWR
 
 service mmi-boot-sh /system/bin/sh /init.mmi.boot.sh
     class core
@@ -480,25 +439,6 @@ service hw_revs /system/bin/sh /system/bin/hardware_revisions.sh
     user system
     group system
     oneshot
-
-service mbm_spy /system/bin/mbm_spy
-    class late_start
-    user system
-    group system
-    oneshot
-
-service dropboxd /system/bin/dropboxd
-    class late_start
-    user diag
-    group diag
-
-service ss_rdump /system/bin/subsystem_ramdump 1 0
-   class late_start
-   user radio
-   group log sdcard_rw sdcard_r diag
-
-on property:persist.sys.qc.sub.rdump.on=1
-   write /sys/module/subsystem_restart/parameters/enable_ramdumps ${persist.sys.qc.sub.rdump.on}
 
 service esdpll /system/bin/esdpll -w
     user mot_esdfs

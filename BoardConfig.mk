@@ -142,7 +142,6 @@ BOARD_SEPOLICY_UNION += \
     healthd.te \
     init.te \
     init_shell.te \
-    mbm_spy.te \
     mm-qcamerad.te \
     mpdecision.te \
     property.te \

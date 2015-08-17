@@ -1,6 +1,0 @@
-type mbm_spy, domain;
-type mbm_spy_exec, exec_type, file_type;
-init_daemon_domain(mbm_spy);
-
-#============= mbm_spy ==============
-allow mbm_spy block_device:dir search;
