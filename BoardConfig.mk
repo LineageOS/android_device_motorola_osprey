@@ -132,7 +132,6 @@ BOARD_SEPOLICY_UNION += \
     bluetooth_loader.te \
     bootanim.te \
     device.te \
-    dropboxd.te \
     file.te \
     file_contexts \
     healthd.te \
