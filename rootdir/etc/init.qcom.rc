@@ -103,13 +103,7 @@ on fs
     mkdir /persist/data 0700  system system
     restorecon_recursive /persist
 
-    # activate zram
-    swapon_all fstab.qcom
-    write /proc/sys/vm/page-cluster 0
-
     setprop ro.crypto.fuse_sdcard true
-
-
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
