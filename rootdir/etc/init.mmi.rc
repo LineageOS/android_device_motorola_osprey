@@ -2,9 +2,6 @@
 import init.mmi.usb.rc
 
 on early-init
-    # Set boot up stage I/O scheduler
-    write /sys/block/mmcblk0/queue/scheduler deadline
-
     # Create modem FSG mount point
     mkdir /fsg 755 root root
 
@@ -312,10 +309,6 @@ service atvc /system/bin/dbvc_atvc_property_set
     user mot_atvc
     group mot_tpapi
     oneshot
-
-on property:sys.boot_completed=1
-    # restore the default I/O scheduler for mobile device
-    write /sys/block/mmcblk0/queue/scheduler cfq
 
 # Start Sensor daemon
 service stml0xx /system/bin/stml0xx_wrapper.sh
