@@ -94,11 +94,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.apn_delay=5000 \
     persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.dfr_mode_set=1 \
-    persist.radio.mot_ecc_enabled=1 \
-    persist.radio.msgtunnel.start=true \
     persist.radio.no_wait_for_card=1 \
     persist.radio.oem_ind_to_both=false \
-    persist.radio.plmn_name_cmp=1 \
     persist.radio.relay_oprt_change=1 \
     rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 
