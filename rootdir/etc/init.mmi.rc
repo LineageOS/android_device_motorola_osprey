@@ -313,23 +313,7 @@ service atvc /system/bin/dbvc_atvc_property_set
     group mot_tpapi
     oneshot
 
-service qe /xbin/qe /system
-    class main
-    seclabel u:r:qe:s0
-    oneshot
-    disabled
-
-service qe_broadcast /xbin/qe /system -b
-    class main
-    seclabel u:r:qe:s0
-    oneshot
-    disabled
-
-on property:persist.qe.trigger=1
-    start qe_broadcast
-
 on property:sys.boot_completed=1
-    start qe
     # restore the default I/O scheduler for mobile device
     write /sys/block/mmcblk0/queue/scheduler cfq
 
