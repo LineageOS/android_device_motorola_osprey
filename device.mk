@@ -174,7 +174,6 @@ PRODUCT_PACKAGES += \
     init.mmi.boot.sh \
     init.mmi.dtv.sh \
     init.mmi.early_boot.sh \
-    init.mmi.rc \
     init.mmi.touch.sh \
     init.mmi.usb.rc \
     init.mmi.usb.sh \
