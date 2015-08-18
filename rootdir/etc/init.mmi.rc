@@ -2,9 +2,6 @@
 import init.mmi.usb.rc
 
 on early-init
-    # Create modem FSG mount point
-    mkdir /fsg 755 root root
-
     # Mount point for Digital Personalization partition
     mkdir /customize 0500 root root
 
@@ -16,14 +13,6 @@ on init
     chmod 0640 /sys/fs/pstore/annotate-ramoops
 
     copy /module_hashes /sys/kernel/module_whitelist
-
-    # Setup kernel dropbox permissions so that dropboxd can utilize it
-    chown root diag /sys/kernel/dropbox/event
-    chown root diag /sys/kernel/dropbox/data
-
-    # Configure coredump
-    write /proc/sys/kernel/core_pattern "|/system/bin/coredump %e %p %t"
-    write /proc/self/coredump_filter "0x7f"
 
     # ESDFS
     chown mot_esdfs root /proc/fs/esdfs/packages
@@ -75,10 +64,6 @@ on boot
     chown system system /sys/class/backlight/lcd-backlight:0/max_brightness
     chmod 0664 /sys/class/backlight/lcd-backlight:0/max_brightness
     chmod 0664 /sys/class/leds/lcd-backlight/brightness
-
-    # Change ownership and permission for vibrator
-    chown system system /sys/class/timed_output/vibrator/enable
-    chmod 0660 /sys/class/timed_output/vibrator/enable
 
     # Change the ownership of the notification LED interface
     chown system system /sys/class/leds/rgb/control
@@ -224,13 +209,6 @@ on post-fs-data
     # Setup correct permissions for dbvc
     mkdir /data/local/dbvc 0750 mot_tcmd shell
 
-    # Setup folders for diag_mdlog
-    mkdir /data/diag_mdlog 0750 system log
-    mkdir /data/diag_mdlog/logs 0750 log log
-
-    # Setup folder for aplogd
-    mkdir /data/aplogd 0750 log log
-
     # Permissions for phone power off log
     mkdir /data/power_log 0750 root log
     chmod 0660 /sys/module/power_supply_log/parameters/log_file
@@ -272,12 +250,6 @@ service charge_only_mode /system/bin/charge_only_mode
     group graphics system input
     disabled
 
-service ftmipcd /system/bin/ftmipcd
-    user radio
-    group radio net_raw inet qcom_diag
-    disabled
-    oneshot
-
 service atvc_core /system/bin/dbvc_atvc_property_set
     class core
     user mot_atvc
@@ -296,71 +268,6 @@ service stml0xx /system/bin/stml0xx_wrapper.sh
     user compass
     group compass misc input
     oneshot
-
-on property:ro.bootmode=factory
-    start ftmipcd
-
-on property:ro.bootmode=mot-factory
-    start ftmipcd
-
-# Power up to suspend
-on property:tcmd.suspend=1
-    stop surfaceflinger
-    stop zygote
-    stop sensors
-    write /sys/kernel/factory_gsbi12_mode/install 1
-    setprop debug.sf.nobootanimation 1
-
-# Normal to suspend
-on property:tcmd.suspend=2
-    stop surfaceflinger
-    stop zygote
-    stop sensors
-    write /sys/kernel/factory_gsbi12_mode/install 1
-    setprop debug.sf.nobootanimation 1
-    stop wlan_logging
-
-on property:persist.sys.diag_mdlog.on=1
-    start diag_mdlog
-
-on property:persist.sys.diag_mdlog.on=0
-    start safe_stop_mdlog
-
-on property:log.diag_mdlog.invld_mode_stop=1
-    stop diag_mdlog
-
-on property:persist.radio.usbdiag=1
-    setprop persist.sys.diag_mdlog.on 0
-
-service diag_mdlog /system/bin/diag_mdlog-wrap
-    class main
-    socket mdlog_cmd stream 0660 log diag
-    user log
-    group log sdcard_rw sdcard_r media_rw qcom_diag mount
-    disabled
-
-service safe_stop_mdlog /system/bin/diag_mdlog-getlogs -s
-    class late_start
-    user log
-    group log sdcard_rw sdcard_r media_rw qcom_diag mount
-    oneshot
-    disabled
-
-on property:persist.log.aplogd.enable=1
-    start aplogd
-
-on property:persist.log.aplogd.enable=0
-    stop aplogd
-
-service aplogd /system/bin/aplogd
-    class main
-    #user log
-    #group log system sdcard_rw sdcard_r media_rw mount
-    # The user and group definitions above are intentionally disabled and left
-    # only as documentation. It actually starts as root and immediately drops
-    # to log plus those groups after preserving CAP_SYS_ADMIN, which is required
-    # for kernel logging.
-    disabled
 
 service mmi-boot-sh /system/bin/sh /init.mmi.boot.sh
     class core
@@ -397,17 +304,6 @@ service hw_revs /system/bin/sh /system/bin/hardware_revisions.sh
     group system
     oneshot
 
-service esdpll /system/bin/esdpll -w
-    user mot_esdfs
-    group mot_esdfs package_info
-    disabled
-
-on property:ro.esdfs_sdcard=true
-    wait /data/media/0 600
-    mount esdfs /data/media /mnt/shell/emulated derive=legacy
-    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
-    start esdpll
-
 on property:ro.fuse_sdcard=true
     start sdcard
 
@@ -435,28 +331,3 @@ service thermal-com /system/bin/thermal-engine --minimode
     class main
     user root
     disabled
-
-# When property ro.boot.num-sims is set
-on property:ro.boot.num-sims=2
-    setprop persist.radio.multisim.config dsds
-
-service emmc_ffu /system/bin/sh /system/bin/emmc_ffu.sh
-    user root
-    class core
-    oneshot
-    disabled
-
-on property:sys.emmc.ffu_start=1
-    start emmc_ffu
-
-on property:sys.boot_completed=1
-    start emmc_ffu
-
-service emmc_ffu_check /system/bin/sh /system/bin/emmc_ffu.sh -c
-    user root
-    class core
-    oneshot
-    disabled
-
-on property:ro.bootmode=mot-factory
-    start emmc_ffu_check
