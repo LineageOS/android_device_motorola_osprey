@@ -225,7 +225,6 @@ on boot
     write /sys/class/kgsl/kgsl-3d0/wake_timeout 250
 
     start rmt_storage
-    insmod /system/lib/modules/adsprpc.ko
 
     # Change ownership and permission for vibrator
     chown system system /sys/class/timed_output/vibrator/enable
@@ -608,10 +607,6 @@ service gpsone_daemon /system/bin/gpsone_daemon
     group gps inet net_raw
     disabled
 
-on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
-
 on property:init.svc.bootanim=running
     # Switch to performance mode while booting
     setprop sys.perf.profile 2
@@ -745,9 +740,6 @@ service ril-daemon2 /system/bin/rild -c 2
     user root
     disabled
     group radio cache inet misc audio sdcard_rw sensors qcom_diag log net_raw diag
-
-on property:hw.fm.mode=*
-    insmod /system/lib/modules/radio-iris-transport.ko
 
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
