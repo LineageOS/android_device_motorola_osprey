@@ -1,3 +1,4 @@
 type stml0xx, domain;
 type stml0xx_exec, exec_type, file_type;
 init_daemon_domain(stml0xx);
+allow stml0xx shell_exec:file read;
