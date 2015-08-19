@@ -17,11 +17,6 @@
 /data/power_supply_logger(/.*)?                             u:object_r:batt_health_data_file:s0
 /sys/module/qpnp_charger/parameters(/.*)?                   u:object_r:sysfs_batt_health:s0
 
-# MPDecision
-/data/system/default_values                                 u:object_r:mpctl_data_file:s0
-/dev/socket/mpctl                                           u:object_r:mpctl_socket:s0
-/dev/socket/mpdecision                                      u:object_r:mpctl_socket:s0
-
 # Partitions
 /dev/block/bootdevice/by-name/cid                           u:object_r:cid_block_device:s0
 /dev/block/bootdevice/by-name/clogo                         u:object_r:clogo_block_device:s0

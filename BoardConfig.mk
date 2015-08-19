@@ -133,7 +133,6 @@ BOARD_SEPOLICY_UNION += \
     atvc.te \
     batt_health.te \
     bluetooth_loader.te \
-    bootanim.te \
     device.te \
     file.te \
     file_contexts \
@@ -141,7 +140,6 @@ BOARD_SEPOLICY_UNION += \
     init.te \
     init_shell.te \
     mm-qcamerad.te \
-    mpdecision.te \
     property.te \
     property_contexts \
     qseecomd.te \

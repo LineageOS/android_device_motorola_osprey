@@ -517,12 +517,6 @@ on post-fs-data
     # AK09912 calibration file directory
     mkdir /data/misc/akmd 0770 system compass
 
-    # Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2755 /data/misc/perfd
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
-
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
@@ -644,12 +638,6 @@ service qseecomd /system/bin/qseecomd
    class core
    user root
    group root
-
-
-service perfd /system/bin/perfd
-   class main
-   user root
-   disabled
 
 service thermal-engine /system/bin/thermal-engine
    class main
@@ -981,7 +969,6 @@ on property:sys.boot_completed=1
 # CM Performance Profiles
 # Powersave
 on property:sys.perf.profile=0
-    stop perfd
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -993,11 +980,9 @@ on property:sys.perf.profile=0
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "powersave"
     write /sys/class/devfreq/qcom,cpubw.30/governor "powersave"
-    start perfd
 
 # Balanced
 on property:sys.perf.profile=1
-    stop perfd
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -1018,11 +1003,9 @@ on property:sys.perf.profile=1
 
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "msm-adreno-tz"
     write /sys/class/devfreq/qcom,cpubw.30/governor "cpufreq"
-    start perfd
 
 # High performance
 on property:sys.perf.profile=2
-    stop perfd
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
