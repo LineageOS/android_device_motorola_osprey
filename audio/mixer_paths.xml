@@ -68,6 +68,7 @@
 	<ctl name="PRI_MI2S_RX Audio Mixer MultiMedia5" value="0" />
 	<ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia5" value="0" />
 	<ctl name="MultiMedia1 Mixer TERT_MI2S_TX" value="0" />
+	<ctl name="MultiMedia5 Mixer TERT_MI2S_TX" value="0" />
 	<ctl name="MultiMedia1 Mixer INTERNAL_BT_SCO_TX" value="0" />
 	<ctl name="PRI_MI2S_RX_Voice Mixer CSVoice" value="0" />
 	<ctl name="Voice_Tx Mixer TERT_MI2S_TX_Voice" value="0" />
@@ -252,6 +253,10 @@
 	<path name="audio-record bt-sco-wb">
 		<ctl name="Internal BTSCO SampleRate" value="16000" />
 		<path name="audio-record bt-sco" />
+	</path>
+
+	<path name="low-latency-record">
+                <ctl name="MultiMedia5 Mixer TERT_MI2S_TX" value="1"/>
 	</path>
 
 	<path name="audio-record usb-headset-mic">
