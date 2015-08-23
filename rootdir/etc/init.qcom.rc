@@ -861,7 +861,7 @@ on property:vold.decrypt=trigger_restart_framework
     stop ril-daemon
 
 
-service redefine ril-daemon /system/bin/rild
+service_redefine ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
