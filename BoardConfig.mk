@@ -129,6 +129,7 @@ BOARD_SEPOLICY_DIRS += \
     device/motorola/osprey/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+    akmd09912.te \
     atfwd.te \
     atvc.te \
     batt_health.te \
@@ -148,7 +149,6 @@ BOARD_SEPOLICY_UNION += \
     stml0xx.te \
     surfaceflinger.te \
     system_server.te \
-    tcmd.te \
     tee.te \
     ueventd.te \
     vold.te \

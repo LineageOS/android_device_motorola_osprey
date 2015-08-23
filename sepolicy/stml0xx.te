@@ -1,4 +1,7 @@
 type stml0xx, domain;
 type stml0xx_exec, exec_type, file_type;
 init_daemon_domain(stml0xx);
+
 allow stml0xx shell_exec:file read;
+allow stml0xx system_file:file execute_no_trans;
+allow stml0xx sensors_device:chr_file { open ioctl write };

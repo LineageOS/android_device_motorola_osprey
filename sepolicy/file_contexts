@@ -1,12 +1,11 @@
 # Binaries
-/system/bin/batt_health            u:object_r:batt_health_exec:s0
-/system/bin/dbvc_atvc_property_set u:object_r:atvc_exec:s0
-/system/bin/stml0xx_wrapper.sh     u:object_r:stml0xx_exec:s0
-/system/bin/tcmd                   u:object_r:tcmd_exec:s0
-
+/system/bin/akmd09912                                       u:object_r:akmd09912_exec:s0
+/system/bin/batt_health                                     u:object_r:batt_health_exec:s0
+/system/bin/dbvc_atvc_property_set                          u:object_r:atvc_exec:s0
+/system/bin/stml0xx_wrapper.sh                              u:object_r:stml0xx_exec:s0
 
 # Camera
-/data/cam_socket[12]           u:object_r:camera_socket:s0
+/data/cam_socket[12]                                        u:object_r:camera_socket:s0
 
 # CMHW
 /sys/devices/virtual/graphics/fb0/hbm                       u:object_r:display_sysfs:s0
@@ -31,13 +30,8 @@
 /pds(/.*)?                                                  u:object_r:pds_file:s0
 
 # Sensors
-/dev/akm8963                                                u:object_r:sensors_device:s0
-/dev/akm8963_dev                                            u:object_r:sensors_device:s0
-/dev/akm09912                  	                            u:object_r:sensors_device:s0 
+/dev/akm09912                                               u:object_r:sensors_device:s0
 /dev/akm09912_dev                                           u:object_r:sensors_device:s0
-/dev/l3g4200d                                               u:object_r:sensors_device:s0
-/dev/lis3dh                                                 u:object_r:sensors_device:s0
 /dev/stml0xx                                                u:object_r:sensors_device:s0
 /dev/stml0xx_as                                             u:object_r:sensors_device:s0
-/dev/stml0xx_ms                                             u:object_r:sensors_device:s0 
-/data/misc/akmd_set.txt                                     u:object_r:sensors_data_file:s0
+/dev/stml0xx_ms                                             u:object_r:sensors_device:s0
