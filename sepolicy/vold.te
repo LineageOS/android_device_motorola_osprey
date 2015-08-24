@@ -1,1 +1,1 @@
-allow vold persist_file:dir getattr;
+allow vold persist_file:dir { getattr read };
