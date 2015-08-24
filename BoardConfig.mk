@@ -154,9 +154,6 @@ BOARD_SEPOLICY_UNION += \
     vold.te \
     wcnss_service.te
 
-# Time services
-BOARD_USES_QC_TIME_SERVICES := true
-
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
