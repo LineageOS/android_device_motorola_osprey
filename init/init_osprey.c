@@ -149,10 +149,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.fsg-id", "apac");
         property_set("persist.radio.mot_ecc_custid", "emea");
         property_set("persist.radio.process_sups_ind", "0");
-        property_set("persist.radio.mcfg_enabled", "1");
-        property_set("persist.radio.multi_mbns", "nz2deg.mbn;apac_default.mbn;apac_rjil.mbn");
-        property_set("persist.radio.relay_oprt_change", "1");
-        property_set("persist.qcril_uim_vcc_feature", "1");
     }
 
     property_get("ro.product.device", device);
