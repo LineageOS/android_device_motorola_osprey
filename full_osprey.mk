@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The Android Open-Source Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ $(call inherit-product, device/motorola/osprey/device.mk)
 PRODUCT_DEVICE := osprey
 PRODUCT_NAME := full_osprey
 PRODUCT_BRAND := Motorola
-PRODUCT_MODEL := MotoG3
 PRODUCT_MANUFACTURER := Motorola
 
 $(call inherit-product-if-exists, vendor/motorola/osprey/osprey-vendor.mk)

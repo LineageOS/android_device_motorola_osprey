@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2014 The CyanogenMod Project
+<!-- Copyright (C) 2015 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@
          the com.android.internal.telephony.Phone interface (false). -->
     <bool name="send_mic_mute_to_AudioManager">true</bool>
 
-    <!-- This device implements a noise suppression device for in call audio-->
-    <bool name="has_in_call_noise_suppression">true</bool>
     <!-- Show enabled lte option for lte device -->
     <bool name="config_enabled_lte" translatable="false">true</bool>
 

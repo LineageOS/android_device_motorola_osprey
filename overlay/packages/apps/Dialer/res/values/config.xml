@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The Android Open Source Project
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright (C) 2015 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,14 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<!-- Phone app resources that may need to be customized
-     for different hardware or product builds. -->
 <resources>
-    <!-- Determine whether calls to mute the microphone in PhoneUtils
-         are routed through the android.media.AudioManager class (true) or through
-         the com.android.internal.telephony.Phone interface (false). -->
-    <bool name="send_mic_mute_to_AudioManager">true</bool>
-    <!-- Flag indicating if the tty is enabled -->
-    <bool name="tty_enabled">true</bool>
+    <bool name="call_recording_enabled">true</bool>
+    <integer name="call_recording_audio_source">4</integer>
 </resources>
