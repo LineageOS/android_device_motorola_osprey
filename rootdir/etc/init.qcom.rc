@@ -142,8 +142,6 @@ on early-boot
     setrlimit 8 67108864 67108864
     write /sys/kernel/boot_adsp/boot 1
 
-    exec /system/bin/sh /init.mmi.early_boot.sh
-
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -535,11 +533,6 @@ service akmd09912 /system/bin/akmd09912
     user compass
     group compass misc input
 
-service mmi-block-perm /system/bin/sh /init.mmi.block_perm.sh
-    class main
-    user root
-    oneshot
-
 service batt_health /system/bin/batt_health
     class late_start
     user mot_pwric
@@ -577,6 +570,16 @@ service stml0xx /system/bin/stml0xx_wrapper.sh
 
 service mmi-boot-sh /system/bin/sh /init.mmi.boot.sh
     class core
+    user root
+    oneshot
+
+service mmi-block-perm /system/bin/sh /init.mmi.block_perm.sh
+    class main
+    user root
+    oneshot
+
+service mmi-early_boot-sh /system/bin/sh /init.mmi.early_boot.sh
+    class late_start
     user root
     oneshot
 
