@@ -149,6 +149,8 @@
 	<ctl name="QCHAT_Tx Mixer INTERNAL_BT_SCO_TX_QCHAT" value="0" />
 	<!-- QCHAT End -->
 
+	<ctl name="AUDIO_REF_EC_UL1 MUX" value="None" />
+
 	<path name="bt-sco-wb-samplerate">
 		<ctl name="Internal BTSCO SampleRate" value="16000" />
 	</path>
@@ -181,6 +183,10 @@
 
 	<path name="deep-buffer-playback transmission-fm">
 		<ctl name="INTERNAL_FM_RX Audio Mixer MultiMedia1" value="1" />
+	</path>
+
+	<path name="echo-reference">
+		<ctl name="AUDIO_REF_EC_UL1 MUX" value="I2S_RX" />
 	</path>
 
 	<path name="low-latency-playback">
@@ -561,7 +567,11 @@
 	</path>
 
 	<path name="voice-headphones">
-		<path name="headphones" />
+		<ctl name="RX1 MIX1 INP1" value="RX1" />
+		<ctl name="RX2 MIX1 INP1" value="RX1" />
+		<ctl name="RDAC2 MUX" value="RX2" />
+		<ctl name="HPHL" value="Switch" />
+		<ctl name="HPHR" value="Switch" />
 	</path>
 
 	<path name="voice-line">
@@ -674,7 +684,10 @@
 
 	<path name="tty-headphones">
 		<ctl name="RX1 MIX1 INP1" value="RX1" />
+		<ctl name="RX2 MIX1 INP1" value="RX1" />
+		<ctl name="RDAC2 MUX" value="RX2" />
 		<ctl name="HPHL" value="Switch" />
+		<ctl name="HPHR" value="Switch" />
 	</path>
 
 	<path name="voice-tty-full-headphones">
@@ -702,7 +715,7 @@
 	</path>
 
 	<path name="voice-tty-vco-handset-mic">
-		<path name="adc1" />
+		<path name="handset-mic" />
 	</path>
 
 	<path name="listen-handset-mic">
