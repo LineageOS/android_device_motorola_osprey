@@ -373,6 +373,7 @@ vendor/lib/libTimeService.so
 # Touchscreen
 etc/firmware/synaptics-inx-s2726br_t-15052103-1d6479-osprey.tdat
 etc/firmware/synaptics-inx-s2726br_t-15060402-1dc9a8-osprey.tdat
+etc/firmware/synaptics-inx-s2726br_t-15062201-1dc9a8-osprey.tdat
 
 # USB
 etc/firmware/ice40.bin
