@@ -923,7 +923,6 @@ on moto-charger
 
     # Set Battery LED behavior
     write /sys/class/leds/charging/trigger "battery-full"
-    write /sys/class/leds/charging/brightness 255
 
     start charge_only_mode
     start batt_health
