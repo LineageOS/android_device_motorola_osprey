@@ -6,7 +6,6 @@ type sysfs_batt_health, fs_type, sysfs_type;
 type hw_revs_data_file, file_type, data_file_type;
 
 # CMHW
-type display_sysfs, fs_type, sysfs_type;
 type vibeamp_sysfs, fs_type, sysfs_type;
 
 # PDS

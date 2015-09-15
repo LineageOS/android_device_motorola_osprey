@@ -8,8 +8,7 @@
 /data/cam_socket[12]                                        u:object_r:camera_socket:s0
 
 # CMHW
-/sys/devices/virtual/graphics/fb0/hbm                       u:object_r:display_sysfs:s0
-/sys/devices/virtual/graphics/fb0/rgb                       u:object_r:display_sysfs:s0
+/sys/devices/virtual/graphics/fb0/hbm                       u:object_r:livedisplay_sysfs:s0
 /sys/devices/virtual/timed_output/vibrator/vtg_level        u:object_r:vibeamp_sysfs:s0
 
 # Motorola services
