@@ -4,7 +4,7 @@
 	<CallPromptId CallPromptText="CallPromptId1" Id="1" />
 	<CallPromptId CallPromptText="CallPromptId2" Id="2" />
 	<EriInfo AlertId="0" CallPromptId="0" DataServiceSupport="1" EriText="Domestic Roaming" IconIndex="0" IconMode="0" RoamingIndicator="0" />
-	<EriInfo AlertId="0" CallPromptId="0" DataServiceSupport="1" EriText="Virgin Mobile" IconIndex="1" IconMode="0" RoamingIndicator="1" />
+	<EriInfo AlertId="0" CallPromptId="0" DataServiceSupport="1" EriText="U.S. Cellular" IconIndex="1" IconMode="0" RoamingIndicator="1" />
 	<EriInfo AlertId="0" CallPromptId="0" DataServiceSupport="1" EriText="International Roaming" IconIndex="2" IconMode="1" RoamingIndicator="2" />
 	<EriInfo AlertId="0" CallPromptId="0" DataServiceSupport="1" EriText="Out of Neighbourhood" IconIndex="0" IconMode="0" RoamingIndicator="3" />
 	<EriInfo AlertId="0" CallPromptId="0" DataServiceSupport="1" EriText="Out of Building" IconIndex="0" IconMode="0" RoamingIndicator="4" />
