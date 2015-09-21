@@ -184,7 +184,7 @@ vendor/lib/libWVStreamControlAPI_L1.so
 etc/firmware/emmc_ffu_fe_xx_P1J95K_00000000000000af.fw
 
 # GPS
--app/com.qualcomm.location/com.qualcomm.location.apk
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk
 -app/MotGeoFenceSvc/MotGeoFenceSvc.apk
 bin/location-mq
 bin/xtwifi-client
@@ -210,7 +210,6 @@ vendor/lib/libloc_ext.so
 vendor/lib/libloc_xtra.so
 vendor/lib/liblowi_client.so
 vendor/lib/libquipc_os_api.so
-vendor/lib/libquipc_ulp_adapter.so
 vendor/lib/libulp2.so
 vendor/lib/libwifiscanner.so
 vendor/lib/libxtadapter.so
@@ -327,13 +326,13 @@ etc/permissions/qcrilhook.xml
 lib/libadropbox.so
 lib/libcnefeatureconfig.so
 lib/libmdmcutback.so
-lib/libmdmdetect.so
 lib/libmotext_inf.so
 lib/libqmimotext.so
 lib/libril.so
 lib/librmnetctl.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libconfigdb.so
+vendor/lib/libmdmdetect.so
 vendor/lib/libmmrtpdecoder.so
 vendor/lib/libmmrtpencoder.so
 vendor/lib/libnetmgr.so
