@@ -931,7 +931,7 @@ on property:init.svc.bootanim=running
 
 on property:sys.boot_completed=1
 
-     setprop sys.io.scheduler cfq
+     setprop sys.io.scheduler bfq
 
      write /sys/module/lpm_levels/parameters/sleep_disabled 0
      write /sys/devices/system/cpu/cpu0/online 1
