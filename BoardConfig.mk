@@ -48,7 +48,7 @@ TARGET_KERNEL_SOURCE := kernel/motorola/msm8916
 TARGET_KERNEL_CONFIG := osprey_defconfig
 
 # Asserts
-TARGET_OTA_ASSERT_DEVICE := osprey
+TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,osprey_cdma,osprey_udstv,xt1540,xt1541,xt1542,xt1543,xt1544,xt1548,xt1550
 
 # Audio
 AUDIO_FEATURE_ENABLED_FM := true
