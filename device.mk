@@ -170,7 +170,6 @@ PRODUCT_PACKAGES += \
     init.mmi.early_boot.sh \
     init.mmi.touch.sh \
     init.mmi.usb.rc \
-    init.mmi.usb.sh \
     init.qcom.rc \
     ueventd.qcom.rc
 
