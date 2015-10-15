@@ -28,7 +28,6 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -37,20 +36,25 @@
 
 #include "init_msm.h"
 
+void setMsim()
+{
+    property_set("persist.radio.force_get_pref", "1");
+    property_set("persist.radio.multisim.config", "dsds");
+}
+
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
 {
     char platform[PROP_VALUE_MAX];
     char sku[PROP_VALUE_MAX];
     char device[PROP_VALUE_MAX];
     char devicename[PROP_VALUE_MAX];
-    FILE *fp;
     int rc;
 
     UNUSED(msm_id);
     UNUSED(msm_ver);
     UNUSED(board_type);
 
-    rc = property_get("ro.board.platform", platform);
+    rc = property_get("ro.board.platform",platform);
     if (!rc || !ISMATCH(platform, ANDROID_TARGET))
         return;
 
@@ -153,10 +157,4 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     property_get("ro.product.device", device);
     strlcpy(devicename, device, sizeof(devicename));
     INFO("Found sku id: %s setting build properties for %s device\n", sku, devicename);
-}
-
-void setMsim()
-{
-    property_set("persist.radio.force_get_pref", "1");
-    property_set("persist.radio.multisim.config", "dsds");
 }
