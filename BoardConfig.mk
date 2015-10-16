@@ -92,11 +92,11 @@ TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_osprey.cpp
 
+# Libc extensions
+BOARD_PROVIDES_ADDITIONAL_BIONIC_STATIC_LIBS += libc_mot_symbols
+
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
-
-# Motorola
-TARGET_USES_MOTOROLA_LOG := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
