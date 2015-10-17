@@ -4,6 +4,10 @@
     "target_path": "kernel/motorola/msm8916"
   },
   {
+    "repository": "android_external_bson",
+    "target_path": "external/bson"
+  },
+  {
     "repository": "android_external_mm-dash",
     "target_path": "external/mm-dash"
   },
