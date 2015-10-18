@@ -4,10 +4,6 @@
     "target_path": "kernel/motorola/msm8916"
   },
   {
-    "repository": "android_external_mm-dash",
-    "target_path": "external/mm-dash"
-  },
-  {
     "repository": "android_hardware_qcom_fm",
     "target_path": "hardware/qcom/fm"
   },
