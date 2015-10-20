@@ -183,6 +183,9 @@ vendor/lib/libWVStreamControlAPI_L1.so
 # eMMC Firmware
 etc/firmware/emmc_ffu_fe_xx_P1J95K_00000000000000af.fw
 
+# FM radio
+bin/fm_qsoc_patches
+
 # GPS
 -priv-app/com.qualcomm.location/com.qualcomm.location.apk
 -app/MotGeoFenceSvc/MotGeoFenceSvc.apk
