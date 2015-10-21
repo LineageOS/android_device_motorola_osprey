@@ -96,7 +96,7 @@ on init
     chown mot_esdfs root /proc/fs/esdfs/packages
 
     # Symbols required for motorola blobs
-    export LD_PRELOAD /system/lib/libmoto.so
+    export LD_PRELOAD "/system/lib/libmoto.so /system/lib/libboringssl-compat.so"
 
 on fs
     mount_all fstab.qcom
