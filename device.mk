@@ -137,6 +137,7 @@ PRODUCT_PACKAGES += \
 
 # Misc
 PRODUCT_PACKAGES += \
+    libboringssl-compat \
     libbson \
     libxml2
 
