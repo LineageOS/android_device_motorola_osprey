@@ -188,7 +188,6 @@ bin/fm_qsoc_patches
 
 # GPS
 -priv-app/com.qualcomm.location/com.qualcomm.location.apk
--app/MotGeoFenceSvc/MotGeoFenceSvc.apk
 bin/location-mq
 bin/xtwifi-client
 bin/xtwifi-inet-agent

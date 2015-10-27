@@ -175,7 +175,7 @@
     <bool name="config_useDevInputEventForAudioJack">true</bool>
 
     <!-- Component name of the geofence services provider. -->
-    <string name="config_geofenceServicesProvider" translatable="false">com.motorola.motgeofencesvc</string>
+    <string name="config_geofenceProvider" translatable="false">@null</string>
 
     <!-- Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
