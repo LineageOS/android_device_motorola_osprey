@@ -16,11 +16,13 @@
 /sys/module/qpnp_charger/parameters(/.*)?                   u:object_r:sysfs_batt_health:s0
 
 # Partitions
+/dev/block/bootdevice/by-name/cache                         u:object_r:cache_block_device:s0
 /dev/block/bootdevice/by-name/cid                           u:object_r:cid_block_device:s0
 /dev/block/bootdevice/by-name/clogo                         u:object_r:clogo_block_device:s0
 /dev/block/bootdevice/by-name/dhob                          u:object_r:hob_block_device:s0
 /dev/block/bootdevice/by-name/hob                           u:object_r:hob_block_device:s0
 /dev/block/bootdevice/by-name/logs                          u:object_r:logs_block_device:s0
+/dev/block/bootdevice/by-name/recovery                      u:object_r:recovery_block_device:s0
 /dev/block/bootdevice/by-name/userdata                      u:object_r:userdata_block_device:s0
 /dev/block/bootdevice/by-name/utags                         u:object_r:utags_block_device:s0
 /dev/block/bootdevice/by-name/utagsBackup                   u:object_r:utags_block_device:s0
