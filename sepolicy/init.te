@@ -4,7 +4,6 @@ allow init cid_block_device:blk_file setattr;
 allow init clogo_block_device:blk_file setattr;
 allow init hob_block_device:blk_file setattr;
 allow init logs_block_device:blk_file setattr;
-allow init utags_block_device:blk_file setattr;
 
 
 allow init firmware_file:dir mounton;

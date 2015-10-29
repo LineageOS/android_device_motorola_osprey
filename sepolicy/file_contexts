@@ -22,8 +22,6 @@
 /dev/block/bootdevice/by-name/hob                           u:object_r:hob_block_device:s0
 /dev/block/bootdevice/by-name/logs                          u:object_r:logs_block_device:s0
 /dev/block/bootdevice/by-name/userdata                      u:object_r:userdata_block_device:s0
-/dev/block/bootdevice/by-name/utags                         u:object_r:utags_block_device:s0
-/dev/block/bootdevice/by-name/utagsBackup                   u:object_r:utags_block_device:s0
 
 # PDS
 /pds(/.*)?                                                  u:object_r:pds_file:s0
