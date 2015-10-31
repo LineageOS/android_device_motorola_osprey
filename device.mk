@@ -39,6 +39,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.print.xml:system/etc/permissions/android.software.print.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml
 
+# Motorola Camera permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/com.motorola.camera.xml:system/etc/permissions/com.motorola.camera.xml \
+    $(LOCAL_PATH)/configs/com.motorola.motosignature.xml:system/etc/permissions/com.motorola.motosignature.xml
+
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
