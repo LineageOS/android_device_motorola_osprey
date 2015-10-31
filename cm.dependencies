@@ -10,6 +10,10 @@
   {
     "repository": "android_device_qcom_common",
     "target_path": "device/qcom/common"
+  },
+  {
+    "repository": "android_external_stlport",
+    "target_path": "external/stlport"
   }
 ]
 
