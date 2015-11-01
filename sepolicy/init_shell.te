@@ -1,1 +1,0 @@
-allow init_shell utags_block_device:blk_file r_file_perms;
