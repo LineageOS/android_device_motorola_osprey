@@ -113,22 +113,6 @@ on fs
     wait /dev/block/platform/msm_sdcc.1/by-name/customize
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/customize /customize ro discard nosuid nodev noatime nodiratime noexec defcontext=u:object_r:user_config_file:s0
 
-    # Set correct permissions for HOB, DHOB
-    exec /system/bin/chmod -L 660 /dev/block/platform/soc.0/by-name/hob
-    exec /system/bin/chmod -L 660 /dev/block/platform/soc.0/by-name/dhob
-    exec /system/bin/chmod -L 660 /dev/block/platform/soc.0/by-name/clogo
-    exec /system/bin/chown -L root:radio /dev/block/platform/soc.0/by-name/hob
-    exec /system/bin/chown -L root:radio /dev/block/platform/soc.0/by-name/dhob
-    exec /system/bin/chown -L root:mot_tcmd /dev/block/platform/soc.0/by-name/clogo
-
-    # Set correct permissions for CID
-    exec /system/bin/chmod -L 660 /dev/block/platform/soc.0/by-name/cid
-    exec /system/bin/chown -L root:mot_dbvc /dev/block/platform/soc.0/by-name/cid
-
-    # Set permissions for BL logs
-    exec /system/bin/chmod -L 640 /dev/block/platform/soc.0/by-name/logs
-    exec /system/bin/chown -L root:system /dev/block/platform/soc.0/by-name/logs
-
     mkdir /persist/data 0700  system system
     restorecon_recursive /persist
 

@@ -187,6 +187,15 @@
 /dev/dvb/adapter0/dvr*    0660   media       media
 /dev/dvb/adapter0/video*  0660   media       media
 
+# Block devices
+/dev/block/platform/soc.0/by-name/hob          0660 root radio
+/dev/block/platform/soc.0/by-name/dhob         0660 root radio
+/dev/block/platform/soc.0/by-name/clogo        0660 root mot_tcmd
+/dev/block/platform/soc.0/by-name/cid          0660 root mot_dbvc
+/dev/block/platform/soc.0/by-name/logs         0640 root system
+/dev/block/platform/soc.0/by-name/utags        0660 mot_tcmd system
+/dev/block/platform/soc.0/by-name/utagsBackup  0660 mot_tcmd system
+
 # Broadcast devices
 /dev/tsc_mux0             0660   media       media
 /dev/tsc_ci0              0660   media       media
