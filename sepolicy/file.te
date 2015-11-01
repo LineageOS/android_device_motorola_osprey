@@ -5,6 +5,12 @@ type sysfs_batt_health, fs_type, sysfs_type;
 # hw_revs
 type hw_revs_data_file, file_type, data_file_type;
 
+# charge_only_mode
+type chargeonly_data_file, file_type, data_file_type;
+
+# Cutback socket (RILD)
+type cutback_data_file, file_type, data_file_type;
+
 # CMHW
 type vibeamp_sysfs, fs_type, sysfs_type;
 
