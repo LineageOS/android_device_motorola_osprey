@@ -3,6 +3,7 @@
 /system/bin/batt_health                                     u:object_r:batt_health_exec:s0
 /system/bin/dbvc_atvc_property_set                          u:object_r:atvc_exec:s0
 /system/bin/stml0xx_wrapper.sh                              u:object_r:stml0xx_exec:s0
+/system/bin/thermal-engine                                  u:object_r:thermal-engine_exec:s0
 
 # Camera
 /data/cam_socket[12]                                        u:object_r:camera_socket:s0
@@ -23,6 +24,7 @@
 /dev/block/bootdevice/by-name/dhob                          u:object_r:hob_block_device:s0
 /dev/block/bootdevice/by-name/hob                           u:object_r:hob_block_device:s0
 /dev/block/bootdevice/by-name/logs                          u:object_r:logs_block_device:s0
+/dev/block/bootdevice/by-name/persist                       u:object_r:persist_block_device:s0
 /dev/block/bootdevice/by-name/recovery                      u:object_r:recovery_block_device:s0
 /dev/block/bootdevice/by-name/userdata                      u:object_r:userdata_block_device:s0
 /dev/block/bootdevice/by-name/utags                         u:object_r:utags_block_device:s0
