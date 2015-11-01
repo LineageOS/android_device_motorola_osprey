@@ -1,0 +1,2 @@
+allow shell firmware_file:dir { read open };
+allow shell firmware_file:file getattr;

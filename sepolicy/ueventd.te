@@ -1,3 +1,2 @@
 allow ueventd unlabeled:dir search;
 allow ueventd unlabeled:file { read getattr open };
-
