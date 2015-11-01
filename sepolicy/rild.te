@@ -1,3 +1,5 @@
+allow rild cutback_data_file:dir rw_dir_perms;
+allow rild cutback_data_file:sock_file create_file_perms;
 allow rild fsg_file:dir search;
 allow rild fsg_file:file r_file_perms;
 allow rild system_data_file:sock_file { create unlink setattr };

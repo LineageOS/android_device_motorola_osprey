@@ -1,0 +1,1 @@
+allow thermal-engine self:capability sys_nice;

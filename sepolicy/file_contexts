@@ -1,8 +1,11 @@
 # Binaries
 /system/bin/akmd09912                                       u:object_r:akmd09912_exec:s0
 /system/bin/batt_health                                     u:object_r:batt_health_exec:s0
+/system/bin/charge_only_mode                                u:object_r:charge_only_exec:s0
 /system/bin/dbvc_atvc_property_set                          u:object_r:atvc_exec:s0
+/system/bin/hardware_revisions.sh                           u:object_r:hw_revs_exec:s0
 /system/bin/stml0xx_wrapper.sh                              u:object_r:stml0xx_exec:s0
+/system/bin/thermal-engine                                  u:object_r:thermal-engine_exec:s0
 
 # Camera
 /data/cam_socket[12]                                        u:object_r:camera_socket:s0
@@ -12,21 +15,24 @@
 /sys/devices/virtual/timed_output/vibrator/vtg_level        u:object_r:vibeamp_sysfs:s0
 
 # Motorola services
+/data/chargeonlymode(/.*)?                                  u:object_r:chargeonly_data_file:s0
 /data/power_supply_logger(/.*)?                             u:object_r:batt_health_data_file:s0
+/data/hardware_revisions(/.*)?                              u:object_r:hw_revs_data_file:s0
 /sys/module/qpnp_charger/parameters(/.*)?                   u:object_r:sysfs_batt_health:s0
 
 # Partitions
-/dev/block/bootdevice/by-name/boot                          u:object_r:boot_block_device:s0
-/dev/block/bootdevice/by-name/cache                         u:object_r:cache_block_device:s0
 /dev/block/bootdevice/by-name/cid                           u:object_r:cid_block_device:s0
 /dev/block/bootdevice/by-name/clogo                         u:object_r:clogo_block_device:s0
 /dev/block/bootdevice/by-name/dhob                          u:object_r:hob_block_device:s0
 /dev/block/bootdevice/by-name/hob                           u:object_r:hob_block_device:s0
 /dev/block/bootdevice/by-name/logs                          u:object_r:logs_block_device:s0
-/dev/block/bootdevice/by-name/recovery                      u:object_r:recovery_block_device:s0
-/dev/block/bootdevice/by-name/userdata                      u:object_r:userdata_block_device:s0
+/dev/block/bootdevice/by-name/persist                       u:object_r:persist_block_device:s0
 /dev/block/bootdevice/by-name/utags                         u:object_r:utags_block_device:s0
 /dev/block/bootdevice/by-name/utagsBackup                   u:object_r:utags_block_device:s0
+
+# RIL
+/data/misc/cutback(/.*)?                                    u:object_r:cutback_data_file:s0
+/dev/socket/cutback                                         u:object_r:rild_socket:s0
 
 # Sensors
 /dev/akm09912                                               u:object_r:sensors_device:s0
@@ -34,3 +40,4 @@
 /dev/stml0xx                                                u:object_r:sensors_device:s0
 /dev/stml0xx_as                                             u:object_r:sensors_device:s0
 /dev/stml0xx_ms                                             u:object_r:sensors_device:s0
+/data/misc/akmd/akmd_set.txt                                u:object_r:sensors_data_file:s0

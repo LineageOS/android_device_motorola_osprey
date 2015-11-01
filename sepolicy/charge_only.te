@@ -1,0 +1,15 @@
+type charge_only, domain;
+type charge_only_exec, exec_type, file_type;
+init_daemon_domain(charge_only)
+
+allow charge_only chargeonly_data_file:dir rw_dir_perms;
+allow charge_only chargeonly_data_file:file rw_file_perms;
+allow charge_only graphics_device:chr_file rw_file_perms;
+allow charge_only graphics_device:dir search;
+allow charge_only input_device:chr_file r_file_perms;
+allow charge_only input_device:dir search;
+allow charge_only self:capability { dac_override net_admin sys_tty_config sys_boot };
+allow charge_only self:netlink_kobject_uevent_socket { bind read setopt create };
+allow charge_only sysfs:file write;
+allow charge_only sysfs_wake_lock:file rw_file_perms;
+allow charge_only tty_device:chr_file rw_file_perms;

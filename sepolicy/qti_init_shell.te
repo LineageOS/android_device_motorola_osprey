@@ -1,0 +1,10 @@
+allow qti_init_shell kmsg_device:chr_file { write open };
+allow qti_init_shell hw_revs_exec:file r_file_perms;
+allow qti_init_shell hw_revs_data_file:dir { write getattr setattr search read remove_name open add_name };
+allow qti_init_shell hw_revs_data_file:file { write getattr setattr create unlink open append };
+
+# Needed by init.mmi.boot.sh
+allow qti_init_shell utags_block_device:blk_file { open read };
+
+# Needed by init.mmi.touch.sh
+allow qti_init_shell blkid_exec:lnk_file { read };
