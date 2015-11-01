@@ -1,5 +1,4 @@
 # Motorola service properties
 persist.atvc                u:object_r:atvc_prop:s0
 
-qualcomm.bluetooth.         u:object_r:bluetooth_prop:s0
 qualcomm.bt.                u:object_r:bluetooth_prop:s0

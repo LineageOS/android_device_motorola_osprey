@@ -1,2 +1,0 @@
-# secure display
-allow surfaceflinger persist_file:dir r_dir_perms;
