@@ -6,7 +6,8 @@ allow init hob_block_device:blk_file setattr;
 allow init logs_block_device:blk_file setattr;
 allow init utags_block_device:blk_file setattr;
 
-
 allow init firmware_file:dir mounton;
 allow init fsg_file:dir mounton;
-allow init system_file:dir mounton;
+allow init pstorefs:dir mounton;
+
+allow init socket_device:sock_file { create setattr };

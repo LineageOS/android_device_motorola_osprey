@@ -1,0 +1,4 @@
+allow qti_init_shell system_data_file:file open;
+
+# Needed by init.mmi.boot.sh
+allow qti_init_shell utags_block_device:blk_file { open read };

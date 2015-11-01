@@ -3,5 +3,4 @@ allow rmt_storage firmware_file:file r_file_perms;
 allow rmt_storage fsg_file:dir search;
 allow rmt_storage fsg_file:file r_file_perms;
 allow rmt_storage property_socket:sock_file write;
-allow rmt_storage default_prop:property_service set;
 allow rmt_storage init:unix_stream_socket connectto;
