@@ -8,3 +8,5 @@ binder_call(mm-qcamerad, system_server)
 allow mm-qcamerad debug_prop:property_service set;
 allow mm-qcamerad property_socket:sock_file write;
 allow mm-qcamerad init:unix_stream_socket connectto;
+allow mm-qcamerad sysfs:file write;
+allow mm-qcamerad system_file:file execmod;
