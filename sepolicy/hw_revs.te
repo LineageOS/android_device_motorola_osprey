@@ -1,0 +1,9 @@
+type hw_revs, domain;
+type hw_revs_exec, exec_type, file_type;
+init_daemon_domain(hw_revs)
+
+allow hw_revs shell_exec:file read;
+
+allow hw_revs hw_revs_data_file:dir create_dir_perms;
+allow hw_revs hw_revs_data_file:file create_file_perms;
+allow hw_revs system_file:file execute_no_trans;
