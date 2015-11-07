@@ -46,7 +46,6 @@
     //android::SensorManager::createEventQueue(android::String8, int)
     extern void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void **retVal, void *sensorMgr, void **str8P, int mode);
 
-
 //data exports we must provide for camera library to be happy
 
     /*
@@ -122,3 +121,7 @@ void _ZN7android13SensorManager16createEventQueueEv(void **retVal, void *sensorM
     _ZN7android13SensorManager16createEventQueueENS_7String8Ei(retVal, sensorMgr, &string, 0);
     _ZN7android7String8D1Ev(&string);
 }
+
+void _ZN7android8AMessageC1Eji() {}
+void _ZN7android10MediaCodec12CreateByTypeERKNS_2spINS_7ALooperEEEPKcbPi() {}
+void _ZN7android11AudioSourceC1E14audio_source_tjj() {}
