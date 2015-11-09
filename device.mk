@@ -133,8 +133,7 @@ PRODUCT_COPY_FILES += \
 # Misc
 PRODUCT_PACKAGES += \
     libboringssl-compat \
-    libbson \
-    libxml2
+    libbson
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -172,6 +171,11 @@ PRODUCT_PACKAGES += \
     init.mmi.usb.rc \
     init.qcom.rc \
     ueventd.qcom.rc
+
+# RIL
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig \
+    libxml2
 
 # Shim libraries
 PRODUCT_PACKAGES += \
