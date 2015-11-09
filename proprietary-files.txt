@@ -323,7 +323,6 @@ etc/permissions/qcrilhook.xml
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
 lib/libadropbox.so
-lib/libcnefeatureconfig.so
 lib/libmdmcutback.so
 lib/libmotext_inf.so
 lib/libqmimotext.so
