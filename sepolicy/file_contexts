@@ -28,9 +28,6 @@
 /dev/block/bootdevice/by-name/utags                         u:object_r:utags_block_device:s0
 /dev/block/bootdevice/by-name/utagsBackup                   u:object_r:utags_block_device:s0
 
-# PDS
-/pds(/.*)?                                                  u:object_r:pds_file:s0
-
 # Sensors
 /dev/akm09912                                               u:object_r:sensors_device:s0
 /dev/akm09912_dev                                           u:object_r:sensors_device:s0

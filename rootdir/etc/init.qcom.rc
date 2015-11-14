@@ -37,9 +37,6 @@ on early-init
     # Create firmware mount point
     mkdir /firmware 0771 system system
 
-    # Create PDS mount point
-    mkdir /pds 0755 root root
-
     # Create modem FSG mount point
     mkdir /fsg 755 root root
 
