@@ -43,9 +43,6 @@ on early-init
     # Create modem FSG mount point
     mkdir /fsg 755 root root
 
-    # Mount point for Digital Personalization partition
-    mkdir /customize 0500 root root
-
     chown system system /sys/kernel/debug
     chmod 0775 /sys/kernel/debug
 
@@ -85,19 +82,11 @@ on fs
     mount_all fstab.qcom
     write /sys/kernel/boot_adsp/boot 1
 
-    # Mount modem FSG partition
-    wait /dev/block/bootdevice/by-name/fsg
-    mount ext4 /dev/block/bootdevice/by-name/fsg /fsg ro nosuid nodev barrier=0 context=u:object_r:fsg_file:s0
-
     # set up a symbolic link so the many references to the old location still work and the java code can remain platform agnostic.
     symlink /dev/block/bootdevice /dev/block/platform/msm_sdcc.1
 
     # use /persist as phony PDS partition
     symlink /persist /pds
-
-    #Mount customize partion
-    wait /dev/block/platform/msm_sdcc.1/by-name/customize
-    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/customize /customize ro discard nosuid nodev noatime nodiratime noexec defcontext=u:object_r:user_config_file:s0
 
     mkdir /persist/data 0700  system system
     restorecon_recursive /persist
