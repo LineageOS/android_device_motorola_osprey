@@ -90,9 +90,6 @@ rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 
-# Storage
-persist.sys.isUsbOtgEnabled=true
-
 # USB
 ro.usb.mtp=0x2e82
 ro.usb.mtp_adb=0x2e76
