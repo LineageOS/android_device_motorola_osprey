@@ -67,8 +67,8 @@
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="244800" />
             <Limit name="bitrate" range="1-20000000" />
-            <Feature name="adaptive-playback" />
             <Limit name="concurrent-instances" max="8" />
+            <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.avc.secure" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
@@ -78,9 +78,9 @@
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="108000" />
             <Limit name="bitrate" range="1-20000000" />
+            <Limit name="concurrent-instances" max="2" />
             <Feature name="adaptive-playback" />
             <Feature name="secure-playback" required="true" />
-            <Limit name="concurrent-instances" max="3" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.mpeg2" type="video/mpeg2" >
             <Quirk name="requires-allocate-on-input-ports" />
@@ -90,6 +90,7 @@
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="244800" />
             <Limit name="bitrate" range="1-20000000" />
+            <Limit name="concurrent-instances" max="8" />
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.mpeg4" type="video/mp4v-es" >
@@ -100,8 +101,8 @@
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="244800" />
             <Limit name="bitrate" range="1-20000000" />
-            <Feature name="adaptive-playback" />
             <Limit name="concurrent-instances" max="8" />
+            <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.h263" type="video/3gpp" >
             <Quirk name="requires-allocate-on-input-ports" />
@@ -111,8 +112,8 @@
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="48600" />
             <Limit name="bitrate" range="1-2000000" />
-            <Feature name="adaptive-playback" />
             <Limit name="concurrent-instances" max="8" />
+            <Feature name="adaptive-playback" />
         </MediaCodec>
     </Decoders>
     <Include href="media_codecs_google_video.xml" />
