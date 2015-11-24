@@ -16,10 +16,6 @@
     "target_path": "external/stlport"
   },
   {
-    "repository": "android_hardware_qcom_fm",
-    "target_path": "hardware/qcom/fm"
-  },
-  {
     "repository": "android_device_qcom_common",
     "target_path": "device/qcom/common"
   }
