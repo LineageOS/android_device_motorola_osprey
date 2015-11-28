@@ -81,7 +81,9 @@ PRODUCT_COPY_FILES += \
 
 # Data
 PRODUCT_PACKAGES += \
-    libcnefeatureconfig
+    libcnefeatureconfig \
+    librmnetctl \
+    rmnetcli
 
 # Display
 PRODUCT_PACKAGES += \
