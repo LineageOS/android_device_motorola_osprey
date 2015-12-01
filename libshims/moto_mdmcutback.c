@@ -14,13 +14,5 @@
  * limitations under the License.
  */
 
-extern "C" void RIL_register_socket() {}
-
-/* status_t Parcel::writeString16 */
-extern "C" int _ZN7android6Parcel13writeString16EPKDsj();
-extern "C" int _ZN7android6Parcel13writeString16EPKtj() {
-    return _ZN7android6Parcel13writeString16EPKDsj();
-}
-
-extern "C" int _ZN12NetlinkEvent11NlActionAddE = 1;
-extern "C" int _ZN12NetlinkEvent14NlActionRemoveE = 2;
+int _ZN12NetlinkEvent11NlActionAddE = 1;
+int _ZN12NetlinkEvent14NlActionRemoveE = 2;

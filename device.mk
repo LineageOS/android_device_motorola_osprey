@@ -130,10 +130,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# Motorola
-PRODUCT_PACKAGES += \
-    libmoto
-
 # Misc
 PRODUCT_PACKAGES += \
     libboringssl-compat \
@@ -177,6 +173,13 @@ PRODUCT_PACKAGES += \
     init.mmi.usb.rc \
     init.qcom.rc \
     ueventd.qcom.rc
+
+# Shim libraries
+PRODUCT_PACKAGES += \
+    libshim_camera \
+    libshim_log \
+    libshim_mdmcutback \
+    libshim_ril
 
 # Stlport
 PRODUCT_PACKAGES += \

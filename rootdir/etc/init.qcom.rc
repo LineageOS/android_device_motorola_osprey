@@ -71,8 +71,7 @@ on init
     chown mot_esdfs root /proc/fs/esdfs/packages
 
     # Symbols required for motorola blobs
-    export LD_PRELOAD libmoto.so
-    export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
+    export LD_SHIM_LIBS /system/lib/hw/camera.msm8916.so|libshim_camera.so:/system/lib/libjustshoot.so|libshim_camera.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/liblog.so|libshim_log.so:/system/lib/libmdmcutback.so|libshim_mdmcutback.so:/system/bin/rild|libshim_ril.so:/system/lib/libril.so|libshim_ril.so:/system/lib/libmot_sensorlistener.so|libshim_camera.so
 
 on fs
     mount_all fstab.qcom
