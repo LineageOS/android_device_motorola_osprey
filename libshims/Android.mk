@@ -49,7 +49,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := moto_ril.cpp
+LOCAL_SRC_FILES := moto_ril.c
 LOCAL_SHARED_LIBRARIES := libbinder
 LOCAL_MODULE := libshim_ril
 LOCAL_MODULE_TAGS := optional
