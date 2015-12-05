@@ -15,7 +15,6 @@ etc/acdbdata/Handset_cal.acdb
 etc/acdbdata/Hdmi_cal.acdb
 etc/acdbdata/Headset_cal.acdb
 etc/acdbdata/Speaker_cal.acdb
-vendor/bin/audioflacapp
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
@@ -245,7 +244,6 @@ etc/firmware/a300_pm4.fw
 lib/libdivxdrmdecrypt.so
 lib/libOmxVdecHevc.so
 vendor/lib/libDivxDrm.so
-vendor/lib/libFlacSwDec.so
 -vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmmosal.so
