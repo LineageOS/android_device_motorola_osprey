@@ -835,15 +835,22 @@ on moto-charger
     start thermal-com
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
+on property:init.svc.bootanim=running
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "performance"
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "performance"
+    write /sys/class/devfreq/qcom,cpubw.30/governor "performance"
+
 on property:sys.boot_completed=1
 
     setprop sys.io.scheduler bfq
 
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
     write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
 
     # HMP scheduler settings
     write /proc/sys/kernel/sched_ravg_hist_size 3
@@ -873,6 +880,9 @@ on property:sys.boot_completed=1
     write /sys/module/cpu_boost/parameters/input_boost_freq 1094400
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
     start batt_health
+
+    write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "msm-adreno-tz"
+    write /sys/class/devfreq/qcom,cpubw.30/governor "cpufreq"
 
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 49152
