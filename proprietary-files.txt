@@ -174,9 +174,12 @@ vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L1.so
 
 # GPS
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
 -app/MotGeoFenceSvc/MotGeoFenceSvc.apk
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk
+bin/garden_app
+bin/gpsone_daemon
 bin/location-mq
+bin/loc_launcher
 bin/xtwifi-client
 bin/xtwifi-inet-agent
 etc/permissions/com.qualcomm.location.xml
