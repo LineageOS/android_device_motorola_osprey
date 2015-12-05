@@ -581,9 +581,6 @@ service audiod /system/bin/audiod
    user system
    group system
 
-on property:persist.radio.atfwd.start=false
-    stop atfwd
-
 # corefile limit and ETB enabling
 on property:persist.debug.trace=1
     mkdir /data/core 0777 root root
@@ -761,11 +758,6 @@ service dhcpcd_bnep3 /system/bin/dhcpcd -BKLG
 service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
-
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
