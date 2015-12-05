@@ -1,3 +1,0 @@
-# Motorola service properties
-type atvc_prop, property_type;
-type hw_revs_prop, property_type;

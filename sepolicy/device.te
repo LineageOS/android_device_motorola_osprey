@@ -1,6 +1,0 @@
-# Partitions
-type cid_block_device, dev_type;
-type clogo_block_device, dev_type;
-type logs_block_device, dev_type;
-type hob_block_device, dev_type;
-type utags_block_device, dev_type;
