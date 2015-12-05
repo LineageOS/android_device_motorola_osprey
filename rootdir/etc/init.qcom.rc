@@ -90,8 +90,6 @@ on init
     chown system log /sys/fs/pstore/annotate-ramoops
     chmod 0640 /sys/fs/pstore/annotate-ramoops
 
-    copy /module_hashes /sys/kernel/module_whitelist
-
     # ESDFS
     chown mot_esdfs root /proc/fs/esdfs/packages
 
@@ -865,13 +863,12 @@ on charger
 on moto-charger
     setprop ro.board.platform msm8916
 
-    # HMP scheduler load tracking settings
+    # HMP scheduler settings
     write /proc/sys/kernel/sched_ravg_hist_size 3
+    write /proc/sys/kernel/sched_window_stats_policy 3
 
     # HMP Task packing settings for 8916
     write /proc/sys/kernel/sched_small_task 50
-    write /proc/sys/kernel/sched_mostly_idle_load 50
-    write /proc/sys/kernel/sched_mostly_idle_nr_run 10
 
     # disable thermal core_control to update scaling_min_freq
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -900,13 +897,12 @@ on property:sys.boot_completed=1
      write /sys/module/lpm_levels/parameters/sleep_disabled 0
      write /sys/devices/system/cpu/cpu0/online 1
 
-     # HMP scheduler load tracking settings
+     # HMP scheduler settings
      write /proc/sys/kernel/sched_ravg_hist_size 3
+     write /proc/sys/kernel/sched_window_stats_policy 3
 
      # HMP Task packing settings for 8916
      write /proc/sys/kernel/sched_small_task 50
-     write /proc/sys/kernel/sched_mostly_idle_load 50
-     write /proc/sys/kernel/sched_mostly_idle_nr_run 10
 
      # disable thermal core_control to update scaling_min_freq
      write /sys/module/msm_thermal/core_control/enabled 0
@@ -933,9 +929,6 @@ on property:sys.perf.profile=0
     write /sys/devices/system/cpu/cpu3/online 1
     write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "powersave"
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "powersave"
     write /sys/class/devfreq/qcom,cpubw.30/governor "powersave"
@@ -947,9 +940,6 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu3/online 1
     write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "interactive"
     write /sys/module/msm_thermal/core_control/enabled 1
 
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
@@ -970,9 +960,6 @@ on property:sys.perf.profile=2
     write /sys/devices/system/cpu/cpu3/online 1
     write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "performance"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "performance"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "performance"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "performance"
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "performance"
     write /sys/class/devfreq/qcom,cpubw.30/governor "performance"
