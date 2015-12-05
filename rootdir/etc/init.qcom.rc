@@ -545,7 +545,7 @@ service mmi-boot-sh /system/bin/sh /init.mmi.boot.sh
     user root
     oneshot
 
-service mmi-early_boot-sh /system/bin/sh /init.mmi.early_boot.sh
+service mmi-early_boot /system/bin/sh /init.mmi.early_boot.sh
     class late_start
     user root
     oneshot
