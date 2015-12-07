@@ -19,8 +19,6 @@ include device/motorola/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/motorola/osprey
 
-TARGET_KERNEL_CONFIG := osprey_defconfig
-
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,osprey_cdma,osprey_udstv,xt1540,xt1541,xt1542,xt1543,xt1544,xt1548,xt1550
 
@@ -28,6 +26,9 @@ TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,o
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_osprey.cpp
+
+# Kernel
+TARGET_KERNEL_CONFIG := osprey_defconfig
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216     # 16384 * 1024 mmcblk0p31
