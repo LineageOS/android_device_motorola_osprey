@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Inherit from osprey device
+$(call inherit-product, device/motorola/osprey/device.mk)
+
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := osprey
 PRODUCT_NAME := full_osprey
