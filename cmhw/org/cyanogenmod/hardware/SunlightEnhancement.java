@@ -73,4 +73,17 @@ public class SunlightEnhancement {
     public static boolean isAdaptiveBacklightRequired() {
         return false;
     }
+
+    /**
+     * Set this to true if the implementation is self-managed and does
+     * it's own ambient sensing. In this case, setEnabled is assumed
+     * to toggle the feature on or off, but not activate it. If set
+     * to false, LiveDisplay will call setEnabled when the ambient lux
+     * threshold is crossed.
+     *
+     * @return true if this enhancement is self-managed
+     */
+    public static boolean isSelfManaged() {
+        return false;
+    }
 }
