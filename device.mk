@@ -18,3 +18,7 @@ $(call inherit-product, device/motorola/msm8916-common/msm8916.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
+# Ramdisk
+PRODUCT_PACKAGES += \
+    init.target.rc
