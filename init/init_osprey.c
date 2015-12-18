@@ -40,6 +40,7 @@
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
 {
     char platform[PROP_VALUE_MAX];
+    char radio[PROP_VALUE_MAX];
     char sku[PROP_VALUE_MAX];
     char device[PROP_VALUE_MAX];
     char devicename[PROP_VALUE_MAX];
@@ -54,6 +55,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     if (!rc || !ISMATCH(platform, ANDROID_TARGET))
         return;
 
+    property_get("ro.boot.radio", radio);
     property_get("ro.boot.hardware.sku", sku);
 
     property_set("ro.product.model", "MotoG3");
@@ -90,7 +92,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.mot.build.customerid", "retla");
         property_set("persist.radio.all_bc_msg", "all");
         property_set("persist.radio.process_sups_ind", "1");
-    } else if (ISMATCH(sku, "XT1543")) {
+    } else if (ISMATCH(sku, "XT1543") || ISMATCH(radio, "0x6")) {
         /* XT1543 */
         setMsim();
         property_set("ro.product.name", "osprey_retla_ds");
