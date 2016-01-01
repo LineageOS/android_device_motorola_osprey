@@ -49,6 +49,7 @@ TARGET_KERNEL_CONFIG := osprey_defconfig
 
 # Asserts
 TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,osprey_cdma,osprey_udstv
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # Audio
