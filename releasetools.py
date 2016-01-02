@@ -12,11 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import re
-import os
-
-TARGET_DIR = os.getenv('OUT')
-
 def FullOTA_Assertions(info):
   AddSkuAssertion(info, info.input_zip)
 
@@ -26,13 +21,4 @@ def IncrementalOTA_Assertions(info):
 
 
 def AddSkuAssertion(info, input_zip):
-  android_info = input_zip.read("OTA/android-info.txt")
-  m = re.search(r"require\s+sku\s*=\s*(\S+)", android_info)
-  if m:
-    sku = m.group(1).split("|")
-    cmd = ("assert(" +
-           " || ".join(['getprop("ro.boot.sku") == "%s"' % (r,)
-                         for r in sku]) +
-           ' || abort("CDMA devices are not supported");' +
-           ");")
-    info.script.AppendExtra(info.script.WordWrap(cmd))
+  info.script.AppendExtra("assert(" +'getprop("ro.boot.hardware.sku") != "XT1548" || abort("CDMA devices are not supported");' + ");")
