@@ -141,6 +141,9 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.product.device", "osprey_cdma");
         property_set("ro.build.product", "osprey_cdma");
         property_set("ro.cdma.data_retry_config", "max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000");
+        property_set("ro.product.locale.region", "US");
+        property_set("gsm.sim.operator.iso-country", "US");
+        property_set("gsm.operator.iso-country", "US");
         property_set("ro.ril.force_eri_from_xml", "true");
         property_set("ro.telephony.default_network", "8");
         property_set("ro.telephony.get_imsi_from_sim", "true");
