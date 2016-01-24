@@ -126,17 +126,13 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
             property_set("ro.mot.build.customerid", "sprint");
             property_set("ro.cdma.home.operator.alpha", "Virgin Mobile US");
             property_set("ro.cdma.home.operator.numeric", "311490");
-            property_set("ril.subscription.types", "NV,RUIM");
-            property_set("ro.telephony.default_cdma_sub", "0");
             property_set("ro.fsg-id", "sprint");
         } else /*if (ISMATCH(carrier, "usc"))*/ {
             property_set("ro.build.description", "osprey_usc-user 5.1.1 LPI23.72-33.2 2 release-keys");
             property_set("ro.build.fingerprint", "motorola/osprey_usc/osprey_cdma:5.1.1/LPI23.72-33.2/2:user/release-keys");
             property_set("ro.mot.build.customerid", "usc");
             property_set("ro.cdma.home.operator.alpha", "U.S. Cellular");
-            property_set("ro.cdma.home.operator.numeric", "311220");
-            property_set("gsm.sim.operator.numeric", "311580");
-            property_set("ril.subscription.types", "RUIM");
+            property_set("ro.cdma.home.operator.numeric", "311580");
             property_set("ro.fsg-id", "usc");
         }
         property_set("ro.product.device", "osprey_cdma");
@@ -145,7 +141,9 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.product.locale.region", "US");
         property_set("gsm.sim.operator.iso-country", "US");
         property_set("gsm.operator.iso-country", "US");
+        property_set("ril.subscription.types", "NV,RUIM");
         property_set("ro.ril.force_eri_from_xml", "true");
+        property_set("ro.telephony.default_cdma_sub", "0");
         property_set("ro.telephony.default_network", "10");
         property_set("ro.telephony.get_imsi_from_sim", "true");
         property_set("telephony.lteOnCdmaDevice", "1");

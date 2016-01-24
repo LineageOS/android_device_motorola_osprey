@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<apns version="8">
+<!-- US Cellular -->
+	<!-- Modify Apn database for USCC CDMA for MMS Support -->
+	<apn carrier="USCC" mcc="311" mnc="220" apn="internet" mmsc="http://mmsc1.uscc.net/mmsc/MMS" authtype="3" port="80" mmsport="80" type="mms" />
+
+	<!-- Modify Apn database for USCC LTE support -->
+	<apn carrier="LTE - USCC INTERNET" mcc="311" mnc="580" apn="usccinternet" type="default,dun,mms,fota" mmsc="http://mmsc1.uscc.net/mmsc/MMS" protocol="IPV4V6" roaming_protocol="IPV4V6" bearer="14" />
+	<apn carrier="LTE - USCC INTERNET 2" mcc="311" mnc="225" apn="usccinternet" type="default,dun,mms,fota" mmsc="http://mmsc1.uscc.net/mmsc/MMS" protocol="IPV4V6" roaming_protocol="IPV4V6" bearer="14" />
+	<!-- END modify Apn database for USCC LTE support -->
+</apns>

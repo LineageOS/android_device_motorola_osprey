@@ -22,19 +22,24 @@ def IncrementalOTA_InstallEnd(info):
   info.script.Mount("/system")
   BakupApn(info)
   VirginApn(info)
+  USCApn(info)
   info.script.Unmount("/system")
 
 def FullOTA_InstallEnd(info):
   info.script.Mount("/system")
   BakupApn(info)
   VirginApn(info)
+  USCApn(info)
   info.script.Unmount("/system")
 
 def BakupApn(info):
-  info.script.AppendExtra('ifelse(getprop("ro.boot.carrier") == "sprint", run_program("/sbin/sh", "-c", "mv /system/etc/apns-conf.xml /system/etc/apns-conf.xml.bak"));')
+  info.script.AppendExtra('ifelse(getprop("ro.boot.hardware.sku") == "XT1548", run_program("/sbin/sh", "-c", "mv /system/etc/apns-conf.xml /system/etc/apns-conf.xml.bak"));')
 
 def RestoreApn(info):
-  info.script.AppendExtra('ifelse(getprop("ro.boot.carrier") == "sprint", run_program("/sbin/sh", "-c", "rm /system/etc/apns-conf.xml && mv /system/etc/apns-conf.xml.bak /system/etc/apns-conf.xml"));')
+  info.script.AppendExtra('ifelse(getprop("ro.boot.hardware.sku") == "XT1548", run_program("/sbin/sh", "-c", "rm /system/etc/apns-conf.xml && mv /system/etc/apns-conf.xml.bak /system/etc/apns-conf.xml"));')
 
 def VirginApn(info):
   info.script.AppendExtra('ifelse(getprop("ro.boot.carrier") == "sprint", run_program("/sbin/sh", "-c", "mv /system/etc/apns-conf-vmob.xml /system/etc/apns-conf.xml"));')
+
+def USCApn(info):
+  info.script.AppendExtra('ifelse(getprop("ro.boot.carrier") == "usc", run_program("/sbin/sh", "-c", "mv /system/etc/apns-conf-usc.xml /system/etc/apns-conf.xml"));')

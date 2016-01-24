@@ -23,7 +23,8 @@ PRODUCT_COPY_FILES += \
 
 # Custom APN
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/apns-conf-vmob.xml:system/etc/apns-conf-vmob.xml
+    $(LOCAL_PATH)/configs/apns-conf-vmob.xml:system/etc/apns-conf-vmob.xml \
+    $(LOCAL_PATH)/configs/apns-conf-usc.xml:system/etc/apns-conf-usc.xml
 
 # Media
 PRODUCT_COPY_FILES += \
