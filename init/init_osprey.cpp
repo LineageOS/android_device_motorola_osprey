@@ -146,7 +146,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("gsm.sim.operator.iso-country", "US");
         property_set("gsm.operator.iso-country", "US");
         property_set("ro.ril.force_eri_from_xml", "true");
-        property_set("ro.telephony.default_network", "8");
+        property_set("ro.telephony.default_network", "10");
         property_set("ro.telephony.get_imsi_from_sim", "true");
         property_set("telephony.lteOnCdmaDevice", "1");
     } else if (ISMATCH(sku, "XT1550")) {
