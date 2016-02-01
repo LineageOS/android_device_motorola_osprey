@@ -125,6 +125,5 @@ lib/libmotocalibration.so
 lib/hw/sensors.msm8916.so
 
 # Touchscreen
-etc/firmware/synaptics-inx-s2726br_t-15052103-1d6479-osprey.tdat
-etc/firmware/synaptics-inx-s2726br_t-15060402-1dc9a8-osprey.tdat
-etc/firmware/synaptics-inx-s2726br_t-15062201-1dc9a8-osprey.tdat
+etc/firmware/synaptics-boe-s2726-15111801-1f711a-osprey.tdat
+etc/firmware/synaptics-inx-s2726br_t-15111103-1f711a-osprey.tdat
