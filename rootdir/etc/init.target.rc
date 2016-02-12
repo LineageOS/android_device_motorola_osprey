@@ -28,7 +28,7 @@
 
 on init
     # Symbols required for motorola blobs
-    export LD_SHIM_LIBS /system/lib/liblog.so|libshim_log.so:/system/bin/rild|libshim_ril.so:/system/lib/libril.so|libshim_ril.so
+    export LD_SHIM_LIBS /system/lib/liblog.so|libshim_log.so
 
 on boot
     # AK09912 driver parameter permissions
