@@ -1,3 +1,9 @@
 # system.prop for osprey
 
+# Audio
+persist.audio.fluence.mode=endfire
+persist.audio.fluence.voicecall=true
+ro.qc.sdk.audio.fluencetype=fluence
+
+# Display
 ro.sf.lcd_density=320
