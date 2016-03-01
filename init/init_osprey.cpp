@@ -65,7 +65,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     property_get("ro.boot.hardware.sku", sku);
     property_get("ro.boot.carrier", carrier);
 
-    property_set("ro.product.model", sku);
     property_set("ro.telephony.default_network", "9");
     property_set("ro.gsm.data_retry_config", "default_randomization=2000,max_retries=infinite,1000,1000,80000,125000,485000,905000");
 
@@ -100,7 +99,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         /* XT1543 */
         setMsim();
         property_set("ro.product.device", "osprey_uds");
-        property_set("ro.product.model", "XT1543");
         property_set("ro.build.description", "osprey_retla_ds-user 6.0 MPI24.65-33.1 1 release-keys");
         property_set("ro.build.fingerprint", "motorola/osprey_retla_ds/osprey_uds:6.0/MPI24.65-33.1/1:user/release-keys");
         property_set("ro.build.product", "osprey_uds");
