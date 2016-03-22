@@ -125,5 +125,8 @@ lib/libmotocalibration.so
 lib/hw/sensors.msm8916.so
 
 # Touchscreen
-etc/firmware/synaptics-boe-s2726-15111801-1f711a-osprey.tdat
-etc/firmware/synaptics-inx-s2726br_t-15111103-1f711a-osprey.tdat
+etc/firmware/synaptics-boe-s2726-16020901-225ad4-osprey.tdat
+etc/firmware/synaptics-inx-s2726br_t-16012301-225ad4-osprey.tdat
+
+# WCNSS
+etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
