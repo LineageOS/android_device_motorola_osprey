@@ -24,7 +24,8 @@ TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,o
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # Init
-TARGET_LIBINIT_DEFINES_FILE := $(DEVICE_PATH)/init/init_osprey.cpp
+TARGET_INIT_VENDOR_LIB := libinit_osprey
+TARGET_RECOVERY_DEVICE_MODULES := libinit_osprey
 
 # Kernel
 TARGET_KERNEL_CONFIG := osprey_defconfig
