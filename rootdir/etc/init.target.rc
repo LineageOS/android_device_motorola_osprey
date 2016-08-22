@@ -1,5 +1,5 @@
 # Copyright (c) 2009-2012, 2014, The Linux Foundation. All rights reserved.
-# Copyright (c) 2015 The CyanogenMod Project
+# Copyright (c) 2015-2016 The CyanogenMod Project
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -43,6 +43,25 @@ on boot
     chown system compass /sys/class/compass/akm09912/enable_mag
     chmod 0660 /sys/class/compass/akm09912/enable_mag
 
+    # Switch to interactive and let PowerHAL configure it
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    chmod 0644 /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+
 on post-fs-data
     # AK09912 calibration file directory
     mkdir /data/misc/akmd 0770 system compass
@@ -66,26 +85,9 @@ on property:sys.boot_completed=1
     # HMP Task packing settings for 8916
     write /proc/sys/kernel/sched_small_task 50
 
-    # disable thermal core_control to update scaling_min_freq
-    write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 400000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    # enable thermal core_control now
+    # enable thermal core_control
     write /sys/module/msm_thermal/core_control/enabled 1
 
-    # Interactive governor setup
-    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 60000
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 998400
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 80
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay 20000
-    write /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration 60000
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads 80
-
-    write /sys/module/cpu_boost/parameters/boost_ms 20
-    write /sys/module/cpu_boost/parameters/sync_threshold 998400
-    write /sys/module/cpu_boost/parameters/input_boost_freq 1094400
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
     start batt_health
 
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "msm-adreno-tz"
