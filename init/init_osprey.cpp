@@ -52,29 +52,24 @@ void vendor_load_properties()
 {
     bool MSIM;
     char gb[PROP_VALUE_MAX];
-    char carrier[PROP_VALUE_MAX];
     char customerid[PROP_VALUE_MAX];
     char description[PROP_VALUE_MAX];
     char device[PROP_VALUE_MAX];
     char ds[PROP_VALUE_MAX];
     char fingerprint[PROP_VALUE_MAX];
-    char platform[PROP_VALUE_MAX];
-    char radio[PROP_VALUE_MAX];
-    char sku[PROP_VALUE_MAX];
     char tv[PROP_VALUE_MAX];
-    int rc;
 
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
+    std::string platform = property_get("ro.board.platform");
+    if (!ISMATCH(platform.c_str(), ANDROID_TARGET))
         return;
 
     // Warning-less way of sprintf(var, "");
     ds[0] = 0;
     tv[0] = 0;
     MSIM = false;
-    property_get("ro.boot.radio", radio);
-    property_get("ro.boot.hardware.sku", sku);
-    property_get("ro.boot.carrier", carrier);
+    std::string radio = property_get("ro.boot.radio");
+    std::string sku = property_get("ro.boot.hardware.sku");
+    std::string carrier = property_get("ro.boot.carrier");
 
     if (is2GB()) {
         property_set("dalvik.vm.heapstartsize", "8m");
@@ -97,31 +92,31 @@ void vendor_load_properties()
     property_set("ro.telephony.default_network", "9");
     property_set("ro.gsm.data_retry_config", "default_randomization=2000,max_retries=infinite,1000,1000,80000,125000,485000,905000");
 
-    if (ISMATCH(sku, "XT1540")) {
+    if (ISMATCH(sku.c_str(), "XT1540")) {
         /* XT1540 */
         sprintf(device, is2GB() ? "osprey_u2" : "osprey_umts");
         sprintf(customerid, "retus");
         property_set("ro.gsm.data_retry_config", "");
-    } else if (ISMATCH(sku, "XT1541")) {
+    } else if (ISMATCH(sku.c_str(), "XT1541")) {
         /* XT1541 */
         sprintf(device, is2GB() ? "osprey_u2" : "osprey_umts");
         sprintf(customerid, "reteu");
         property_set("ro.fsg-id", "emea");
         property_set("persist.radio.process_sups_ind", "0");
-    } else if (ISMATCH(sku, "XT1542")) {
+    } else if (ISMATCH(sku.c_str(), "XT1542")) {
         /* XT1542 */
         sprintf(device, is2GB() ? "osprey_u2" : "osprey_umts");
         sprintf(customerid, "retla");
         property_set("persist.radio.all_bc_msg", "all");
         property_set("persist.radio.process_sups_ind", "1");
-    } else if (ISMATCH(sku, "XT1543") || ISMATCH(radio, "0x6")) {
+    } else if (ISMATCH(sku.c_str(), "XT1543") || ISMATCH(radio.c_str(), "0x6")) {
         /* XT1543 */
         MSIM = true;
         sprintf(device, is2GB() ? "osprey_ud2" : "osprey_uds");
         sprintf(customerid, "retla");
         property_set("persist.radio.all_bc_msg", "all");
         property_set("persist.radio.process_sups_ind", "1");
-    } else if (ISMATCH(sku, "XT1544")) {
+    } else if (ISMATCH(sku.c_str(), "XT1544")) {
         /* XT1544 */
         MSIM = true;
         sprintf(device, "osprey_udstv");
@@ -129,9 +124,9 @@ void vendor_load_properties()
         sprintf(tv, "tv");
         property_set("persist.radio.all_bc_msg", "all");
         property_set("persist.radio.process_sups_ind", "1");
-    } else if (ISMATCH(sku, "XT1548")) {
+    } else if (ISMATCH(sku.c_str(), "XT1548")) {
         /* XT1548 */
-        if (ISMATCH(carrier, "sprint")) {
+        if (ISMATCH(carrier.c_str(), "sprint")) {
             sprintf(customerid, "sprint");
             property_set("ro.cdma.home.operator.alpha", "Virgin Mobile US");
             property_set("ro.cdma.home.operator.numeric", "311490");
@@ -153,7 +148,7 @@ void vendor_load_properties()
         property_set("ro.telephony.default_network", "10");
         property_set("ro.telephony.get_imsi_from_sim", "true");
         property_set("telephony.lteOnCdmaDevice", "1");
-    } else if (ISMATCH(sku, "XT1550")) {
+    } else if (ISMATCH(sku.c_str(), "XT1550")) {
         /* XT1550 */
         MSIM = true;
         sprintf(device, is2GB() ? "osprey_ud2" : "osprey_uds");
@@ -178,5 +173,5 @@ void vendor_load_properties()
     property_set("ro.build.fingerprint", fingerprint);
     property_set("ro.mot.build.customerid", customerid);
 
-    INFO("Found sku id: %s setting build properties for %s device\n", sku, device);
+    INFO("Found sku id: %s setting build properties for %s device\n", sku.c_str(), device);
 }
