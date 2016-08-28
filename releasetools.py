@@ -21,6 +21,16 @@ def IncrementalOTA_InstallEnd(info):
 
 def FullOTA_InstallEnd(info):
   ReplaceApnList(info)
+  ExtractFirmwares(info)
+
+def ExtractFirmwares(info):
+  info.script.Mount("/system")
+  info.script.Mount("/firmware")
+  info.script.AppendExtra('ui_print("Extracting modem firmware");')
+  info.script.AppendExtra('run_program("/sbin/sh", "/tmp/install/bin/extract_firmware.sh");')
+  info.script.AppendExtra('ui_print("Firmware extracted");')
+  info.script.Unmount("/firmware")
+  info.script.Unmount("/system")
 
 def ReplaceApnList(info):
   info.script.AppendExtra('if getprop("ro.boot.hardware.sku") == "XT1548" then')
