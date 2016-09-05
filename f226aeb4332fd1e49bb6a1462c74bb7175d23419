@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fa4df85_8ef0a369",
+        "filename": "init/init_osprey.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 13881
+      },
+      "writtenOn": "2016-09-05T17:52:38Z",
+      "side": 1,
+      "message": "you should be able to replace ISMATCH with the equality operator for C++ strings.",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 15
+      },
+      "revId": "f226aeb4332fd1e49bb6a1462c74bb7175d23419",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
