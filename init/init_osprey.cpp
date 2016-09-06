@@ -33,17 +33,13 @@
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
+#include <sys/sysinfo.h>
 
 int is2GB()
 {
-    int ram_size;
-    FILE *fp;
-
-    fp = fopen("/sys/ram/size", "r");
-    fscanf(fp, "%d", &ram_size);
-    pclose(fp);
-
-    return ram_size > 1024;
+    struct sysinfo sys;
+    sysinfo(&sys);
+    return sys.totalram > 1024ull * 1024 * 1024;
 }
 
 void vendor_load_properties()
