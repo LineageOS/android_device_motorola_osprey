@@ -16,6 +16,24 @@
       "revId": "6c101e57410bce9191193745a0ec00778a66074e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fa4df85_60353046",
+        "filename": "init/init_osprey.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7230
+      },
+      "writtenOn": "2016-09-07T10:56:15Z",
+      "side": 1,
+      "message": "Not sure about that, but to be honest I\u0027ve never seen this message in any log as far I can remember. I think also it\u0027s easier asking to the user for the property we want to know instead of asking for a log where we have to search for this line. In other words nothing changes for the user and everything is cleaner for us. I\u0027ll just remove this line and I won\u0027t think anymore about it.",
+      "parentUuid": "1fa4df85_a02b28e9",
+      "revId": "6c101e57410bce9191193745a0ec00778a66074e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
