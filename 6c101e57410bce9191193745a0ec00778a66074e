@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fa4df85_a02b28e9",
+        "filename": "init/init_osprey.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 15569
+      },
+      "writtenOn": "2016-09-07T10:41:16Z",
+      "side": 1,
+      "message": "don\u0027t u think it should be sku.c_str() instead of sku?",
+      "revId": "6c101e57410bce9191193745a0ec00778a66074e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
