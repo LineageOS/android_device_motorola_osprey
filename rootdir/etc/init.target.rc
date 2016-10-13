@@ -94,4 +94,4 @@ on property:sys.boot_completed=1
     write /sys/class/devfreq/qcom,cpubw.30/governor "cpufreq"
 
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 49152
+    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
