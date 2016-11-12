@@ -29,10 +29,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/apns-conf-vmob.xml:system/etc/apns-conf-vmob.xml \
     $(LOCAL_PATH)/configs/apns-conf-usc.xml:system/etc/apns-conf-usc.xml
 
-# Firmware Extraction
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/extract_firmware.sh:install/bin/extract_firmware.sh
-
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
