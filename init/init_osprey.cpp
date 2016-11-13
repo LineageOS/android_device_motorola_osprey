@@ -43,7 +43,7 @@ int is2GB()
 
     fp = fopen("/sys/ram/size", "r");
     fscanf(fp, "%d", &ram_size);
-    pclose(fp);
+    fclose(fp);
 
     return ram_size > 1024;
 }
