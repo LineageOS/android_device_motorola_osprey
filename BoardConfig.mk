@@ -21,7 +21,6 @@ DEVICE_PATH := device/motorola/osprey
 
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,osprey_cdma,osprey_sprint,osprey_udstv
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_osprey
