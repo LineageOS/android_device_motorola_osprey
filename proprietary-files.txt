@@ -20,6 +20,7 @@ lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
 lib/libmmcamera_lux_standardization.so
 lib/libmmjpeg_interface.so
+lib/libmot-qc-fd-offline.so
 lib/libqomx_core.so
 lib/hw/camera.msm8916.so:lib/hw/camera.vendor.msm8916.so
 vendor/lib/libactuator_ak7345.so
