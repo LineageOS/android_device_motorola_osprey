@@ -17,6 +17,7 @@ Battery | Li-Ion 2470mAh battery
 Display | 720 x 1280 pixels, 5.0 inches (~294 ppi pixel density)
 Camera  | 13 MP, 4160 x 2340 pixels, autofocus, dual flash LED
 
-Copyright 2015 - The CyanogenMod Project.
+Copyright 2015-2016 - The CyanogenMod Project.
+          2017 - The LineageOS Project
 
 ![Moto G 2015](https://wiki.cyanogenmod.org/images/thumb/8/81/Osprey.png/314px-Osprey.png "Moto G 2015")
