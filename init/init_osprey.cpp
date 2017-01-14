@@ -83,7 +83,6 @@ void vendor_load_properties()
         gb[0] = 0;
     }
 
-    property_set("ro.telephony.default_network", "9");
     property_set("ro.gsm.data_retry_config", "default_randomization=2000,max_retries=infinite,1000,1000,80000,125000,485000,905000");
 
     if (sku == "XT1540") {
@@ -122,8 +121,8 @@ void vendor_load_properties()
         /* XT1548 */
         if (carrier == "sprint") {
             sprintf(customerid, "sprint");
-            property_set("ro.cdma.home.operator.alpha", "Virgin Mobile US");
-            property_set("ro.cdma.home.operator.numeric", "311490");
+            property_set("ro.cdma.home.operator.alpha", "Sprint");
+            property_set("ro.cdma.home.operator.numeric", "310120");
             property_set("ro.fsg-id", "sprint");
         } else /*if (carrier == "usc")*/ {
             sprintf(customerid, "usc");
@@ -138,7 +137,7 @@ void vendor_load_properties()
         property_set("gsm.operator.iso-country", "US");
         property_set("ril.subscription.types", "NV,RUIM");
         property_set("ro.telephony.default_cdma_sub", "0");
-        property_set("ro.telephony.default_network", "10");
+        property_set("ro.telephony.default_network", "8");
         property_set("ro.telephony.get_imsi_from_sim", "true");
         property_set("telephony.lteOnCdmaDevice", "1");
     } else if (sku == "XT1550") {
@@ -148,6 +147,10 @@ void vendor_load_properties()
         sprintf(customerid, "retasia");
         property_set("ro.fsg-id", "apac");
         property_set("persist.radio.process_sups_ind", "0");
+    }
+
+    if (property_get("ro.telephony.default_network").empty()) {
+        property_set("ro.telephony.default_network", "9");
     }
 
     if (MSIM) {
