@@ -1,5 +1,6 @@
 #
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2015-2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +22,6 @@ DEVICE_PATH := device/motorola/osprey
 
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,osprey_cdma,osprey_sprint,osprey_udstv
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_osprey
