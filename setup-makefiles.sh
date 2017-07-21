@@ -22,4 +22,6 @@ export DEVICE=osprey
 export DEVICE_COMMON=msm8916-common
 export VENDOR=motorola
 
+export INITIAL_COPYRIGHT_YEAR=2016
+
 ./../../$VENDOR/$DEVICE_COMMON/setup-makefiles.sh $@
