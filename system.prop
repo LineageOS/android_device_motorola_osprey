@@ -6,4 +6,5 @@ persist.audio.fluence.voicecall=true
 ro.qc.sdk.audio.fluencetype=fluence
 
 # Display
+debug.hwui.use_buffer_age=false
 ro.sf.lcd_density=320
