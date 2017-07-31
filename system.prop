@@ -10,4 +10,5 @@ media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
 
 # Display
+debug.hwui.use_buffer_age=false
 ro.sf.lcd_density=320
