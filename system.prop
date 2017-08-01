@@ -1,7 +1,5 @@
 # system.prop for osprey
 
-ro.product.model=MotoG3
-
 # Audio
 persist.audio.fluence.mode=endfire
 persist.audio.fluence.voicecall=true
