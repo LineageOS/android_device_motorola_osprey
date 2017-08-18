@@ -23,10 +23,6 @@ DEVICE_PATH := device/motorola/osprey
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := osprey,osprey_umts,osprey_u2,osprey_ud2,osprey_uds,osprey_cdma,osprey_sprint,osprey_udstv
 
-# Init
-TARGET_INIT_VENDOR_LIB := libinit_osprey
-TARGET_RECOVERY_DEVICE_MODULES := libinit_osprey
-
 # Camera
 BOARD_GLOBAL_CFLAGS += -DCONFIG_MSM_USES_M_STACK
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true

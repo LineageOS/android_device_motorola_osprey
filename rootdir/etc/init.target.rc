@@ -26,6 +26,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+on early-init
+    start osprey-config-sh
+
 on boot
     # AK09912 driver parameter permissions
     chown system compass /sys/class/compass/akm09912/accel
@@ -71,6 +74,35 @@ service akmd09912 /system/vendor/bin/akmd09912
     class main
     user compass
     group compass misc input
+
+service osprey-config-sh /vendor/bin/init.device.config.sh
+    class core
+    user root
+    oneshot
+    disabled
+
+on property:ro.device.dualsim=true
+    setprop persist.radio.multisim.config dsds
+    setprop ro.telephony.default_network 9
+    setprop persist.radio.force_get_pref 1
+
+on property:ro.device.dualsim=false
+    setprop persist.radio.multisim.config ""
+    setprop ro.telephony.default_network 9
+
+on property:ro.boot.hardware.sku=XT1548
+    setprop ro.product.locale.region US
+    setprop gsm.sim.operator.iso-country US
+    setprop gsm.operator.iso-country US
+    setprop ril.subscription.types "NV,RUIM"
+    setprop ro.telephony.default_cdma_sub 0
+    setprop ro.telephony.get_imsi_from_sim true
+    setprop telephony.lteOnCdmaDevice 1
+    setprop ro.telephony.default_network 8
+
+on property:ro.boot.carrier=sprint
+    setprop ro.cdma.home.operator.alpha Sprint
+    setprop ro.cdma.home.operator.numeric 310120
 
 on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
