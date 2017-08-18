@@ -28,14 +28,14 @@
  */
 
 #include <stdlib.h>
-
+#include <android-base/properties.h>
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
 #include <sys/sysinfo.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
+
+using android::base::GetProperty;
 
 void property_override(char const prop[], char const value[])
 {
@@ -66,7 +66,7 @@ void vendor_load_properties()
     char fingerprint[PROP_VALUE_MAX];
     char tv[PROP_VALUE_MAX];
 
-    std::string platform = property_get("ro.board.platform");
+    std::string platform = GetProperty("ro.board.platform","");
     if (platform != ANDROID_TARGET)
         return;
 
@@ -74,9 +74,9 @@ void vendor_load_properties()
     ds[0] = 0;
     tv[0] = 0;
     MSIM = false;
-    std::string radio = property_get("ro.boot.radio");
-    std::string sku = property_get("ro.boot.hardware.sku");
-    std::string carrier = property_get("ro.boot.carrier");
+    std::string radio = GetProperty("ro.boot.radio","");
+    std::string sku = GetProperty("ro.boot.hardware.sku","");
+    std::string carrier = GetProperty("ro.boot.carrier","");
 
     if (is2GB()) {
         property_set("dalvik.vm.heapstartsize", "8m");
@@ -162,7 +162,7 @@ void vendor_load_properties()
         property_set("persist.radio.process_sups_ind", "0");
     }
 
-    if (property_get("ro.telephony.default_network").empty()) {
+    if (GetProperty("ro.telephony.default_network", "").empty()) {
         property_set("ro.telephony.default_network", "9");
     }
 
