@@ -16,6 +16,7 @@
 
 # Inherit from msm8916-common
 $(call inherit-product, device/motorola/msm8916-common/msm8916.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l_mr1.mk)
 
 # Screen density
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
