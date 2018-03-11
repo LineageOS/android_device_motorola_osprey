@@ -21,6 +21,7 @@ lib/libmmcamera_interface.so
 lib/libmmcamera_lux_standardization.so
 lib/libmmjpeg_interface.so
 lib/libmot-qc-fd-offline.so
+lib/libmotocalibration.so
 lib/libqomx_core.so
 lib/hw/camera.msm8916.so:lib/hw/camera.vendor.msm8916.so
 vendor/lib/libactuator_ak7345.so
@@ -116,11 +117,6 @@ vendor/lib/libchromatix_s5k5e2_hfr_60fps.so
 vendor/lib/libchromatix_s5k5e2_liveshot.so
 vendor/lib/libchromatix_s5k5e2_preview.so
 vendor/lib/libchromatix_s5k5e2_snapshot.so
-
-# Sensors
-bin/akmd09912
-lib/libmotocalibration.so
-lib/hw/sensors.msm8916.so
 
 # Touchscreen
 etc/firmware/synaptics-boe-s2726-15100905-1f711a-osprey.tdat
