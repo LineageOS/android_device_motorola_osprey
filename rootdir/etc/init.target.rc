@@ -67,7 +67,7 @@ on post-fs-data
     mkdir /data/misc/akmd 0770 system compass
 
 # Start AKM executable
-service akmd09912 /system/bin/akmd09912
+service akmd09912 /system/vendor/bin/akmd09912
     class main
     user compass
     group compass misc input
