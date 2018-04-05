@@ -1,5 +1,5 @@
 # Copyright (C) 2015-2016 The CyanogenMod Project
-#           (C) 2017 The LineageOS Project
+#               2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,5 +28,6 @@ PRODUCT_MANUFACTURER := Motorola
 PRODUCT_RELEASE_NAME := osprey
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=motorola/osprey_reteu/osprey_umts:6.0.1/MPIS24.107-55-2-12/9:user/release-keys \
-    PRIVATE_BUILD_DESC="osprey_reteu-user 6.0.1 MPIS24.107-55-2-12 9 release-keys" \
+    PRIVATE_BUILD_DESC="osprey_reteu-user 6.0.1 MPIS24.107-55-2-12 9 release-keys"
+
+BUILD_FINGERPRINT=motorola/osprey_reteu/osprey_umts:6.0.1/MPIS24.107-55-2-12/9:user/release-keys
