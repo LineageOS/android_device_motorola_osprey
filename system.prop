@@ -1,9 +1,9 @@
 # system.prop for osprey
 
 # Audio
-persist.audio.fluence.mode=endfire
-persist.audio.fluence.voicecall=true
-ro.qc.sdk.audio.fluencetype=fluence
+persist.vendor.audio.fluence.mode=endfire
+persist.vendor.audio.fluence.voicecall=true
+ro.vendor.audio.sdk.fluencetype=fluence
 
 # Camera
 media.stagefright.legacyencoder=true
