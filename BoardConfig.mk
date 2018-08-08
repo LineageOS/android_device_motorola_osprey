@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2015-2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_osprey
 
 # Camera
 BOARD_GLOBAL_CFLAGS += -DCONFIG_MSM_USES_M_STACK
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # Kernel
 TARGET_KERNEL_CONFIG := osprey_defconfig
