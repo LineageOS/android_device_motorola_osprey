@@ -19,4 +19,4 @@ Camera  | 13 MP, 4160 x 2340 pixels, autofocus, dual flash LED
 
 Copyright 2015 - The CyanogenMod Project.
 
-![Moto G 2015](https://wiki.cyanogenmod.org/images/thumb/8/81/Osprey.png/314px-Osprey.png "Moto G 2015")
+![Moto G 2015](https://cdn2.gsmarena.com/vv/pics/motorola/motorola-moto-g-3rd-gen-1.jpg "Moto G 2015")
