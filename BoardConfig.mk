@@ -30,6 +30,9 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/bin/mediaserver=23 \
     /vendor/bin/mm-qcamera-daemon=23
 
+# Display
+TARGET_SCREEN_DENSITY := 320
+
 # Kernel
 TARGET_KERNEL_CONFIG := osprey_defconfig
 
