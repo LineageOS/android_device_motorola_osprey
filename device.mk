@@ -38,6 +38,9 @@ PRODUCT_COPY_FILES += \
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# System Properties
+$(call inherit-product, device/motorola/osprey/system_prop.mk)
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.device.config.sh \
