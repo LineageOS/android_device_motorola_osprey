@@ -19,7 +19,7 @@
 	<ctl name="Voip Evrc Min Max Rate Config" id="0" value="1" />
 	<ctl name="Voip Evrc Min Max Rate Config" id="1" value="4" />
 	<ctl name="Voip Dtx Mode" value="0" />
-	<ctl name="TTY Mode" value="Off" />
+	<ctl name="TTY Mode" value="OFF" />
 	<ctl name="RX1 Digital Volume" value="84" />
 	<ctl name="RX2 Digital Volume" value="84" />
 	<ctl name="RX3 Digital Volume" value="84" />
