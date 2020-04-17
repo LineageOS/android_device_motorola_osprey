@@ -1,4 +1,4 @@
-# Proprietary files for osprey
+# Device proprietary files - from Motorola package version MPI24.65-33.1 , unless pinned
 
 # Audio
 vendor/etc/acdbdata/Bluetooth_cal.acdb
