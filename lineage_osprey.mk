@@ -30,4 +30,4 @@ PRODUCT_RELEASE_NAME := osprey
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="osprey_reteu-user 6.0.1 MPIS24.107-55-2-12 9 release-keys"
 
-BUILD_FINGERPRINT=motorola/osprey_reteu/osprey_umts:6.0.1/MPIS24.107-55-2-12/9:user/release-keys
+BUILD_FINGERPRINT := "motorola/osprey_retus/osprey_umts:6.0/MPI24.65-25.1/1:user/release-keys"
