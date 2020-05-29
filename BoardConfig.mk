@@ -28,7 +28,7 @@ BOARD_GLOBAL_CFLAGS += -DCONFIG_MSM_USES_M_STACK
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/bin/mediaserver=23 \
-    /system/bin/mm-qcamera-daemon=23
+    /vendor/bin/mm-qcamera-daemon=23
 
 # Kernel
 TARGET_KERNEL_CONFIG := osprey_defconfig

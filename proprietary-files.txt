@@ -1,29 +1,29 @@
 # Proprietary files for osprey
 
 # Audio
-etc/acdbdata/Bluetooth_cal.acdb
-etc/acdbdata/General_cal.acdb
-etc/acdbdata/Global_cal.acdb
-etc/acdbdata/Handset_cal.acdb
-etc/acdbdata/Hdmi_cal.acdb
-etc/acdbdata/Headset_cal.acdb
-etc/acdbdata/Speaker_cal.acdb
+vendor/etc/acdbdata/Bluetooth_cal.acdb
+vendor/etc/acdbdata/General_cal.acdb
+vendor/etc/acdbdata/Global_cal.acdb
+vendor/etc/acdbdata/Handset_cal.acdb
+vendor/etc/acdbdata/Hdmi_cal.acdb
+vendor/etc/acdbdata/Headset_cal.acdb
+vendor/etc/acdbdata/Speaker_cal.acdb
 
 # Camera
-bin/mm-qcamera-daemon
-lib/libadvalgcore.so
-lib/libcamerabgproc-jni.so
-lib/libcamerabgprocservice.so
-lib/libjscore.so
-lib/libjustshoot.so
-lib/libmm-qcamera.so
-lib/libmmcamera_interface.so
-lib/libmmcamera_lux_standardization.so
-lib/libmmjpeg_interface.so
-lib/libmot-qc-fd-offline.so
-lib/libmotocalibration.so
-lib/libqomx_core.so
-lib/hw/camera.msm8916.so:lib/hw/camera.vendor.msm8916.so
+vendor/bin/mm-qcamera-daemon
+vendor/lib/libadvalgcore.so
+vendor/lib/libcamerabgproc-jni.so
+vendor/lib/libcamerabgprocservice.so
+vendor/lib/libjscore.so
+vendor/lib/libjustshoot.so
+vendor/lib/libmm-qcamera.so
+vendor/lib/libmmcamera_interface.so
+vendor/lib/libmmcamera_lux_standardization.so
+vendor/lib/libmmjpeg_interface.so
+vendor/lib/libmot-qc-fd-offline.so
+vendor/lib/libmotocalibration.so
+vendor/lib/libqomx_core.so
+vendor/lib/hw/camera.msm8916.so:lib/hw/camera.vendor.msm8916.so
 vendor/lib/libactuator_ak7345.so
 vendor/lib/libactuator_ak7345_camcorder.so
 vendor/lib/libactuator_ak7345_camera.so
@@ -118,8 +118,8 @@ vendor/lib/libchromatix_s5k5e2_preview.so
 vendor/lib/libchromatix_s5k5e2_snapshot.so
 
 # Touchscreen
-etc/firmware/synaptics-boe-s2726-15100905-1f711a-osprey.tdat
-etc/firmware/synaptics-inx-s2726br_t-15091801-1dc9a8-osprey.tdat
+vendor/firmware/synaptics-boe-s2726-15100905-1f711a-osprey.tdat
+vendor/firmware/synaptics-inx-s2726br_t-15091801-1dc9a8-osprey.tdat
 
 # WCNSS
-etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
