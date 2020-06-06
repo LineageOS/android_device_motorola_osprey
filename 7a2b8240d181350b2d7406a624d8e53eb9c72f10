@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b816a38b_808192e1",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 19286
+      },
+      "writtenOn": "2020-06-06T17:26:16Z",
+      "side": 1,
+      "message": "if you build TARGET_HAS_LEGACY_CAMERA_HAL1, then you have mediaserver not cameraserver",
+      "revId": "7a2b8240d181350b2d7406a624d8e53eb9c72f10",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
