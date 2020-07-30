@@ -23,10 +23,10 @@ vendor/lib/libmmjpeg_interface.so
 vendor/lib/libmot-qc-fd-offline.so
 vendor/lib/libmotocalibration.so
 vendor/lib/libqomx_core.so
-vendor/lib/hw/camera.msm8916.so:lib/hw/camera.vendor.msm8916.so
 vendor/lib/libactuator_ak7345.so
 vendor/lib/libactuator_ak7345_camcorder.so
 vendor/lib/libactuator_ak7345_camera.so
+vendor/lib/hw/camera.vendor.msm8916.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
