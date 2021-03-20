@@ -54,3 +54,6 @@ PRODUCT_PACKAGES += \
     stml0xx \
     sensors.msm8916 \
     sensorhub.msm8916
+
+# Get non-open-source specific aspects
+$(call inherit-product, vendor/motorola/osprey/osprey-vendor.mk)

@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/motorola/osprey/full_osprey.mk)
+$(call inherit-product, device/motorola/osprey/device.mk)
 
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
