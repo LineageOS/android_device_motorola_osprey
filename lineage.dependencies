@@ -2,6 +2,10 @@
   {
     "repository":  "android_device_motorola_msm8916-common",
     "target_path": "device/motorola/msm8916-common"
+  },
+  {
+    "repository": "android_hardware_motorola",
+    "target_path": "hardware/motorola"
   }
 ]
 
